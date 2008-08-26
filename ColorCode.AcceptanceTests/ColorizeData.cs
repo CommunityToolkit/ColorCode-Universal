@@ -47,6 +47,8 @@ namespace ColorCode
             {
                 case "ashx":
                     return LanguageId.Ashx;
+                case "cs":
+                    return LanguageId.CSharp;
                 default:
                     throw new ArgumentException(string.Format("Unexpected file extension: {0}.", fileExtension));
             }

@@ -47,6 +47,15 @@
   <ItemGroup>
     <Compile Include="ColorizeData.cs" />
     <Compile Include="ColorizeTests.cs" />
+    <Compile Include="Data\csharp\abstract-keyword.source.cs" />
+    <Compile Include="Data\csharp\as-keyword.source.cs" />
+    <Compile Include="Data\csharp\base-keyword.source.cs" />
+    <Compile Include="LegacyAcceptanceTests\CSharpKeywordTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LegacyAcceptanceTests\CSharpScenarioTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +69,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\ashx\simple.expected.html" />
+    <Content Include="Data\csharp\abstract-keyword.expected.html" />
+    <Content Include="Data\csharp\as-keyword.expected.html" />
+    <Content Include="Data\csharp\base-keyword.expected.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

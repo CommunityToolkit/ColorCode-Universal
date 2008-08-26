@@ -51,7 +51,7 @@ namespace ColorCode.Parsing
                     string matchedSourceCode = sourceCode.Substring(regexMatch.Index, regexMatch.Length);
                     if (!string.IsNullOrEmpty(matchedSourceCode))
                     {
-                        List<Scope> capturedStylesForMatchedFragment = GetCapturedStyles(regexMatch, currentIndex, compiledLanguage);
+                        List<Scope> capturedStylesForMatchedFragment = GetCapturedStyles(regexMatch, regexMatch.Index, compiledLanguage);
                         List<Scope> capturedStyleTree = CreateCapturedStyleTree(capturedStylesForMatchedFragment);
                         parseHandler(matchedSourceCode, capturedStyleTree);
                     }

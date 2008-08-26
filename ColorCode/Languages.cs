@@ -26,6 +26,11 @@ namespace ColorCode
             get { return languageRepository.FindById(LanguageId.Ashx); }
         }
 
+        public static ILanguage CSharp
+        {
+            get { return languageRepository.FindById(LanguageId.CSharp); }
+        }
+
         public static ILanguage FindById(string id)
         {
             return languageRepository.FindById(id);
