@@ -1,0 +1,26 @@
+using System.Collections.Generic;
+using ColorCode.Compilation;
+
+namespace ColorCode
+{
+    /// <summary>
+    /// Defines how ColorCode will parse the source code of a given language.
+    /// </summary>
+    public interface ILanguage
+    {
+        /// <summary>
+        /// Gets the identifier of the language (e.g., csharp).
+        /// </summary>
+        string Id { get; }
+
+        /// <summary>
+        /// Gets the "friendly" name of the language (e.g., C#).
+        /// </summary>
+        string Name { get; }
+
+        /// <summary>
+        /// Gets the collection of language rules in the language.
+        /// </summary>
+        IList<LanguageRule> Rules { get; }
+    }
+}
