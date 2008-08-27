@@ -5,24 +5,16 @@ namespace ColorCode
     public class JavaScriptAcceptanceTests
     {
         [Fact]
-        public void FileExtensionsWillIncludeJs()
-        {
-            ILanguage language = Languages.JavaScript;
-
-            Assert.Contains("js", language.FileExtensions);
-        }
-        
-        [Fact]
         public void TransformWillStyleVarStatement()
         {
             string source =
 @"var variableName = new VariableType();";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">var</span> variableName = <span style=""color:#0000FF;"">new</span> VariableType();
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">var</span> variableName = <span style=""color:Blue;"">new</span> VariableType();
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -35,13 +27,13 @@ namespace ColorCode
     return argOne + argTwo;
 }";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">function</span> FunctionName(argOne, argTwo) {
-    <span style=""color:#0000FF;"">return</span> argOne + argTwo;
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">function</span> FunctionName(argOne, argTwo) {
+    <span style=""color:Blue;"">return</span> argOne + argTwo;
 }
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -52,11 +44,11 @@ namespace ColorCode
             string source =
 @"var variableName = ""aString"";";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">var</span> variableName = <span style=""color:#A31515;"">&quot;aString&quot;</span>;
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">var</span> variableName = <span style=""color:#A31515;"">&quot;aString&quot;</span>;
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -67,11 +59,11 @@ namespace ColorCode
             string source =
 @"var variableName = 'aString';";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">var</span> variableName = <span style=""color:#A31515;"">'aString'</span>;
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">var</span> variableName = <span style=""color:#A31515;"">'aString'</span>;
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -86,15 +78,15 @@ comment two
 comment three
 */";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#008000;"">/*
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Green;"">/*
 comment one
 comment two
 comment three
 */</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -104,12 +96,12 @@ comment three
         {
             string source = "// a comment.\r\n";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#008000;"">// a comment.</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Green;"">// a comment.</span>
 
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -120,11 +112,11 @@ comment three
             string source =
 @"var variableName = new VariableType(); // a comment";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">var</span> variableName = <span style=""color:#0000FF;"">new</span> VariableType(); <span style=""color:#008000;"">// a comment</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">var</span> variableName = <span style=""color:Blue;"">new</span> VariableType(); <span style=""color:Green;"">// a comment</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -138,14 +130,14 @@ comment three
         return this._someValue;
     }";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">if</span> (<span style=""color:#0000FF;"">typeof</span>(NameSpace)!=<span style=""color:#A31515;"">'undefined'</span> &amp;&amp; <span style=""color:#0000FF;"">typeof</span>(NameSpace.NestedNameSpace)!=<span style=""color:#A31515;"">'undefined'</span>)
-    NameSpace.NestedNameSpace.ClassName.prototype.someMethod = <span style=""color:#0000FF;"">function</span> () {
-        <span style=""color:#0000FF;"">return</span> <span style=""color:#0000FF;"">this</span>._someValue;
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">if</span> (<span style=""color:Blue;"">typeof</span>(NameSpace)!=<span style=""color:#A31515;"">'undefined'</span> &amp;&amp; <span style=""color:Blue;"">typeof</span>(NameSpace.NestedNameSpace)!=<span style=""color:#A31515;"">'undefined'</span>)
+    NameSpace.NestedNameSpace.ClassName.prototype.someMethod = <span style=""color:Blue;"">function</span> () {
+        <span style=""color:Blue;"">return</span> <span style=""color:Blue;"">this</span>._someValue;
     }
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -156,11 +148,11 @@ comment three
             string source =
 @"var variableName = $(""aString"");";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">var</span> variableName = $(<span style=""color:#A31515;"">&quot;aString&quot;</span>);
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">var</span> variableName = $(<span style=""color:#A31515;"">&quot;aString&quot;</span>);
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }

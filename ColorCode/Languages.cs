@@ -16,7 +16,8 @@ namespace ColorCode
             LoadedLanguages = new Dictionary<string, ILanguage>();
             CompiledLanguages = new Dictionary<string, CompiledLanguage>();
             languageRepository = new LanguageRepository(LoadedLanguages);
-            
+
+            languageRepository.Load(new JavaScript()); 
             languageRepository.Load(new CSharp());
             languageRepository.Load(new Ashx());
             languageRepository.Load(new Aspx());
@@ -36,6 +37,11 @@ namespace ColorCode
         public static ILanguage CSharp
         {
             get { return languageRepository.FindById(LanguageId.CSharp); }
+        }
+
+        public static ILanguage JavaScript
+        {
+            get { return languageRepository.FindById(LanguageId.JavaScript); }
         }
 
         public static ILanguage Sql

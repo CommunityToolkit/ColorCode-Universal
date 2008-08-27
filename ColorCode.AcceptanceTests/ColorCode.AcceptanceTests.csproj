@@ -57,6 +57,9 @@
     <Compile Include="LegacyAcceptanceTests\CSharpScenarioTest.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LegacyAcceptanceTests\JavaScriptAcceptanceTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="LegacyAcceptanceTests\SqlAggregateFunctionsTests.cs">
       <SubType>Code</SubType>
     </Compile>
