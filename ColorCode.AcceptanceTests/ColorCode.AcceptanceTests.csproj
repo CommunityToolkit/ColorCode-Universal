@@ -50,10 +50,41 @@
     <Compile Include="Data\csharp\abstract-keyword.source.cs" />
     <Compile Include="Data\csharp\as-keyword.source.cs" />
     <Compile Include="Data\csharp\base-keyword.source.cs" />
+    <Compile Include="LegacyAcceptanceTests\AspxAcceptanceTests.cs" />
     <Compile Include="LegacyAcceptanceTests\CSharpKeywordTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LegacyAcceptanceTests\CSharpScenarioTest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LegacyAcceptanceTests\SqlAggregateFunctionsTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LegacyAcceptanceTests\SqlClrTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LegacyAcceptanceTests\SqlConfiigurationFunctionsTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LegacyAcceptanceTests\SqlKeywordTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LegacyAcceptanceTests\SqlMathFunctionsTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LegacyAcceptanceTests\SqlMetadataFunctionsTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LegacyAcceptanceTests\SqlPerformanceTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LegacyAcceptanceTests\SqlScenarioTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LegacyAcceptanceTests\SqlSecurityFunctionsTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LegacyAcceptanceTests\SqlTextAndImageFunctionsTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\ashx\simple.source.ashx" />
+    <None Include="LegacyAcceptanceTests\large.sql" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\ashx\simple.expected.html" />

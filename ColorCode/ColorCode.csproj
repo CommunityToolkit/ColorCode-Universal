@@ -52,6 +52,10 @@
     </Compile>
     <Compile Include="Common\LanguageId.cs" />
     <Compile Include="Common\LanguageRepository.cs" />
+    <Compile Include="Compilation\Languages\Aspx.cs" />
+    <Compile Include="Compilation\Languages\Sql.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Formatting\HtmlFormatter.cs" />
     <Compile Include="Parsing\Scope.cs" />
     <Compile Include="IFormatter.cs" />
