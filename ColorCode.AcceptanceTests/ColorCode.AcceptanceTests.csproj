@@ -51,6 +51,9 @@
     <Compile Include="Data\csharp\as-keyword.source.cs" />
     <Compile Include="Data\csharp\base-keyword.source.cs" />
     <Compile Include="LegacyAcceptanceTests\AspxAcceptanceTests.cs" />
+    <Compile Include="LegacyAcceptanceTests\AspxCsScenarioTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="LegacyAcceptanceTests\CSharpKeywordTests.cs">
       <SubType>Code</SubType>
     </Compile>

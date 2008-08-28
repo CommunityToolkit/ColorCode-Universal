@@ -23,6 +23,7 @@ namespace ColorCode
             languageRepository.Load(new VbDotNet());
             languageRepository.Load(new Ashx());
             languageRepository.Load(new Aspx());
+            languageRepository.Load(new AspxCs());
             languageRepository.Load(new Sql());
             languageRepository.Load(new Xml());
         }
@@ -35,6 +36,11 @@ namespace ColorCode
         public static ILanguage Aspx
         {
             get { return languageRepository.FindById(LanguageId.Aspx); }
+        }
+
+        public static ILanguage AspxCs
+        {
+            get { return languageRepository.FindById(LanguageId.AspxCs); }
         }
 
         public static ILanguage CSharp

@@ -2,6 +2,7 @@
 {
     public static class LanguageId
     {
+        public const string AspxCs = "aspx(c#)";
         public const string Xml = "xml";
         public const string Ashx = "ashx";
         public const string Aspx = "aspx";

@@ -1,111 +1,119 @@
 ﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using ColorCode.Parsing;
+using ColorCode.Common;
 
 namespace ColorCode.Compilation.Languages
 {
-    public static partial class Grammars
+    public class AspxCs : ILanguage
     {
-        private static ILanguageDefinition aspxCs;
+        public string Id
+        {
+            get { return LanguageId.AspxCs; }
+        }
 
-        public static ILanguageDefinition AspxCs
+        public string Name
+        {
+            get { return "ASPX (C#)"; }
+        }
+
+        public IList<LanguageRule> Rules
         {
             get
             {
-                if (aspxCs == null) 
-                    BuildAspxCs();
-                
-                return aspxCs;
+                return new List<LanguageRule>
+                           {
+                               new LanguageRule(
+                                   @"(?s)(<%)(--.*?--)(%>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 1, ScopeName.HtmlServerSideScript },
+                                           { 2, ScopeName.HtmlComment },
+                                           { 3, ScopeName.HtmlServerSideScript }
+                                       }),
+                               new LanguageRule(
+                                   @"(?s)<!--.*-->",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 0, ScopeName.HtmlComment },
+                                       }),
+                               new LanguageRule(
+                                   @"(?i)(<%)(@)(?:\s+([a-z0-9]+))*(?:\s+([a-z0-9]+)\s*(=)\s*(""[^\n]*?""))*\s*?(%>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 1, ScopeName.HtmlServerSideScript },
+                                           { 2, ScopeName.HtmlTagDelimiter },
+                                           { 3, ScopeName.HtmlElementName },
+                                           { 4, ScopeName.HtmlAttributeName },
+                                           { 5, ScopeName.HtmlOperator },
+                                           { 6, ScopeName.HtmlAttributeValue },
+                                           { 7, ScopeName.HtmlServerSideScript }
+                                       }),
+                               new LanguageRule(
+                                   @"(?s)(?:(<%=|<%)(?!=|@|--))(.*?)(%>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 1, ScopeName.HtmlServerSideScript },
+                                           { 2, string.Format("{0}{1}", ScopeName.LanguagePrefix, LanguageId.CSharp) },
+                                           { 3, ScopeName.HtmlServerSideScript }
+                                       }),
+                               new LanguageRule(
+                                   @"(?is)(?<=<script.+?runat=""server"".*?>)(.+?)(?=</script>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 1, string.Format("{0}{1}", ScopeName.LanguagePrefix, LanguageId.CSharp) },
+                                       }),
+                               new LanguageRule(
+                                   @"(?i)(<!)(DOCTYPE)(?:\s+([a-zA-Z0-9]+))*(?:\s+(""[^""]*?""))*(>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 1, ScopeName.HtmlTagDelimiter },
+                                           { 2, ScopeName.HtmlElementName },
+                                           { 3, ScopeName.HtmlAttributeName },
+                                           { 4, ScopeName.HtmlAttributeValue },
+                                           { 5, ScopeName.HtmlTagDelimiter }
+                                       }),
+                               new LanguageRule(
+                                   @"(?is)(?<=<script.+?language="".*?javascript"".*?>)(.+?)(?=</script>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 1, string.Format("{0}{1}", ScopeName.LanguagePrefix, LanguageId.JavaScript) },
+                                       }),
+                               new LanguageRule(
+                                   @"(?xis)(</?)
+                                          (?: ([a-z][a-z0-9-]*)(:) )*
+                                          ([a-z][a-z0-9-_]*)
+                                          (?:
+                                             [\s\n]+([a-z0-9-_]+)[\s\n]*(=)[\s\n]*([^\s\n""']+?)
+                                            |[\s\n]+([a-z0-9-_]+)[\s\n]*(=)[\s\n]*(""[^\n]+?"")
+                                            |[\s\n]+([a-z0-9-_]+)[\s\n]*(=)[\s\n]*('[^\n]+?')
+                                            |[\s\n]+([a-z0-9-_]+) )*
+                                          [\s\n]*
+                                          (/?>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 1, ScopeName.HtmlTagDelimiter },
+                                           { 2, ScopeName.HtmlElementName },
+                                           { 3, ScopeName.HtmlTagDelimiter },
+                                           { 4, ScopeName.HtmlElementName },
+                                           { 5, ScopeName.HtmlAttributeName },
+                                           { 6, ScopeName.HtmlOperator },
+                                           { 7, ScopeName.HtmlAttributeValue },
+                                           { 8, ScopeName.HtmlAttributeName },
+                                           { 9, ScopeName.HtmlOperator },
+                                           { 10, ScopeName.HtmlAttributeValue },
+                                           { 11, ScopeName.HtmlAttributeName },
+                                           { 12, ScopeName.HtmlOperator },
+                                           { 13, ScopeName.HtmlAttributeValue },
+                                           { 14, ScopeName.HtmlAttributeName },
+                                           { 15, ScopeName.HtmlTagDelimiter }
+                                       }),
+                               new LanguageRule(
+                                   @"(?i)&\#?[a-z0-9]+?;",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 0, ScopeName.HtmlEntity }
+                                       }),
+                           };
             }
-        }
-
-        private static void BuildAspxCs()
-        {
-            aspxCs = new CompiledGrammar
-                     {
-                         Id = "aspx.cs",
-                         Name = "ASPX (C#)",
-                         FileExtensions = new[]
-                                          {
-                                              "aspx",
-                                              "ascx",
-                                              "asmx",
-                                              "svc",
-                                              "master"
-                                          },
-                         FirstLineMatch = @"(?xims)<%@\s*?(?:page|control|master|servicehost|webservice).*?(?:language=""c\#""|src="".+?.cs"").*?%>",
-                         Regex = new Regex(@"(?xism)
-                                           (<%)(--.*?--)(%>)
-                                           
-                                           |(<!--.*?-->)
-                                           
-                                           |(<%)(@)(?:\s+([a-zA-Z0-9]+))*(?:\s+([a-z0-9]+)\s*=\s*(""[^\n]*?""))*\s*?(%>)
-                                           
-                                           |(?:(<%=|<%)(?!=|@|--))(.*?)(%>)
-
-                                           |(?<=<script.+?runat=""server"".*?>)(.+?)(?=</script>)
-                                            
-                                           |(<!)(DOCTYPE)(?:\s+([a-z0-9]+))*(?:\s+(""[^""]*?""))*(>)
-
-                                           |(?<=<script.+?language="".*?javascript"".*?>)(.+?)(?=</script>)
-
-                                           |(</?)                                                   # punctuation element begin
-                                            (?: ([a-z][a-z0-9-]*)(:) )*                             # element namespace name, element punctuation element
-                                            ([a-z][a-z0-9-_]*)                                      # element name
-                                            (?:
-                                               [\s\n]+([a-z0-9-_]+)[\s\n]*=[\s\n]*([^\s\n""']+?) # attribute name, attribute value unquoted
-                                              |[\s\n]+([a-z0-9-_]+)[\s\n]*=[\s\n]*(""[^\n]+?"")  # attribute name, attribute value qouted double
-                                              |[\s\n]+([a-z0-9-_]+)[\s\n]*=[\s\n]*('[^\n]+?')    # attribute name, attribute value unqouted single
-                                              |[\s\n]+([a-z0-9-_]+) )*                           # attribute name
-                                            [\s\n]*
-                                            (/?>)                                                   # punctuation element end
-                                           
-                                           |(&[a-z0-9]+?;)",
-                                           RegexOptions.Compiled),
-                         Scopes = new[]
-                                  {
-                                      null,
-                                      "punctuation.section.embedded.begin.aspx.cs",
-                                      "comment.block.html",
-                                      "punctuation.section.embedded.end.aspx.cs",
-                                      "comment.block.html",
-                                      "punctuation.section.embedded.begin.aspx.cs",
-                                      "punctuation.section.declaration.aspx.cs",
-                                      "entity.name.tag.html",
-                                      "entity.other.attribute-name.html",
-                                      "string.quoted.double.html",
-                                      "punctuation.section.embedded.end.aspx.cs",
-
-                                      "punctuation.section.embedded.begin.aspx.cs",
-                                      ".cs",
-                                      "punctuation.section.embedded.end.aspx.cs",
-
-                                      ".cs",
-                                      
-                                      "punctuation.definition.tag.html",
-                                      "entity.name.tag.doctype.html",
-                                      "entity.other.attribute-name.html",
-                                      "string.quoted.double.html",
-                                      "punctuation.definition.tag.html",
-
-                                      ".js",
-
-                                      "punctuation.definition.tag.html",
-                                      "entity.name.tag.namespace.html",
-                                      "punctuation.definition.tag.namespace.html",
-                                      "entity.name.tag.html",
-                                      "entity.other.attribute-name.html",
-                                      "string.unquoted.html",
-                                      "entity.other.attribute-name.html",
-                                      "string.quoted.double.html",
-                                      "entity.other.attribute-name.html",
-                                      "string.quoted.single.html",
-                                      "entity.other.attribute-name.html",
-                                      "punctuation.definition.tag.html",
-
-                                      "constant.character.entity.html"
-                                  }
-                     };
         }
     }
 }
