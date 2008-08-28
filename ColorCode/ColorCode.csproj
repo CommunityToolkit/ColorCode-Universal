@@ -56,6 +56,9 @@
     <Compile Include="Compilation\Languages\AspxCs.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Compilation\Languages\AspxVb.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Compilation\Languages\Html.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -54,6 +54,9 @@
     <Compile Include="LegacyAcceptanceTests\AspxCsScenarioTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LegacyAcceptanceTests\AspxVbScenarioTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="LegacyAcceptanceTests\CSharpKeywordTests.cs">
       <SubType>Code</SubType>
     </Compile>
