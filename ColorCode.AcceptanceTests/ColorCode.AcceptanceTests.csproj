@@ -57,6 +57,9 @@
     <Compile Include="LegacyAcceptanceTests\CSharpScenarioTest.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LegacyAcceptanceTests\HtmlAcceptanceTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="LegacyAcceptanceTests\JavaScriptAcceptanceTests.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -107,6 +110,7 @@
     <Content Include="Data\csharp\abstract-keyword.expected.html" />
     <Content Include="Data\csharp\as-keyword.expected.html" />
     <Content Include="Data\csharp\base-keyword.expected.html" />
+    <Content Include="LegacyAcceptanceTests\large.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

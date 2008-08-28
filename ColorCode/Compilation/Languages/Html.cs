@@ -1,107 +1,111 @@
 ﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using ColorCode.Parsing;
+using ColorCode.Common;
 
 namespace ColorCode.Compilation.Languages
 {
-    public static partial class Grammars
+    public class Html : ILanguage
     {
-        private static ILanguageDefinition html;
+        public string Id
+        {
+            get { return LanguageId.Html; }
+        }
 
-        public static ILanguageDefinition Html
+        public string Name
+        {
+            get { return "HTML"; }
+        }
+
+        public IList<LanguageRule> Rules
         {
             get
             {
-                if (html == null)
-                    BuildHtml();
-
-                return html;
+                return new List<LanguageRule>
+                           {
+                               new LanguageRule(
+                                   @"(?s)<!--.*-->",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 0, ScopeName.HtmlComment },
+                                       }),
+                               new LanguageRule(
+                                   @"(?i)(<!)(DOCTYPE)(?:\s+([a-zA-Z0-9]+))*(?:\s+(""[^""]*?""))*(>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 1, ScopeName.HtmlTagDelimiter },
+                                           { 2, ScopeName.HtmlElementName },
+                                           { 3, ScopeName.HtmlAttributeName },
+                                           { 4, ScopeName.HtmlAttributeValue },
+                                           { 5, ScopeName.HtmlTagDelimiter }
+                                       }),
+                               new LanguageRule(
+                                   @"(?xis)(<)
+                                          (script)
+                                          (?:
+                                             [\s\n]+([a-z0-9-_]+)[\s\n]*(=)[\s\n]*([^\s\n""']+?)
+                                            |[\s\n]+([a-z0-9-_]+)[\s\n]*(=)[\s\n]*(""[^\n]+?"")
+                                            |[\s\n]+([a-z0-9-_]+)[\s\n]*(=)[\s\n]*('[^\n]+?')
+                                            |[\s\n]+([a-z0-9-_]+) )*
+                                          [\s\n]*
+                                          (>)
+                                          (.*?)
+                                          (</)(script)(>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 1, ScopeName.HtmlTagDelimiter },
+                                           { 2, ScopeName.HtmlElementName },
+                                           { 3, ScopeName.HtmlAttributeName },
+                                           { 4, ScopeName.HtmlOperator },
+                                           { 5, ScopeName.HtmlAttributeValue },
+                                           { 6, ScopeName.HtmlAttributeName },
+                                           { 7, ScopeName.HtmlOperator },
+                                           { 8, ScopeName.HtmlAttributeValue },
+                                           { 9, ScopeName.HtmlAttributeName },
+                                           { 10, ScopeName.HtmlOperator },
+                                           { 11, ScopeName.HtmlAttributeValue },
+                                           { 12, ScopeName.HtmlAttributeName },
+                                           { 13, ScopeName.HtmlTagDelimiter },
+                                           { 14, string.Format("{0}{1}", ScopeName.LanguagePrefix, LanguageId.JavaScript) },
+                                           { 15, ScopeName.HtmlTagDelimiter },
+                                           { 16, ScopeName.HtmlElementName },
+                                           { 17, ScopeName.HtmlTagDelimiter },
+                                       }),
+                               new LanguageRule(
+                                   @"(?xis)(</?)
+                                          (?: ([a-z][a-z0-9-]*)(:) )*
+                                          ([a-z][a-z0-9-_]*)
+                                          (?:
+                                             [\s\n]+([a-z0-9-_]+)[\s\n]*(=)[\s\n]*([^\s\n""']+?)
+                                            |[\s\n]+([a-z0-9-_]+)[\s\n]*(=)[\s\n]*(""[^\n]+?"")
+                                            |[\s\n]+([a-z0-9-_]+)[\s\n]*(=)[\s\n]*('[^\n]+?')
+                                            |[\s\n]+([a-z0-9-_]+) )*
+                                          [\s\n]*
+                                          (/?>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 1, ScopeName.HtmlTagDelimiter },
+                                           { 2, ScopeName.HtmlElementName },
+                                           { 3, ScopeName.HtmlTagDelimiter },
+                                           { 4, ScopeName.HtmlElementName },
+                                           { 5, ScopeName.HtmlAttributeName },
+                                           { 6, ScopeName.HtmlOperator },
+                                           { 7, ScopeName.HtmlAttributeValue },
+                                           { 8, ScopeName.HtmlAttributeName },
+                                           { 9, ScopeName.HtmlOperator },
+                                           { 10, ScopeName.HtmlAttributeValue },
+                                           { 11, ScopeName.HtmlAttributeName },
+                                           { 12, ScopeName.HtmlOperator },
+                                           { 13, ScopeName.HtmlAttributeValue },
+                                           { 14, ScopeName.HtmlAttributeName },
+                                           { 15, ScopeName.HtmlTagDelimiter }
+                                       }),
+                               new LanguageRule(
+                                   @"(?i)&\#?[a-z0-9]+?;",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 0, ScopeName.HtmlEntity }
+                                       }),
+                           };
             }
-        }
-
-        private static void BuildHtml()
-        {
-            html = new CompiledGrammar
-                   {
-                       Id = "html",
-                       Name = "HTML",
-                       FileExtensions = new[]
-                                        {
-                                            "html",
-                                            "htm",
-                                        },
-                       Regex = new Regex(@"(?xism)
-                                          (<!--.*?-->)
-                                          
-                                          |(<!)(DOCTYPE)(?:\s+([a-zA-Z0-9]+))*(?:\s+(""[^""]*?""))*(>)
-
-                                          |(<)                                                      # punctuation element begin
-                                            (script)                                                # element name
-                                            (?:
-                                               [\s\n]+([a-zA-Z0-9-_]+)[\s\n]*=[\s\n]*([^\s\n""']+?) # attribute name, attribute value unquoted
-                                              |[\s\n]+([a-zA-Z0-9-_]+)[\s\n]*=[\s\n]*(""[^\n]+?"")  # attribute name, attribute value qouted double
-                                              |[\s\n]+([a-zA-Z0-9-_]+)[\s\n]*=[\s\n]*('[^\n]+?')    # attribute name, attribute value unqouted single
-                                              |[\s\n]+([a-zA-Z0-9-_]+) )*                           # attribute name
-                                            [\s\n]*
-                                            (>)                                                     # punctuation element end
-                                            (.*?)                                                   # embedded JavaScript
-                                            (</)(script)(>)                                         # punctuation element begin, element name, punctuation element end
-
-                                          |(</?)                                                    # punctuation element begin
-                                            (?: ([a-z][a-z0-9-]*)(:) )*                             # element namespace name, element punctuation element
-                                            ([a-z][a-z0-9-_]*)                                      # element name
-                                            (?:
-                                               [\s\n]+([a-zA-Z0-9-_]+)[\s\n]*=[\s\n]*([^\s\n""']+?) # attribute name, attribute value unquoted
-                                              |[\s\n]+([a-zA-Z0-9-_]+)[\s\n]*=[\s\n]*(""[^\n]+?"")  # attribute name, attribute value qouted double
-                                              |[\s\n]+([a-zA-Z0-9-_]+)[\s\n]*=[\s\n]*('[^\n]+?')    # attribute name, attribute value unqouted single
-                                              |[\s\n]+([a-zA-Z0-9-_]+) )*                           # attribute name
-                                            [\s\n]*
-                                            (/?>)                                                   # punctuation element end
-                                          
-                                          |(&\#?[A-Za-z0-9]+?;)",
-                                         RegexOptions.Compiled),
-                       Scopes = new[]
-                                {
-                                    null,
-                                    "comment.block.html",
-                                    
-                                    "punctuation.definition.tag.html",
-                                    "entity.name.tag.doctype.html",
-                                    "entity.other.attribute-name.html",
-                                    "string.quoted.double.html",
-                                    "punctuation.definition.tag.html",
-
-                                    "punctuation.definition.tag.html",
-                                    "entity.name.tag.html",
-                                    "entity.other.attribute-name.html",
-                                    "string.unquoted.html",
-                                    "entity.other.attribute-name.html",
-                                    "string.quoted.double.html",
-                                    "entity.other.attribute-name.html",
-                                    "string.quoted.single.html",
-                                    "entity.other.attribute-name.html",
-                                    "punctuation.definition.tag.html",
-                                    ".js",
-                                    "punctuation.definition.tag.html",
-                                    "entity.name.tag.html",
-                                    "punctuation.definition.tag.html",
-
-                                    "punctuation.definition.tag.html",
-                                    "entity.name.tag.namespace.html",
-                                    "punctuation.definition.tag.namespace.html",
-                                    "entity.name.tag.html",
-                                    "entity.other.attribute-name.html",
-                                    "string.unquoted.html",
-                                    "entity.other.attribute-name.html",
-                                    "string.quoted.double.html",
-                                    "entity.other.attribute-name.html",
-                                    "string.quoted.single.html",
-                                    "entity.other.attribute-name.html",
-                                    "punctuation.definition.tag.html",
-                                    
-                                    "constant.character.entity.html",
-                                }
-                   };
         }
     }
 }
