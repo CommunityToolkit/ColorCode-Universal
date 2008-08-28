@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
+
 using System.IO;
 using ColorCode.Common;
 using ColorCode.Parsing;

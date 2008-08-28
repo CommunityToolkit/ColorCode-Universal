@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
+
+using System.Drawing;
 using ColorCode.Common;
 
 namespace ColorCode.Styling.StyleSheets

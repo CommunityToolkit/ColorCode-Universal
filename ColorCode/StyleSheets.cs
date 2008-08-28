@@ -1,4 +1,6 @@
-﻿using ColorCode.Styling.StyleSheets;
+﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
+
+using ColorCode.Styling.StyleSheets;
 
 namespace ColorCode
 {

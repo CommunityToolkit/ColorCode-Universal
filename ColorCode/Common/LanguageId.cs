@@ -1,4 +1,6 @@
-﻿namespace ColorCode.Common
+﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
+
+namespace ColorCode.Common
 {
     public static class LanguageId
     {

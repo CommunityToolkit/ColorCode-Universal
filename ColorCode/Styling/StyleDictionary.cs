@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
+
+using System.Collections.ObjectModel;
 
 namespace ColorCode.Styling
 {

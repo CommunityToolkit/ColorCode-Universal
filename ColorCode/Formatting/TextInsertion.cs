@@ -1,4 +1,6 @@
-﻿namespace ColorCode.Formatting
+﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
+
+namespace ColorCode.Formatting
 {
     public class TextInsertion
     {
