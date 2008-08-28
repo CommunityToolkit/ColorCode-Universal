@@ -48,37 +48,65 @@ namespace ColorCode.Styling.StyleSheets
                                    {
                                        Foreground = Color.Blue
                                    },
-                                   new Style(ScopeName.Comment)
+                               new Style(ScopeName.Comment)
                                    {
                                        Foreground = Color.Green
                                    },
-                                   new Style(ScopeName.XmlDocTag)
+                               new Style(ScopeName.XmlDocTag)
                                    {
                                        Foreground = Color.Gray
                                    },
-                                   new Style(ScopeName.XmlDocComment)
+                               new Style(ScopeName.XmlDocComment)
                                    {
                                        Foreground = Color.Green
                                    },
-                                   new Style(ScopeName.String)
+                               new Style(ScopeName.String)
                                    {
                                        Foreground = DullRed
                                    },
-                                   new Style(ScopeName.StringCSharpVerbatim)
+                               new Style(ScopeName.StringCSharpVerbatim)
                                    {
                                        Foreground = DullRed
                                    },
-                                   new Style(ScopeName.Keyword)
+                               new Style(ScopeName.Keyword)
                                    {
                                        Foreground = Color.Blue
                                    },
-                                   new Style(ScopeName.PreprocessorKeyword)
+                               new Style(ScopeName.PreprocessorKeyword)
                                    {
                                        Foreground = Color.Blue
                                    },
                                new Style(ScopeName.HtmlEntity)
                                    {
                                        Foreground = Color.Red
+                                   },    
+                               new Style(ScopeName.XmlAttribute)
+                                   {
+                                       Foreground = Color.Red
+                                   },
+                               new Style(ScopeName.XmlAttributeQuotes)
+                                   {
+                                       Foreground = Color.Black
+                                   },
+                               new Style(ScopeName.XmlAttributeValue)
+                                   {
+                                       Foreground = Color.Blue
+                                   },
+                               new Style(ScopeName.XmlCDataSection)
+                                   {
+                                       Foreground = Color.Gray
+                                   },
+                               new Style(ScopeName.XmlComment)
+                                   {
+                                       Foreground = Color.Green
+                                   },
+                               new Style(ScopeName.XmlDelimiter)
+                                   {
+                                       Foreground = Color.Blue
+                                   },
+                               new Style(ScopeName.XmlName)
+                                   {
+                                       Foreground = DullRed
                                    }
                            };
             }

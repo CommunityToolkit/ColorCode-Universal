@@ -62,6 +62,12 @@
     <Compile Include="Compilation\Languages\Sql.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Compilation\Languages\VbDotNet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Compilation\Languages\Xml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Formatting\HtmlFormatter.cs" />
     <Compile Include="Parsing\Scope.cs" />
     <Compile Include="IFormatter.cs" />

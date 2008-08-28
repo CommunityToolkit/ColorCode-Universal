@@ -20,9 +20,11 @@ namespace ColorCode
             languageRepository.Load(new JavaScript());
             languageRepository.Load(new Html()); 
             languageRepository.Load(new CSharp());
+            languageRepository.Load(new VbDotNet());
             languageRepository.Load(new Ashx());
             languageRepository.Load(new Aspx());
             languageRepository.Load(new Sql());
+            languageRepository.Load(new Xml());
         }
 
         public static ILanguage Ashx
@@ -53,6 +55,16 @@ namespace ColorCode
         public static ILanguage Sql
         {
             get { return languageRepository.FindById(LanguageId.Sql); }
+        }
+
+        public static ILanguage VbDotNet
+        {
+            get { return languageRepository.FindById(LanguageId.VbDotNet); }
+        }
+
+        public static ILanguage Xml
+        {
+            get { return languageRepository.FindById(LanguageId.Xml); }
         }
 
         public static ILanguage FindById(string id)

@@ -1,94 +1,109 @@
-﻿using System.Text.RegularExpressions;
-using ColorCode.Parsing;
+﻿using System.Collections.Generic;
+using ColorCode.Common;
 
 namespace ColorCode.Compilation.Languages
 {
-    public static partial class Grammars
+    public class Xml : ILanguage
     {
-        private static ILanguageDefinition xml;
+        public string Id
+        {
+            get { return LanguageId.Xml; }
+        }
 
-        public static ILanguageDefinition Xml
+        public string Name
+        {
+            get { return "XML"; }
+        }
+
+        public IList<LanguageRule> Rules
         {
             get
             {
-                if (xml == null) 
-                    BuildXml();
-                
-                return xml;
-            }
-        }
-
-        private static void BuildXml()
-        {
-            xml = new CompiledGrammar
-                  {
-                      Id = "xml",
-                      Name = "XML",
-                      FileExtensions = new[]
+                return new List<LanguageRule>
+                           {
+                               new LanguageRule(
+                                   @"(?s)(<!--)(.*)(-->)",
+                                   new Dictionary<int, string>
                                        {
-                                           "browser",
-                                           "dbml",
-                                           "xml", 
-                                           "resx", 
-                                           "vsdisco", 
-                                           "webinfo", 
-                                           "config",
-                                           "vbproj",
-                                           "csproj",
-                                           "sln",
-                                           "dtd",
-                                           "xsl",
-                                           "xslt",
-                                           "xsd",
-                                           "xaml",
-                                           "settings",
-                                           "sitemap"
-                                       },
-                      Regex = new Regex(@"(?xi)
-                                            (<!--.*?-->)
-                                            |(<!)(doctype)(?:\s+([a-z0-9]+))*(?:\s+(""[^\n]*?""))*(>)
-                                            |(<\?)([a-z][a-z0-9-]*)(?:\s+([a-z0-9]+)=(""[^\n]*?""))*(?:\s+([a-z0-9]+)=(\'[^\n]*?\'))*\s*?(\?>)
-                                            |(</?)(?:([a-z][a-z0-9\.-]*)(:))*([a-z][a-z0-9\.-]*?)(?:(?:\s+([a-z][a-z0-9\.-]*))*|(?:\s+([a-z][a-z0-9\.-:]*)\s*?=\s*?(""[^\n]*?""))*|(?:\s+([a-z][a-z0-9\.-:]*)\s*?=\s*?(\'[^\n]*?\'))*)\s*?(/?>)
-                                            |(&[A-Za-z0-9]+?;)
-                                            |(<!\[CDATA\[)(.*?)(\]\]>)",
-                                        RegexOptions.Singleline | RegexOptions.Compiled),
-                      Scopes = new[]
-                               {
-                                   null,
-                                   "comment.block.xml",
-
-                                   "punctuation.definition.tag.xml",
-                                   "entity.name.tag.doctype.xml",
-                                   "entity.other.attribute-name.xml",
-                                   "string.quoted.double.xml",
-                                   "punctuation.definition.tag.xml",
-                                     
-                                   "punctuation.definition.tag.xml",
-                                   "entity.name.tag.xml",
-                                   "entity.other.attribute-name.xml",
-                                   "string.quoted.double.xml",
-                                   "entity.other.attribute-name.xml",
-                                   "string.quoted.single.xml",
-                                   "punctuation.definition.tag.xml",
-
-                                   "punctuation.definition.tag.xml",
-                                   "entity.name.tag.namespace.xml",
-                                   "punctuation.definition.tag.namespace.xml",
-                                   "entity.name.tag.xml",
-                                   "entity.other.attribute-name.xml",
-                                   "entity.other.attribute-name.xml",
-                                   "string.quoted.double.xml",
-                                   "entity.other.attribute-name.xml",
-                                   "string.quoted.single.xml",
-                                   "punctuation.definition.tag.xml",
-
-                                   "constant.character.entity.xml",
-
-                                   "punctuation.definition.tag.xml",
-                                   "string.unquoted.xml",
-                                   "punctuation.definition.tag.xml"
-                               },
-                  };
+                                           { 1, ScopeName.XmlDelimiter },
+                                           { 2, ScopeName.XmlComment },
+                                           { 3, ScopeName.XmlDelimiter }
+                                       }),
+                               new LanguageRule(
+                                   @"(?i)(<!)(doctype)(?:\s+([a-z0-9]+))*(?:\s+("")([^\n]*?)(""))*(>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 1, ScopeName.XmlDelimiter },
+                                           { 2, ScopeName.XmlName },
+                                           { 3, ScopeName.XmlAttribute },
+                                           { 4, ScopeName.XmlAttributeQuotes },
+                                           { 5, ScopeName.XmlAttributeValue },
+                                           { 6, ScopeName.XmlAttributeQuotes },
+                                           { 7, ScopeName.XmlDelimiter }
+                                       }),
+                               new LanguageRule(
+                                   @"(?i)(<\?)([a-z][a-z0-9-]*)(?:\s+([a-z0-9]+)(=)("")([^\n]*?)(""))*(?:\s+([a-z0-9]+)(=)(\')([^\n]*?)(\'))*\s*?(\?>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 1, ScopeName.XmlDelimiter },
+                                           { 2, ScopeName.XmlName },
+                                           { 3, ScopeName.XmlAttribute },
+                                           { 4, ScopeName.XmlDelimiter },
+                                           { 5, ScopeName.XmlAttributeQuotes },
+                                           { 6, ScopeName.XmlAttributeValue },
+                                           { 7, ScopeName.XmlAttributeQuotes },
+                                           { 8, ScopeName.XmlAttribute },
+                                           { 9, ScopeName.XmlDelimiter },
+                                           { 10, ScopeName.XmlAttributeQuotes },
+                                           { 11, ScopeName.XmlAttributeValue },
+                                           { 12, ScopeName.XmlAttributeQuotes },
+                                           { 13, ScopeName.XmlDelimiter }
+                                       }),
+                               new LanguageRule(
+                                   @"(?xi)(</?)
+                                          (?: ([a-z][a-z0-9-]*)(:) )*
+                                          ([a-z][a-z0-9-_\.]*)
+                                          (?:
+                                            |[\s\n]+([a-z0-9-_\.:]+)[\s\n]*(=)[\s\n]*("")([^\n]+?)("")
+                                            |[\s\n]+([a-z0-9-_\.:]+)[\s\n]*(=)[\s\n]*(')([^\n]+?)(')
+                                            |[\s\n]+([a-z0-9-_\.:]+) )*
+                                          [\s\n]*
+                                          (/?>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 1, ScopeName.XmlDelimiter },
+                                           { 2, ScopeName.XmlName },
+                                           { 3, ScopeName.XmlDelimiter },
+                                           { 4, ScopeName.XmlName },
+                                           { 5, ScopeName.XmlAttribute },
+                                           { 6, ScopeName.XmlDelimiter },
+                                           { 7, ScopeName.XmlAttributeQuotes },
+                                           { 8, ScopeName.XmlAttributeValue },
+                                           { 9, ScopeName.XmlAttributeQuotes },
+                                           { 10, ScopeName.XmlAttribute },
+                                           { 11, ScopeName.XmlDelimiter },
+                                           { 12, ScopeName.XmlAttributeQuotes },
+                                           { 13, ScopeName.XmlAttributeValue },
+                                           { 14, ScopeName.XmlAttributeQuotes },
+                                           { 15, ScopeName.XmlAttribute },
+                                           { 16, ScopeName.XmlDelimiter }
+                                       }),
+                               new LanguageRule(
+                                   @"(?i)&[a-z0-9]+?;",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 0, ScopeName.XmlAttribute },
+                                       }),
+                               new LanguageRule(
+                                   @"(?s)(<!\[CDATA\[)(.*?)(\]\]>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 1, ScopeName.XmlDelimiter },
+                                           { 2, ScopeName.XmlCDataSection },
+                                           { 3, ScopeName.XmlDelimiter }
+                                       }),
+                           };
+            }
         }
     }
 }

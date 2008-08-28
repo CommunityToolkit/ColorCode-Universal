@@ -93,6 +93,12 @@
     <Compile Include="LegacyAcceptanceTests\SqlTextAndImageFunctionsTests.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LegacyAcceptanceTests\VbDotNetAcceptanceTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="LegacyAcceptanceTests\XmlAcceptanceTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -12,11 +12,11 @@ namespace ColorCode
             string source =
 @"Imports System";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">Imports</span> System
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">Imports</span> System
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -27,11 +27,11 @@ namespace ColorCode
             string source =
 @"Imports System.Regex";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">Imports</span> System.Regex
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">Imports</span> System.Regex
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -42,11 +42,11 @@ namespace ColorCode
             string source =
 @"    Namespace My.Namespace";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-    <span style=""color:#0000FF;"">Namespace</span> <span style=""color:#0000FF;"">My</span>.<span style=""color:#0000FF;"">Namespace</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+    <span style=""color:Blue;"">Namespace</span> <span style=""color:Blue;"">My</span>.<span style=""color:Blue;"">Namespace</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -57,11 +57,11 @@ namespace ColorCode
             string source =
 @"''' <summary>";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#008000;"">''' &lt;summary&gt;</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Green;"">''' &lt;summary&gt;</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -72,11 +72,11 @@ namespace ColorCode
             string source =
 @"' this is a comment";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#008000;"">' this is a comment</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Green;"">' this is a comment</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -87,11 +87,11 @@ namespace ColorCode
             string source =
 @"""this is a double-quoted string""";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
+@"<div style=""color:Black;background-color:White;""><pre>
 <span style=""color:#A31515;"">&quot;this is a double-quoted string&quot;</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -105,14 +105,14 @@ namespace ColorCode
     Implements SomeInterface
 End Class";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">Public</span> <span style=""color:#0000FF;"">Class</span> SomeClass
-    <span style=""color:#0000FF;"">Inherits</span> SomeOtherClass
-    <span style=""color:#0000FF;"">Implements</span> SomeInterface
-<span style=""color:#0000FF;"">End</span> <span style=""color:#0000FF;"">Class</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">Public</span> <span style=""color:Blue;"">Class</span> SomeClass
+    <span style=""color:Blue;"">Inherits</span> SomeOtherClass
+    <span style=""color:Blue;"">Implements</span> SomeInterface
+<span style=""color:Blue;"">End</span> <span style=""color:Blue;"">Class</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -123,11 +123,11 @@ End Class";
             string source =
 @"Private Const SomeVariable As String = ""SomeValue""";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">Private</span> <span style=""color:#0000FF;"">Const</span> SomeVariable <span style=""color:#0000FF;"">As</span> <span style=""color:#0000FF;"">String</span> = <span style=""color:#A31515;"">&quot;SomeValue&quot;</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">Private</span> <span style=""color:Blue;"">Const</span> SomeVariable <span style=""color:Blue;"">As</span> <span style=""color:Blue;"">String</span> = <span style=""color:#A31515;"">&quot;SomeValue&quot;</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -142,25 +142,17 @@ End Class";
     End If
 End Sub";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">Protected</span> <span style=""color:#0000FF;"">Overridable</span> <span style=""color:#0000FF;"">Sub</span> SomeEventHandler(<span style=""color:#0000FF;"">ByVal</span> e <span style=""color:#0000FF;"">As</span> EventArgs)
-    <span style=""color:#0000FF;"">If</span> <span style=""color:#0000FF;"">Not</span> SomeEvent <span style=""color:#0000FF;"">Is</span> <span style=""color:#0000FF;"">Nothing</span> <span style=""color:#0000FF;"">Then</span>
-        <span style=""color:#0000FF;"">RaiseEvent</span> Some(<span style=""color:#0000FF;"">Me</span>, e)
-    <span style=""color:#0000FF;"">End</span> <span style=""color:#0000FF;"">If</span>
-<span style=""color:#0000FF;"">End</span> <span style=""color:#0000FF;"">Sub</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">Protected</span> <span style=""color:Blue;"">Overridable</span> <span style=""color:Blue;"">Sub</span> SomeEventHandler(<span style=""color:Blue;"">ByVal</span> e <span style=""color:Blue;"">As</span> EventArgs)
+    <span style=""color:Blue;"">If</span> <span style=""color:Blue;"">Not</span> SomeEvent <span style=""color:Blue;"">Is</span> <span style=""color:Blue;"">Nothing</span> <span style=""color:Blue;"">Then</span>
+        <span style=""color:Blue;"">RaiseEvent</span> Some(<span style=""color:Blue;"">Me</span>, e)
+    <span style=""color:Blue;"">End</span> <span style=""color:Blue;"">If</span>
+<span style=""color:Blue;"">End</span> <span style=""color:Blue;"">Sub</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
-        }
-
-        [Fact]
-        public void FileExtensionsWillIncludeVb()
-        {
-            ILanguage language = Languages.VbDotNet;
-
-            Assert.Contains("vb", language.FileExtensions);
         }
 
         [Fact]
@@ -185,27 +177,27 @@ CUInt(foo)
 CULng(foo)
 CUShort(foo)";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">CBool</span>(foo)
-<span style=""color:#0000FF;"">CByte</span>(foo)
-<span style=""color:#0000FF;"">CChar</span>(foo)
-<span style=""color:#0000FF;"">CDate</span>(foo)
-<span style=""color:#0000FF;"">CDec</span>(foo)
-<span style=""color:#0000FF;"">CDbl</span>(foo)
-<span style=""color:#0000FF;"">Char</span>(foo)
-<span style=""color:#0000FF;"">CInt</span>(foo)
-<span style=""color:#0000FF;"">CLng</span>(foo)
-<span style=""color:#0000FF;"">CObj</span>(foo)
-<span style=""color:#0000FF;"">CShort</span>(foo)
-<span style=""color:#0000FF;"">CSng</span>(foo)
-<span style=""color:#0000FF;"">CStr</span>(foo)
-<span style=""color:#0000FF;"">CSByte</span>(foo)
-<span style=""color:#0000FF;"">CUInt</span>(foo)
-<span style=""color:#0000FF;"">CULng</span>(foo)
-<span style=""color:#0000FF;"">CUShort</span>(foo)
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">CBool</span>(foo)
+<span style=""color:Blue;"">CByte</span>(foo)
+<span style=""color:Blue;"">CChar</span>(foo)
+<span style=""color:Blue;"">CDate</span>(foo)
+<span style=""color:Blue;"">CDec</span>(foo)
+<span style=""color:Blue;"">CDbl</span>(foo)
+<span style=""color:Blue;"">Char</span>(foo)
+<span style=""color:Blue;"">CInt</span>(foo)
+<span style=""color:Blue;"">CLng</span>(foo)
+<span style=""color:Blue;"">CObj</span>(foo)
+<span style=""color:Blue;"">CShort</span>(foo)
+<span style=""color:Blue;"">CSng</span>(foo)
+<span style=""color:Blue;"">CStr</span>(foo)
+<span style=""color:Blue;"">CSByte</span>(foo)
+<span style=""color:Blue;"">CUInt</span>(foo)
+<span style=""color:Blue;"">CULng</span>(foo)
+<span style=""color:Blue;"">CUShort</span>(foo)
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -232,27 +224,27 @@ UShort
 Char
 Structure";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">String</span>
-<span style=""color:#0000FF;"">Date</span>
-<span style=""color:#0000FF;"">Decimal</span>
-<span style=""color:#0000FF;"">Double</span>
-<span style=""color:#0000FF;"">Enum</span>
-<span style=""color:#0000FF;"">Integer</span>
-<span style=""color:#0000FF;"">Long</span>
-<span style=""color:#0000FF;"">Short</span>
-<span style=""color:#0000FF;"">Single</span>
-<span style=""color:#0000FF;"">Boolean</span>
-<span style=""color:#0000FF;"">Byte</span>
-<span style=""color:#0000FF;"">SByte</span>
-<span style=""color:#0000FF;"">UInteger</span>
-<span style=""color:#0000FF;"">ULong</span>
-<span style=""color:#0000FF;"">UShort</span>
-<span style=""color:#0000FF;"">Char</span>
-<span style=""color:#0000FF;"">Structure</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">String</span>
+<span style=""color:Blue;"">Date</span>
+<span style=""color:Blue;"">Decimal</span>
+<span style=""color:Blue;"">Double</span>
+<span style=""color:Blue;"">Enum</span>
+<span style=""color:Blue;"">Integer</span>
+<span style=""color:Blue;"">Long</span>
+<span style=""color:Blue;"">Short</span>
+<span style=""color:Blue;"">Single</span>
+<span style=""color:Blue;"">Boolean</span>
+<span style=""color:Blue;"">Byte</span>
+<span style=""color:Blue;"">SByte</span>
+<span style=""color:Blue;"">UInteger</span>
+<span style=""color:Blue;"">ULong</span>
+<span style=""color:Blue;"">UShort</span>
+<span style=""color:Blue;"">Char</span>
+<span style=""color:Blue;"">Structure</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -263,11 +255,11 @@ Structure";
             string source =
 @"AddHandler event, AddressOf eventHandler";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">AddHandler</span> <span style=""color:#0000FF;"">event</span>, <span style=""color:#0000FF;"">AddressOf</span> eventHandler
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">AddHandler</span> <span style=""color:Blue;"">event</span>, <span style=""color:Blue;"">AddressOf</span> eventHandler
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -278,11 +270,11 @@ Structure";
             string source =
 @"Declare Function FunctioName Lib ""some.dll"" Alias ""FunctionNameInDll"" (ByVal arg1 As String, ByRef arg2 As Integer) As Integer";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">Declare</span> <span style=""color:#0000FF;"">Function</span> FunctioName <span style=""color:#0000FF;"">Lib</span> <span style=""color:#A31515;"">&quot;some.dll&quot;</span> <span style=""color:#0000FF;"">Alias</span> <span style=""color:#A31515;"">&quot;FunctionNameInDll&quot;</span> (<span style=""color:#0000FF;"">ByVal</span> arg1 <span style=""color:#0000FF;"">As</span> <span style=""color:#0000FF;"">String</span>, <span style=""color:#0000FF;"">ByRef</span> arg2 <span style=""color:#0000FF;"">As</span> <span style=""color:#0000FF;"">Integer</span>) <span style=""color:#0000FF;"">As</span> <span style=""color:#0000FF;"">Integer</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">Declare</span> <span style=""color:Blue;"">Function</span> FunctioName <span style=""color:Blue;"">Lib</span> <span style=""color:#A31515;"">&quot;some.dll&quot;</span> <span style=""color:Blue;"">Alias</span> <span style=""color:#A31515;"">&quot;FunctionNameInDll&quot;</span> (<span style=""color:Blue;"">ByVal</span> arg1 <span style=""color:Blue;"">As</span> <span style=""color:Blue;"">String</span>, <span style=""color:Blue;"">ByRef</span> arg2 <span style=""color:Blue;"">As</span> <span style=""color:Blue;"">Integer</span>) <span style=""color:Blue;"">As</span> <span style=""color:Blue;"">Integer</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -293,11 +285,11 @@ Structure";
             string source =
 @"System.Object";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
+@"<div style=""color:Black;background-color:White;""><pre>
 System.Object
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -308,11 +300,11 @@ System.Object
             string source =
 @"Dim foo as Object";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">Dim</span> foo <span style=""color:#0000FF;"">as</span> <span style=""color:#0000FF;"">Object</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">Dim</span> foo <span style=""color:Blue;"">as</span> <span style=""color:Blue;"">Object</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -323,11 +315,11 @@ System.Object
             string source =
 @"dim foo as object";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">dim</span> foo <span style=""color:#0000FF;"">as</span> <span style=""color:#0000FF;"">object</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">dim</span> foo <span style=""color:Blue;"">as</span> <span style=""color:Blue;"">object</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -338,11 +330,11 @@ System.Object
             string source =
 @"<Assembly: CLSCompliant(True)>";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-&lt;Assembly: CLSCompliant(<span style=""color:#0000FF;"">True</span>)&gt;
+@"<div style=""color:Black;background-color:White;""><pre>
+&lt;Assembly: CLSCompliant(<span style=""color:Blue;"">True</span>)&gt;
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -355,13 +347,13 @@ System.Object
 ' this is a comment
 #End Region";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">#Region</span> <span style=""color:#A31515;"">&quot;A comment&quot;</span>
-<span style=""color:#008000;"">' this is a comment</span>
-<span style=""color:#0000FF;"">#End Region</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">#Region</span> <span style=""color:#A31515;"">&quot;A comment&quot;</span>
+<span style=""color:Green;"">' this is a comment</span>
+<span style=""color:Blue;"">#End Region</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         } 
@@ -396,35 +388,35 @@ Public Class Class1
     End Sub
 End Class";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">Sub</span> TestEvents()
-    <span style=""color:#0000FF;"">Dim</span> Obj <span style=""color:#0000FF;"">As</span> <span style=""color:#0000FF;"">New</span> Class1
-    <span style=""color:#008000;"">' Associate an event handler with an event.</span>
-    <span style=""color:#0000FF;"">AddHandler</span> Obj.Ev_Event, <span style=""color:#0000FF;"">AddressOf</span> EventHandler
-    <span style=""color:#008000;"">' Call the method to raise the event.</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">Sub</span> TestEvents()
+    <span style=""color:Blue;"">Dim</span> Obj <span style=""color:Blue;"">As</span> <span style=""color:Blue;"">New</span> Class1
+    <span style=""color:Green;"">' Associate an event handler with an event.</span>
+    <span style=""color:Blue;"">AddHandler</span> Obj.Ev_Event, <span style=""color:Blue;"">AddressOf</span> EventHandler
+    <span style=""color:Green;"">' Call the method to raise the event.</span>
     Obj.CauseSomeEvent()
-    <span style=""color:#008000;"">' Stop handling events.</span>
-    <span style=""color:#0000FF;"">RemoveHandler</span> Obj.Ev_Event, <span style=""color:#0000FF;"">AddressOf</span> EventHandler
-    <span style=""color:#008000;"">' This event will not be handled.</span>
+    <span style=""color:Green;"">' Stop handling events.</span>
+    <span style=""color:Blue;"">RemoveHandler</span> Obj.Ev_Event, <span style=""color:Blue;"">AddressOf</span> EventHandler
+    <span style=""color:Green;"">' This event will not be handled.</span>
     Obj.CauseSomeEvent()
-<span style=""color:#0000FF;"">End</span> <span style=""color:#0000FF;"">Sub</span>
+<span style=""color:Blue;"">End</span> <span style=""color:Blue;"">Sub</span>
 
-<span style=""color:#0000FF;"">Sub</span> EventHandler()
-    <span style=""color:#008000;"">' Handle the event.</span>
+<span style=""color:Blue;"">Sub</span> EventHandler()
+    <span style=""color:Green;"">' Handle the event.</span>
     MsgBox(<span style=""color:#A31515;"">&quot;EventHandler caught event.&quot;</span>)
-<span style=""color:#0000FF;"">End</span> <span style=""color:#0000FF;"">Sub</span>
+<span style=""color:Blue;"">End</span> <span style=""color:Blue;"">Sub</span>
 
-<span style=""color:#0000FF;"">Public</span> <span style=""color:#0000FF;"">Class</span> Class1
-    <span style=""color:#008000;"">' Declare an event.</span>
-    <span style=""color:#0000FF;"">Public</span> <span style=""color:#0000FF;"">Event</span> Ev_Event()
-    <span style=""color:#0000FF;"">Sub</span> CauseSomeEvent()
-        <span style=""color:#008000;"">' Raise an event.</span>
-        <span style=""color:#0000FF;"">RaiseEvent</span> Ev_Event()
-    <span style=""color:#0000FF;"">End</span> <span style=""color:#0000FF;"">Sub</span>
-<span style=""color:#0000FF;"">End</span> <span style=""color:#0000FF;"">Class</span>
+<span style=""color:Blue;"">Public</span> <span style=""color:Blue;"">Class</span> Class1
+    <span style=""color:Green;"">' Declare an event.</span>
+    <span style=""color:Blue;"">Public</span> <span style=""color:Blue;"">Event</span> Ev_Event()
+    <span style=""color:Blue;"">Sub</span> CauseSomeEvent()
+        <span style=""color:Green;"">' Raise an event.</span>
+        <span style=""color:Blue;"">RaiseEvent</span> Ev_Event()
+    <span style=""color:Blue;"">End</span> <span style=""color:Blue;"">Sub</span>
+<span style=""color:Blue;"">End</span> <span style=""color:Blue;"">Class</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -439,15 +431,15 @@ demoStr2 = ""Goodbye"" ' Comment after a statement using the ' character.
 REM This entire line is a comment.
 ' This entire line is also a comment.";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">Dim</span> demoStr1, demoStr2 <span style=""color:#0000FF;"">As</span> <span style=""color:#0000FF;"">String</span>
-demoStr1 = <span style=""color:#A31515;"">&quot;Hello&quot;</span> <span style=""color:#008000;"">REM Comment after a statement using REM.</span>
-demoStr2 = <span style=""color:#A31515;"">&quot;Goodbye&quot;</span> <span style=""color:#008000;"">' Comment after a statement using the ' character.</span>
-<span style=""color:#008000;"">REM This entire line is a comment.</span>
-<span style=""color:#008000;"">' This entire line is also a comment.</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">Dim</span> demoStr1, demoStr2 <span style=""color:Blue;"">As</span> <span style=""color:Blue;"">String</span>
+demoStr1 = <span style=""color:#A31515;"">&quot;Hello&quot;</span> <span style=""color:Green;"">REM Comment after a statement using REM.</span>
+demoStr2 = <span style=""color:#A31515;"">&quot;Goodbye&quot;</span> <span style=""color:Green;"">' Comment after a statement using the ' character.</span>
+<span style=""color:Green;"">REM This entire line is a comment.</span>
+<span style=""color:Green;"">' This entire line is also a comment.</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -460,13 +452,13 @@ demoStr2 = <span style=""color:#A31515;"">&quot;Goodbye&quot;</span> <span style
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 #End ExternalSource";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">#ExternalSource</span>(<span style=""color:#A31515;"">&quot;C:\Documents and Settings\ITO-User\My Documents\Visual Studio 2005\WebSites\WebSite1\Next.aspx&quot;</span>,10)
-    <span style=""color:#0000FF;"">Protected</span> <span style=""color:#0000FF;"">WithEvents</span> form1 <span style=""color:#0000FF;"">As</span> Global.System.Web.UI.HtmlControls.HtmlForm
-<span style=""color:#0000FF;"">#End ExternalSource</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">#ExternalSource</span>(<span style=""color:#A31515;"">&quot;C:\Documents and Settings\ITO-User\My Documents\Visual Studio 2005\WebSites\WebSite1\Next.aspx&quot;</span>,10)
+    <span style=""color:Blue;"">Protected</span> <span style=""color:Blue;"">WithEvents</span> form1 <span style=""color:Blue;"">As</span> Global.System.Web.UI.HtmlControls.HtmlForm
+<span style=""color:Blue;"">#End ExternalSource</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -479,13 +471,13 @@ demoStr2 = <span style=""color:#A31515;"">&quot;Goodbye&quot;</span> <span style
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
 #End ExternalSource";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">#ExternalSource</span> (<span style=""color:#A31515;"">&quot;C:\Documents and Settings\ITO-User\My Documents\Visual Studio 2005\WebSites\WebSite1\Next.aspx&quot;</span>,10)
-    <span style=""color:#0000FF;"">Protected</span> <span style=""color:#0000FF;"">WithEvents</span> form1 <span style=""color:#0000FF;"">As</span> Global.System.Web.UI.HtmlControls.HtmlForm
-<span style=""color:#0000FF;"">#End ExternalSource</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">#ExternalSource</span> (<span style=""color:#A31515;"">&quot;C:\Documents and Settings\ITO-User\My Documents\Visual Studio 2005\WebSites\WebSite1\Next.aspx&quot;</span>,10)
+    <span style=""color:Blue;"">Protected</span> <span style=""color:Blue;"">WithEvents</span> form1 <span style=""color:Blue;"">As</span> Global.System.Web.UI.HtmlControls.HtmlForm
+<span style=""color:Blue;"">#End ExternalSource</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -504,19 +496,19 @@ Partial Class Customer
     End Sub
 End Class";
             string expected =
-@"<div style=""color:#000000;background-color:#FFFFFF;""><pre>
-<span style=""color:#0000FF;"">Partial</span> <span style=""color:#0000FF;"">Class</span> Customer
-    <span style=""color:#0000FF;"">Partial</span> <span style=""color:#0000FF;"">Private</span> <span style=""color:#0000FF;"">Sub</span> OnNameChanged()
-    <span style=""color:#0000FF;"">End</span> <span style=""color:#0000FF;"">Sub</span>
-<span style=""color:#0000FF;"">End</span> <span style=""color:#0000FF;"">Class</span>
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">Partial</span> <span style=""color:Blue;"">Class</span> Customer
+    <span style=""color:Blue;"">Partial</span> <span style=""color:Blue;"">Private</span> <span style=""color:Blue;"">Sub</span> OnNameChanged()
+    <span style=""color:Blue;"">End</span> <span style=""color:Blue;"">Sub</span>
+<span style=""color:Blue;"">End</span> <span style=""color:Blue;"">Class</span>
 
-<span style=""color:#0000FF;"">Partial</span> <span style=""color:#0000FF;"">Class</span> Customer
-    <span style=""color:#0000FF;"">Private</span> <span style=""color:#0000FF;"">Sub</span> OnNameChanged()
-    <span style=""color:#0000FF;"">End</span> <span style=""color:#0000FF;"">Sub</span>
-<span style=""color:#0000FF;"">End</span> <span style=""color:#0000FF;"">Class</span>
+<span style=""color:Blue;"">Partial</span> <span style=""color:Blue;"">Class</span> Customer
+    <span style=""color:Blue;"">Private</span> <span style=""color:Blue;"">Sub</span> OnNameChanged()
+    <span style=""color:Blue;"">End</span> <span style=""color:Blue;"">Sub</span>
+<span style=""color:Blue;"">End</span> <span style=""color:Blue;"">Class</span>
 </pre></div>";
 
-            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet, StyleSheets.VisualStudio);
+            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
