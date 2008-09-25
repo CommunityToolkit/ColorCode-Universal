@@ -3,10 +3,12 @@
 	<UsingTask AssemblyFile="3rdParty\CodePlex.MSBuildTasks.dll" TaskName="CodePlex.MSBuildTasks.RegexReplace"/>
 	<UsingTask AssemblyFile="3rdParty\CodePlex.MSBuildTasks.dll" TaskName="CodePlex.MSBuildTasks.Zip"/>
 
-	<PropertyGroup>
+	<PropertyGroup Condition="'$(COLORCODE_BUILDS)' == ''">
 		<BuildPath>Builds</BuildPath>
-		<BuildType>Debug</BuildType>
-	</PropertyGroup>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == ''">
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
 	<PropertyGroup Condition="'$(BuildNumber)' == ''">
 		<BuildNumber>$(ccnetlabel)</BuildNumber>
 	</PropertyGroup>
@@ -15,19 +17,19 @@
 	</PropertyGroup>
 	
 	<Target Name="clean">
-		<MSBuild Projects="ColorCode.sln" Targets="Clean" Properties="Configuration=$(BuildType)"/>
+		<MSBuild Projects="ColorCode.sln" Targets="Clean" Properties="Configuration=$(Configuration)"/>
 	</Target>
 
 	<Target Name="compile" DependsOnTargets="clean">
-		<MSBuild Projects="ColorCode.sln" Targets="Build" Properties="Configuration=$(BuildType)"/>
+		<MSBuild Projects="ColorCode.sln" Targets="Build" Properties="Configuration=$(Configuration)"/>
 	</Target>
 	
 	<Target Name="run-facts" DependsOnTargets="compile">
-		<Exec Command="3rdParty\xunit-1.0.3\xunit.console.exe ColorCode.Facts\bin\$(BuildType)\ColorCode.Facts.dll /xml ColorCode.Facts.xunit.results.xml "/>
+		<Exec Command="3rdParty\xunit-1.0.3\xunit.console.exe ColorCode.Facts\bin\$(Configuration)\ColorCode.Facts.dll /xml ColorCode.Facts.xunit.results.xml "/>
 	</Target>
 	
 	<Target Name="run-tests" DependsOnTargets="compile">
-		<Exec Command="3rdParty\xunit-1.0.3\xunit.console.exe ColorCode.AcceptanceTests\bin\$(BuildType)\ColorCode.AcceptanceTests.dll /noshadow /xml ColorCode.AcceptanceTests.xunit.results.xml "/>
+		<Exec Command="3rdParty\xunit-1.0.3\xunit.console.exe ColorCode.AcceptanceTests\bin\$(Configuration)\ColorCode.AcceptanceTests.dll /noshadow /xml ColorCode.AcceptanceTests.xunit.results.xml "/>
 	</Target>
 	
 	<Target Name="all" DependsOnTargets="compile;run-facts;run-tests" />
@@ -38,7 +40,7 @@
 	</Target>
 	
 	<Target Name="archive">
-		<CreateItem Include="ColorCode\bin\$(BuildType)\ColorCode.dll;ColorCode\bin\$(BuildType)\ColorCode.pdb">
+		<CreateItem Include="ColorCode\bin\$(Configuration)\ColorCode.dll;ColorCode\bin\$(Configuration)\ColorCode.pdb">
 			<Output TaskParameter="Include" ItemName="FilesToArchive"/>
 		</CreateItem>
 		<MakeDir Directories="$(BuildPath)" Condition="!Exists('$(BuildPath)')"/>
