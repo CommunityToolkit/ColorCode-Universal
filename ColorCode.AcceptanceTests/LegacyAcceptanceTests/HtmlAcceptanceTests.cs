@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using Xunit;
 
 namespace ColorCode
@@ -225,7 +226,9 @@ namespace ColorCode
         [Fact]
         public void TransformWillStyleLargeHtmlIn1SecondOrLess()
         {
-            string source = File.ReadAllText(@"..\..\LegacyAcceptanceTests\large.html");
+            string appPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            
+            string source = File.ReadAllText(Path.Combine(appPath, @"..\..\LegacyAcceptanceTests\large.html"));
             
             Stopwatch sw = new Stopwatch();
             sw.Start();

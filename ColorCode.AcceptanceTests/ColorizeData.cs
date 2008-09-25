@@ -11,12 +11,14 @@ namespace ColorCode
     public class ColorizeData : DataAttribute
     {
         readonly Regex sourceFileRegex = new Regex(@"(?i)[a-z]+\.source\.([a-z]+)", RegexOptions.Compiled);
-        
-        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest)
+
+        public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest, Type[] parameterTypes)
         {
             List<object[]> colorizeData = new List<object[]>();
+
+            string appPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             
-            string[] dirNames = Directory.GetDirectories(@"..\..\Data");
+            string[] dirNames = Directory.GetDirectories(Path.Combine(appPath, @"..\..\Data"));
 
             foreach(string dirName in dirNames)
             {

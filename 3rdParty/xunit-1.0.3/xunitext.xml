@@ -384,6 +384,12 @@
             By default, the transaction will not timeout.
             </summary>
         </member>
+        <member name="T:XunitExt.ClassDataAttribute">
+            <summary>
+            Provides a data source for a data theory, with the data coming from a class
+            which must implement IEnumerable&lt;object[]&gt;.
+            </summary>
+        </member>
         <member name="T:XunitExt.DataAttribute">
             <summary>
             Abstract attribute which represents a data source for a data theory.
@@ -391,12 +397,55 @@
             to return the data for the theory.
             </summary>
         </member>
-        <member name="M:XunitExt.DataAttribute.GetData(System.Reflection.MethodInfo)">
+        <member name="M:XunitExt.DataAttribute.GetData(System.Reflection.MethodInfo,System.Type[])">
             <summary>
             Returns the data to be used to test the theory.
             </summary>
+            <remarks>
+            The <paramref name="parameterTypes"/> parameter is provided so that the
+            test data can be converted to the destination parameter type when necessary.
+            Generally, data should NOT be automatically converted, UNLESS the source data
+            format does not have rich types (for example, all numbers in Excel spreadsheets
+            are returned as <see cref="T:System.Double"/> even if they are integers). Derivers of
+            this class should NOT throw exceptions for mismatched types or mismatched number
+            of parameters; the test framework will throw these exceptions at the correct
+            time.
+            </remarks>
             <param name="methodUnderTest">The method that is being tested</param>
+            <param name="parameterTypes">The types of the parameters for the test method</param>
             <returns>The theory data</returns>
+        </member>
+        <member name="M:XunitExt.ClassDataAttribute.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:XunitExt.ClassDataAttribute"/> class.
+            </summary>
+            <param name="class">The class that provides the data.</param>
+        </member>
+        <member name="M:XunitExt.ClassDataAttribute.GetData(System.Reflection.MethodInfo,System.Type[])">
+            <inheritdoc/>
+        </member>
+        <member name="T:XunitExt.DataAdapterDataAttribute">
+            <summary>
+            Represents an implementation of <see cref="T:XunitExt.DataAttribute"/> which uses an
+            instance of <see cref="T:System.Data.IDataAdapter"/> to get the data for a <see cref="T:XunitExt.TheoryAttribute"/>
+            decorated test method.
+            </summary>
+        </member>
+        <member name="M:XunitExt.DataAdapterDataAttribute.GetData(System.Reflection.MethodInfo,System.Type[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:XunitExt.DataAdapterDataAttribute.ConvertParameter(System.Object,System.Type)">
+            <summary>
+            Converts a parameter to its destination parameter type, if necessary.
+            </summary>
+            <param name="parameter">The parameter value</param>
+            <param name="parameterType">The destination parameter type (null if not known)</param>
+            <returns>The converted parameter value</returns>
+        </member>
+        <member name="P:XunitExt.DataAdapterDataAttribute.DataAdapter">
+            <summary>
+            Gets the data adapter to be used to retrieve the test data.
+            </summary>
         </member>
         <member name="T:XunitExt.InlineDataAttribute">
             <summary>
@@ -409,11 +458,12 @@
             </summary>
             <param name="dataValues">The data values to pass to the theory</param>
         </member>
-        <member name="M:XunitExt.InlineDataAttribute.GetData(System.Reflection.MethodInfo)">
+        <member name="M:XunitExt.InlineDataAttribute.GetData(System.Reflection.MethodInfo,System.Type[])">
             <summary>
             Returns the data to be used to test the theory.
             </summary>
             <param name="methodUnderTest">The method that is being tested</param>
+            <param name="parameterTypes">The types of the parameters for the test method</param>
             <returns>The theory data, in table form</returns>
         </member>
         <member name="T:XunitExt.OleDbDataAttribute">
@@ -428,12 +478,8 @@
             <param name="connectionString">The OLEDB connection string to the data</param>
             <param name="selectStatement">The SELECT statement used to return the data for the theory</param>
         </member>
-        <member name="M:XunitExt.OleDbDataAttribute.GetData(System.Reflection.MethodInfo)">
-            <summary>
-            Returns the data to be used to test the theory.
-            </summary>
-            <param name="methodUnderTest">The method that is being tested</param>
-            <returns>The theory data</returns>
+        <member name="P:XunitExt.OleDbDataAttribute.DataAdapter">
+            <inheritdoc/>
         </member>
         <member name="T:XunitExt.PropertyDataAttribute">
             <summary>
@@ -447,11 +493,12 @@
             </summary>
             <param name="propertyName">The name of the public static property on the test class that will provide the test data</param>
         </member>
-        <member name="M:XunitExt.PropertyDataAttribute.GetData(System.Reflection.MethodInfo)">
+        <member name="M:XunitExt.PropertyDataAttribute.GetData(System.Reflection.MethodInfo,System.Type[])">
             <summary>
             Returns the data to be used to test the theory.
             </summary>
             <param name="methodUnderTest">The method that is being tested</param>
+            <param name="parameterTypes">The types of the parameters for the test method</param>
             <returns>The theory data, in table form</returns>
         </member>
         <member name="T:XunitExt.SqlServerDataAttribute">
@@ -489,6 +536,9 @@
             <param name="filename">The filename of the XLS spreadsheet file; if the filename provided
             is relative, then it is relative to the location of xunit.extensions.dll.</param>
             <param name="selectStatement">The SELECT statement that returns the data for the theory</param>
+        </member>
+        <member name="M:XunitExt.ExcelDataAttribute.ConvertParameter(System.Object,System.Type)">
+            <inheritdoc/>
         </member>
         <member name="T:XunitExt.Clock">
             <summary>
@@ -627,19 +677,22 @@
             <param name="parameters">The parameters to be passed to the test method</param>
         </member>
         <member name="M:XunitExt.TheoryCommand.Execute(System.Object)">
-            <summary>
-            Executes the test method
-            </summary>
-            <returns>Returns information about the test run</returns>
+            <inheritdoc/>
         </member>
         <member name="P:XunitExt.TheoryCommand.Name">
-            <summary>
-            Gets the fully-qualified name of the test method.
-            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:XunitExt.TheoryCommand.ShouldCreateInstance">
+            <inheritdoc/>
         </member>
         <member name="P:XunitExt.TheoryCommand.Parameters">
             <summary>
-            Gets the parameters that are passed to the test command.
+            Gets the parameter values that are passed to the test method.
+            </summary>
+        </member>
+        <member name="P:XunitExt.TheoryCommand.TestMethod">
+            <summary>
+            Gets the method under test.
             </summary>
         </member>
         <member name="T:XunitExt.TraceAttribute">

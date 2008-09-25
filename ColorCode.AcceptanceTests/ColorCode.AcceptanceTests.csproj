@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30428</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{B25E2B63-11CB-4F5C-AADE-99278AC8DCAC}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -35,21 +35,27 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
-    <Reference Include="xunit, Version=1.0.0.1105, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+    <Reference Include="xunit, Version=1.0.3.1299, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\3rdParty\xunit.dll</HintPath>
+      <HintPath>..\3rdParty\xunit-1.0.3\xunit.dll</HintPath>
     </Reference>
-    <Reference Include="xunitext, Version=1.0.0.1235, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+    <Reference Include="xunitext, Version=1.0.3.1299, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\3rdParty\xunitext.dll</HintPath>
+      <HintPath>..\3rdParty\xunit-1.0.3\xunitext.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorizeData.cs" />
     <Compile Include="ColorizeTests.cs" />
-    <Compile Include="Data\csharp\abstract-keyword.source.cs" />
-    <Compile Include="Data\csharp\as-keyword.source.cs" />
-    <Compile Include="Data\csharp\base-keyword.source.cs" />
+    <Compile Include="Data\csharp\abstract-keyword.source.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Data\csharp\as-keyword.source.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Data\csharp\base-keyword.source.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="LegacyAcceptanceTests\AspxAcceptanceTests.cs" />
     <Compile Include="LegacyAcceptanceTests\AspxCsScenarioTests.cs">
       <SubType>Code</SubType>
@@ -114,14 +120,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\ashx\simple.source.ashx" />
+    <None Include="Data\ashx\simple.source.ashx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="LegacyAcceptanceTests\large.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\ashx\simple.expected.html" />
-    <Content Include="Data\csharp\abstract-keyword.expected.html" />
-    <Content Include="Data\csharp\as-keyword.expected.html" />
-    <Content Include="Data\csharp\base-keyword.expected.html" />
+    <Content Include="Data\ashx\simple.expected.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\csharp\abstract-keyword.expected.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\csharp\as-keyword.expected.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\csharp\base-keyword.expected.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="LegacyAcceptanceTests\large.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorCode.AcceptanceTests",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorCode.Facts", "ColorCode.Facts\ColorCode.Facts.csproj", "{87A33AAD-7496-4C6A-9D3A-258276A97188}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F7333FE4-B5FB-463E-A1DF-7B95405AE755}"
+	ProjectSection(SolutionItems) = preProject
+		ColorCode.msbuild = ColorCode.msbuild
+		GlobalAssemblyInfo.cs = GlobalAssemblyInfo.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

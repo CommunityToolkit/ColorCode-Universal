@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using Xunit;
 
 namespace ColorCode.SqlAcceptanceTests
@@ -12,7 +13,8 @@ namespace ColorCode.SqlAcceptanceTests
             [Fact]
             public void WillStyleLargeSourceTextIn1SecondOrLess()
             {
-                string source = File.ReadAllText(@"..\..\LegacyAcceptanceTests\large.sql");
+                string appPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string source = File.ReadAllText(Path.Combine(appPath, @"..\..\LegacyAcceptanceTests\large.sql"));
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
 
