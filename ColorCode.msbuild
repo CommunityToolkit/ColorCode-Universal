@@ -3,7 +3,7 @@
 	<UsingTask AssemblyFile="3rdParty\CodePlex.MSBuildTasks.dll" TaskName="CodePlex.MSBuildTasks.RegexReplace"/>
 	<UsingTask AssemblyFile="3rdParty\CodePlex.MSBuildTasks.dll" TaskName="CodePlex.MSBuildTasks.Zip"/>
 
-	<PropertyGroup Condition="'$(COLORCODE_BUILDS)' == ''">
+	<PropertyGroup Condition="'$(BuildPath)' == ''">
 		<BuildPath>Builds</BuildPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == ''">
