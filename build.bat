@@ -1,5 +1,8 @@
 @echo off
 
+
+if %COMPUTERNAME%==CODEPLEX-BUILD set ArchivePath=D:\Builds\Zips\ColorCode
+
 if "%1" == "" goto :WithoutTarget
 
 :WithTarget

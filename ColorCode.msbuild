@@ -3,9 +3,6 @@
 	<UsingTask AssemblyFile="3rdParty\CodePlex.MSBuildTasks.dll" TaskName="CodePlex.MSBuildTasks.RegexReplace"/>
 	<UsingTask AssemblyFile="3rdParty\CodePlex.MSBuildTasks.dll" TaskName="CodePlex.MSBuildTasks.Zip"/>
 
-	<PropertyGroup Condition="'$(BuildPath)' == ''">
-		<BuildPath>Builds</BuildPath>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == ''">
     <Configuration>Debug</Configuration>
   </PropertyGroup>
@@ -39,13 +36,13 @@
 		<RegexReplace Pattern='AssemblyVersion\("(\d+\.\d+\.\d+)\.\d+"\)' Replacement='AssemblyVersion("$1.$(BuildNumber)")' Files='GlobalAssemblyInfo.cs'/>
 	</Target>
 	
-	<Target Name="archive">
+	<Target Name="archive" Condition="'$(ArchivePath)' != ''">
 		<CreateItem Include="ColorCode\bin\$(Configuration)\ColorCode.dll;ColorCode\bin\$(Configuration)\ColorCode.pdb">
 			<Output TaskParameter="Include" ItemName="FilesToArchive"/>
 		</CreateItem>
-		<MakeDir Directories="$(BuildPath)" Condition="!Exists('$(BuildPath)')"/>
-		<Delete Files="$(BuildPath)\ColorCode-$(BuildNumber).zip"/>
-		<Zip ZipFileName="$(BuildPath)\ColorCode-$(BuildNumber).zip" Files="@(FilesToArchive)" StripPath="true"/>
+		<MakeDir Directories="$(ArchivePath)" Condition="!Exists('$(ArchivePath)')"/>
+		<Delete Files="$(ArchivePath)\ColorCode-$(BuildNumber).zip"/>
+		<Zip ZipFileName="$(ArchivePath)\ColorCode-$(BuildNumber).zip" Files="@(FilesToArchive)" StripPath="true"/>
 	</Target>
 
 	<Target Name="ci" DependsOnTargets="set-version;all;archive" />
