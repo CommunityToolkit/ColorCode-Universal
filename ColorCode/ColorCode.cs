@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using ColorCode.Common;
@@ -31,6 +32,11 @@ namespace ColorCode
             string colorizedSourceCode = buffer.ToString();
             
             return colorizedSourceCode;
+        }
+
+        public static IDictionary<string, ILanguage> LoadedLanguages
+        {
+            get { return Languages.LoadedLanguages; }
         }
     }
 }
