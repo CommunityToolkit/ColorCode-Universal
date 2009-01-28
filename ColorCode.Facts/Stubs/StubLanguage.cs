@@ -10,6 +10,8 @@ namespace ColorCode.Stubs
         public string name__getValue;
         public IList<LanguageRule> rules__getValue;
         public bool Rules__getInvoked;
+        public bool FirstLinePattern__getInvoked;
+        public string FirstLinePattern__getValue;
 
         public string Id
         {
@@ -22,6 +24,15 @@ namespace ColorCode.Stubs
             {
                 Name__getInvoked = true; 
                 return name__getValue; 
+            }
+        }
+
+        public string FirstLinePattern
+        {
+            get
+            {
+                FirstLinePattern__getInvoked = true;
+                return FirstLinePattern__getValue;
             }
         }
 

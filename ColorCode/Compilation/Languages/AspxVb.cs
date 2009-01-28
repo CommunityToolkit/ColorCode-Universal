@@ -17,6 +17,14 @@ namespace ColorCode.Compilation.Languages
             get { return "ASPX (VB.NET)"; }
         }
 
+        public string FirstLinePattern
+        {
+            get
+            {
+                return @"(?xims)<%@\s*?(?:page|control|master|webhandler|servicehost|webservice).*?language=""vb"".*?%>";
+            }
+        }
+
         public IList<LanguageRule> Rules
         {
             get

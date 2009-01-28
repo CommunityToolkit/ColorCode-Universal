@@ -17,6 +17,14 @@ namespace ColorCode.Compilation.Languages
             get { return "XML"; }
         }
 
+        public string FirstLinePattern
+        {
+            get
+            {
+                return null;
+            }
+        }
+
         public IList<LanguageRule> Rules
         {
             get

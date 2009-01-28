@@ -17,6 +17,14 @@ namespace ColorCode.Compilation.Languages
             get { return "ASPX (C#)"; }
         }
 
+        public string FirstLinePattern
+        {
+            get
+            {
+                return @"(?xims)<%@\s*?(?:page|control|master|servicehost|webservice).*?(?:language=""c\#""|src="".+?.cs"").*?%>";
+            }
+        }
+
         public IList<LanguageRule> Rules
         {
             get

@@ -16,6 +16,11 @@ namespace ColorCode
         string Id { get; }
 
         /// <summary>
+        /// Gets the first line pattern (regex) to use when determining if the language matches a source text.
+        /// </summary>
+        string FirstLinePattern { get; }
+
+        /// <summary>
         /// Gets the "friendly" name of the language (e.g., C#).
         /// </summary>
         string Name { get; }
