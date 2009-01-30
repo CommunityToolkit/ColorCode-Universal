@@ -50,7 +50,7 @@ namespace ColorCode.Compilation.Languages
                                            { 0, ScopeName.String },
                                        }),
                                new LanguageRule(
-                                   @"(?:\s|^)(\#End\sRegion|\#Region|\#Const|\#End\sExternalSource|\#ExternalSource|\#If|\#Else)(?:\s|\(|\r?$)",
+                                   @"(?:\s|^)(\#End\sRegion|\#Region|\#Const|\#End\sExternalSource|\#ExternalSource|\#If|\#Else|\#End\sIf)(?:\s|\(|\r?$)",
                                    new Dictionary<int, string>
                                        {
                                            { 1, ScopeName.PreprocessorKeyword },

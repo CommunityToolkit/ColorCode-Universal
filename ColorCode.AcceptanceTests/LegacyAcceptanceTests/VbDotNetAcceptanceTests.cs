@@ -340,17 +340,23 @@ System.Object
         }
 
         [Fact]
-        public void TransformWillStyleRegionDirectives()
+        public void TransformWillStyleRegionAndIfDirectives()
         {
             string source =
 @"#Region ""A comment""
 ' this is a comment
-#End Region";
+#End Region
+#If
+#Else
+#End If";
             string expected =
 @"<div style=""color:Black;background-color:White;""><pre>
 <span style=""color:Blue;"">#Region</span> <span style=""color:#A31515;"">&quot;A comment&quot;</span>
 <span style=""color:Green;"">' this is a comment</span>
 <span style=""color:Blue;"">#End Region</span>
+<span style=""color:Blue;"">#If</span>
+<span style=""color:Blue;"">#Else</span>
+<span style=""color:Blue;"">#End If</span>
 </pre></div>";
 
             string actual = ColorCode.Colorize(source, Languages.VbDotNet);
