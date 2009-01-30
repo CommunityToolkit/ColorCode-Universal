@@ -9,6 +9,7 @@ namespace ColorCode.Common
         public const string Xml = "xml";
         public const string Ashx = "ashx";
         public const string Aspx = "aspx";
+        public const string Asax = "asax";
         public const string CSharp = "c#";
         public const string Html = "html";
         public const string JavaScript = "javascript";

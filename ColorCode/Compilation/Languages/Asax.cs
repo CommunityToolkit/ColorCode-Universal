@@ -5,16 +5,16 @@ using ColorCode.Common;
 
 namespace ColorCode.Compilation.Languages
 {
-    public class Aspx : ILanguage
+    public class Asax : ILanguage
     {
         public string Id
         {
-            get { return LanguageId.Aspx; }
+            get { return LanguageId.Asax; }
         }
 
         public string Name
         {
-            get { return "ASPX"; }
+            get { return "ASAX"; }
         }
 
         public string FirstLinePattern
@@ -32,7 +32,7 @@ namespace ColorCode.Compilation.Languages
                 return new List<LanguageRule>
                            {
                                new LanguageRule(
-                                   @"(?s)(<%)(--.*?--)(%>)",
+                                   @"(<%)(--.*?--)(%>)",
                                    new Dictionary<int, string>
                                        {
                                            { 1, ScopeName.HtmlServerSideScript },
@@ -40,45 +40,16 @@ namespace ColorCode.Compilation.Languages
                                            { 3, ScopeName.HtmlServerSideScript }
                                        }),
                                new LanguageRule(
-                                   @"(?s)<!--.*?-->",
+                                   @"(?is)(?<=<%@.+?language=""c\#"".*?%>.*?<script.*?runat=""server"">)(.*)(?=</script>)",
                                    new Dictionary<int, string>
                                        {
-                                           { 0, ScopeName.HtmlComment }
+                                           { 1, string.Format("{0}{1}", ScopeName.LanguagePrefix, LanguageId.CSharp) }
                                        }),
                                new LanguageRule(
-                                   @"(?i)(<%)(@)(?:\s+([a-z0-9]+))*(?:\s+([a-z0-9]+)(=)(""[^\n]*?""))*\s*?(%>)",
+                                   @"(?is)(?<=<%@.+?language=""vb"".*?%>.*?<script.*?runat=""server"">)(.*)(?=</script>)",
                                    new Dictionary<int, string>
                                        {
-                                           { 1, ScopeName.HtmlServerSideScript },
-                                           { 2, ScopeName.HtmlTagDelimiter },
-                                           { 3, ScopeName.HtmlElementName },
-                                           { 4, ScopeName.HtmlAttributeName },
-                                           { 5, ScopeName.HtmlOperator },
-                                           { 6, ScopeName.HtmlAttributeValue },
-                                           { 7, ScopeName.HtmlServerSideScript }
-                                       }),
-                               new LanguageRule(
-                                   @"(?s)(?:(<%=|<%)(?!=|@|--))(?:.*?)(%>)",
-                                   new Dictionary<int, string>
-                                       {
-                                           { 1, ScopeName.HtmlServerSideScript },
-                                           { 2, ScopeName.HtmlServerSideScript }
-                                       }),
-                               new LanguageRule(
-                                   @"(?is)(<!)(DOCTYPE)(?:\s+([a-z0-9]+))*(?:\s+(""[^""]*?""))*(>)",
-                                   new Dictionary<int, string>
-                                       {
-                                           { 1, ScopeName.HtmlTagDelimiter },
-                                           { 2, ScopeName.HtmlElementName },
-                                           { 3, ScopeName.HtmlAttributeName },
-                                           { 4, ScopeName.HtmlAttributeValue },
-                                           { 5, ScopeName.HtmlTagDelimiter }
-                                       }),
-                               new LanguageRule(
-                                   @"(?s)(?<=<script.+?language="".*?javascript"".*?>)(.+?)(?=</script>)",
-                                   new Dictionary<int, string>
-                                       {
-                                           { 1, string.Format("{0}{1}", ScopeName.LanguagePrefix, LanguageId.JavaScript) }
+                                           { 1, string.Format("{0}{1}", ScopeName.LanguagePrefix, LanguageId.VbDotNet) }
                                        }),
                                new LanguageRule(
                                    @"(?xi)(</?)
@@ -110,10 +81,16 @@ namespace ColorCode.Compilation.Languages
                                            { 15, ScopeName.HtmlTagDelimiter }
                                        }),
                                new LanguageRule(
-                                   @"(?i)&[a-z0-9]+?;",
+                                   @"(<%)(@)(?:\s+([a-zA-Z0-9]+))*(?:\s+([a-zA-Z0-9]+)(=)(""[^\n]*?""))*\s*?(%>)",
                                    new Dictionary<int, string>
                                        {
-                                           { 0, ScopeName.HtmlEntity }
+                                           { 1, ScopeName.HtmlServerSideScript },
+                                           { 2, ScopeName.HtmlTagDelimiter },
+                                           { 3, ScopeName.HtmlElementName },
+                                           { 4, ScopeName.HtmlAttributeName },
+                                           { 5, ScopeName.HtmlOperator },
+                                           { 6, ScopeName.HtmlAttributeValue },
+                                           { 7, ScopeName.HtmlServerSideScript }
                                        })
                            };
             }

@@ -48,6 +48,7 @@
     </Compile>
     <Compile Include="Common\LanguageId.cs" />
     <Compile Include="Common\LanguageRepository.cs" />
+    <Compile Include="Compilation\Languages\Asax.cs" />
     <Compile Include="Compilation\Languages\Aspx.cs" />
     <Compile Include="Compilation\Languages\AspxCs.cs">
       <SubType>Code</SubType>
