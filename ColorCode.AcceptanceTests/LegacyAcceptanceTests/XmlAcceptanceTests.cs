@@ -221,5 +221,35 @@ xmlns=""http://tempuri.org/po.xsd"" elementFormDefault=""qualified"">";
 
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void TransformWillStyleAnElementNameThatContainsUnderscore()
+        {
+            string source =
+                @"<e_s>someText</e_s>";
+            string expected =
+                @"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">e_s</span><span style=""color:Blue;"">&gt;</span>someText<span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">e_s</span><span style=""color:Blue;"">&gt;</span>
+</pre></div>";
+
+            string actual = ColorCode.Colorize(source, Languages.Xml);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void TransformWillStyleAnElementNameThatContainsDash()
+        {
+            string source =
+@"<e-s>someText</e-s>";
+            string expected =
+@"<div style=""color:Black;background-color:White;""><pre>
+<span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">e-s</span><span style=""color:Blue;"">&gt;</span>someText<span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">e-s</span><span style=""color:Blue;"">&gt;</span>
+</pre></div>";
+
+            string actual = ColorCode.Colorize(source, Languages.Xml);
+
+            Assert.Equal(expected, actual);
+        }
     }
 }

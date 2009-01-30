@@ -71,7 +71,7 @@ namespace ColorCode.Compilation.Languages
                                        }),
                                new LanguageRule(
                                    @"(?xi)(</?)
-                                          (?: ([a-z][a-z0-9-]*)(:) )*
+                                          (?: ([a-z][a-z0-9-_]*)(:) )*
                                           ([a-z][a-z0-9-_\.]*)
                                           (?:
                                             |[\s\n]+([a-z0-9-_\.:]+)[\s\n]*(=)[\s\n]*("")([^\n]+?)("")
