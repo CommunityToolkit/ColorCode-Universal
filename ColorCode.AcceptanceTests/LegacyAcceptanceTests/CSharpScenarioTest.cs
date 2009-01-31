@@ -13,9 +13,49 @@ namespace ColorCode.CSharpAcceptanceTests
                 string source =
     @"/// <summary>The</summary>";
                 string expected =
-    @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Gray;"">///</span> <span style=""color:Gray;"">&lt;summary&gt;</span><span style=""color:Green;"">The</span><span style=""color:Gray;"">&lt;/summary&gt;</span>
-</pre></div>";
+                    "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;summary&gt;</span><span style=\"color:Green;\">The&lt;/summary&gt;</span>\r\n</pre></div>";
+
+                string actual = ColorCode.Colorize(source, Languages.CSharp);
+
+                Assert.Equal(expected, actual);
+            }
+
+            [Fact]
+            public void WillStyleDocCommentMultilineWithSpaces()
+            {
+                string source =
+    @"/// <exception cref=""CompositionException"">
+/// An error occurred during composition. <see cref=""CompositionException.Issues""/> will 
+/// contain a list of errors that occurred.
+/// </exception>
+/// test
+";
+                string expected =
+                    "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;exception cref=&quot;CompositionException&quot;&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> An error occurred during composition. &lt;see cref=&quot;CompositionException.Issues&quot;/&gt; will \r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> contain a list of errors that occurred.\r</span>\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;/exception&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> test\r</span>\n\r\n</pre></div>";
+
+                string actual = ColorCode.Colorize(source, Languages.CSharp);
+
+                Assert.Equal(expected, actual);
+            }
+
+            [Fact]
+            public void WillStyleDocCommentMultilineWithcref()
+            {
+                string source =
+    @"using System;
+
+/// <exception cref=""Class1"">
+/// An error occurred during composition. <see cref=""Class1.test""/> will 
+/// contain a list of errors that occurred.
+/// </exception>
+/// test
+public class Class1
+{
+    public void test()
+	{
+	}
+}";
+                string expected = "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Blue;\">using</span> System;\r\n\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;exception cref=&quot;Class1&quot;&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> An error occurred during composition. &lt;see cref=&quot;Class1.test&quot;/&gt; will \r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> contain a list of errors that occurred.\r</span>\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;/exception&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> test\r</span>\n<span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">class</span> Class1\r\n{\r\n    <span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">void</span> test()\r\n\t{\r\n\t}\r\n}\r\n</pre></div>";
 
                 string actual = ColorCode.Colorize(source, Languages.CSharp);
 
@@ -280,13 +320,7 @@ Line 3
 /// </summary>
 public class Assert";
                 string expected =
-@"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Gray;"">///</span> <span style=""color:Gray;"">&lt;summary&gt;</span>
-<span style=""color:Gray;"">///</span><span style=""color:Green;""> Contains various static methods that are used to verify that conditions are met during the</span>
-<span style=""color:Gray;"">///</span><span style=""color:Green;""> process of running tests.</span>
-<span style=""color:Gray;"">///</span><span style=""color:Green;""> </span><span style=""color:Gray;"">&lt;/summary&gt;</span>
-<span style=""color:Blue;"">public</span> <span style=""color:Blue;"">class</span> Assert
-</pre></div>";
+                    "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;summary&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> Contains various static methods that are used to verify that conditions are met during the\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> process of running tests.\r</span>\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;/summary&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">class</span> Assert\r\n</pre></div>";
 
                 string actual = ColorCode.Colorize(source, Languages.CSharp);
 

@@ -38,13 +38,12 @@ namespace ColorCode.Compilation.Languages
                                            { 0, ScopeName.Comment },
                                        }),
                                new LanguageRule(
-                                   @"(///)(?:\s*?(<[a-zA-Z0-9]+>))*([^\r\n]*?)(?:(</[a-zA-Z0-9]+>))*(?:\r\n|$)",
+                                   @"(///)(?:\s*?(<[/a-zA-Z0-9\s""=]+>))*(.*?)$",
                                    new Dictionary<int, string>
                                        {
                                            { 1, ScopeName.XmlDocTag },
                                            { 2, ScopeName.XmlDocTag },
                                            { 3, ScopeName.XmlDocComment },
-                                           { 4, ScopeName.XmlDocTag },
                                        }),
                                new LanguageRule(
                                    @"(//.*?)\r?$",
