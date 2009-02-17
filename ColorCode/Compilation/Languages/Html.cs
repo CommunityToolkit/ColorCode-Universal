@@ -32,7 +32,7 @@ namespace ColorCode.Compilation.Languages
                 return new List<LanguageRule>
                            {
                                new LanguageRule(
-                                   @"(?s)<!--.*-->",
+                                   @"\<![ \r\n\t]*(--([^\-]|[\r\n]|-[^\-])*--[ \r\n\t]*)\>",
                                    new Dictionary<int, string>
                                        {
                                            { 0, ScopeName.HtmlComment },
