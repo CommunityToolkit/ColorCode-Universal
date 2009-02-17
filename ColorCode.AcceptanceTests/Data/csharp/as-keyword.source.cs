@@ -13,7 +13,7 @@ public class IsTest
 {
     public static void Main()
     {
-        object[] myObjects = new object[6];
+        object[] myObjects = new object[6]; /* test comment 1 */
         myObjects[0] = new MyClass1();
         myObjects[1] = new MyClass2();
         myObjects[2] = "hello";
@@ -22,7 +22,7 @@ public class IsTest
         myObjects[5] = null;
 
         for (int i = 0; i < myObjects.Length; ++i)
-        {
+        {/* loop it */
             string s = myObjects[i] as string;
             Console.Write("{0}:", i);
             if (s != null)
