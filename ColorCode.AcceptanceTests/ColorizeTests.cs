@@ -14,7 +14,7 @@ namespace ColorCode
             string sourceCode = File.ReadAllText(sourceFileName);
             string expectedHtml = File.ReadAllText(expectedFileName);
 
-            string actualHtml = ColorCode.Colorize(sourceCode, language);
+            string actualHtml = new CodeColorizer().Colorize(sourceCode, language);
             File.WriteAllText(expectedFileName.Replace(".expected.", ".actual."), actualHtml);
             
             Assert.Equal(expectedHtml, actualHtml);

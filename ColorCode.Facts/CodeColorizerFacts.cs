@@ -74,6 +74,30 @@ namespace ColorCode
             }
 
             [Fact]
+            public void Will_write_the_parsed_source_code_using_the_defaults()
+            {
+                CodeColorizer codeColorizer = new CodeColorizer();
+                const string sourceCode = "fnord";
+                StubTextWriter textWriter = new StubTextWriter();
+
+                codeColorizer.Colorize(sourceCode, Languages.Html, textWriter);
+
+                Assert.Contains("fnord", textWriter.Write__buffer);
+            }
+
+            [Fact]
+            public void Will_write_the_parsed_source_code_using_the_defaults_without_the_textwriter()
+            {
+                CodeColorizer codeColorizer = new CodeColorizer();
+                const string sourceCode = "fnord";
+                StubTextWriter textWriter = new StubTextWriter();
+
+                string output = codeColorizer.Colorize(sourceCode, Languages.Html);
+
+                Assert.Contains("fnord", output);
+            }
+
+            [Fact]
             public void Will_write_the_footer()
             {
                 StubLanguageParser languageParser = new StubLanguageParser();
@@ -95,6 +119,28 @@ namespace ColorCode
                 CodeColorizer codeColorizer = new CodeColorizer(new StubLanguageParser());
 
                 Exception ex = Record.Exception(() => codeColorizer.Colorize(string.Empty, null, new StubFormatter(), new StubStyleSheet(), new StubTextWriter()));
+
+                Assert.IsType<ArgumentNullException>(ex);
+                Assert.Equal("language", ((ArgumentNullException)ex).ParamName);
+            }
+
+            [Fact]
+            public void Will_throw_if_the_language_is_null_using_defaults()
+            {
+                CodeColorizer codeColorizer = new CodeColorizer();
+
+                Exception ex = Record.Exception(() => codeColorizer.Colorize(string.Empty, null, new StubTextWriter()));
+
+                Assert.IsType<ArgumentNullException>(ex);
+                Assert.Equal("language", ((ArgumentNullException)ex).ParamName);
+            }
+
+            [Fact]
+            public void Will_throw_if_the_language_is_null_using_defaults_without_text_writer()
+            {
+                CodeColorizer codeColorizer = new CodeColorizer();
+
+                Exception ex = Record.Exception(() => codeColorizer.Colorize(string.Empty, null));
 
                 Assert.IsType<ArgumentNullException>(ex);
                 Assert.Equal("language", ((ArgumentNullException)ex).ParamName);
@@ -128,6 +174,17 @@ namespace ColorCode
                 CodeColorizer codeColorizer = new CodeColorizer(new StubLanguageParser());
 
                 Exception ex = Record.Exception(() => codeColorizer.Colorize(string.Empty, new StubLanguage(), new StubFormatter(), new StubStyleSheet(), null));
+
+                Assert.IsType<ArgumentNullException>(ex);
+                Assert.Equal("textWriter", ((ArgumentNullException)ex).ParamName);
+            }
+
+            [Fact]
+            public void Will_throw_if_the_text_writer_is_null_using_defaults()
+            {
+                CodeColorizer codeColorizer = new CodeColorizer();
+
+                Exception ex = Record.Exception(() => codeColorizer.Colorize(string.Empty, new StubLanguage(), null));
 
                 Assert.IsType<ArgumentNullException>(ex);
                 Assert.Equal("textWriter", ((ArgumentNullException)ex).ParamName);

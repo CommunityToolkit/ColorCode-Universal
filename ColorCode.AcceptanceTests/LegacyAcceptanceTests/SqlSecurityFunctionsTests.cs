@@ -40,7 +40,7 @@ go
 go
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -77,7 +77,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -124,7 +124,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -149,7 +149,7 @@ ELSE IF IS_SRVROLEMEMBER ('sysadmin') IS NULL
     <span style=""color:Blue;"">print</span> <span style=""color:#A31515;"">'ERROR: The server role specified is not valid.'</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -190,7 +190,7 @@ ELSE
     <span style=""color:Blue;"">PRINT</span> <span style=""color:#A31515;"">'You may not GRANT INSERT permissions on Person.Address.'</span>;
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -205,7 +205,7 @@ ELSE
 <span style=""color:Blue;"">SELECT</span> <span style=""color:Blue;"">SUSER_NAME</span>(1)
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }

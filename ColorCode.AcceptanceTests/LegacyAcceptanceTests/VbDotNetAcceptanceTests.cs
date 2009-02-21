@@ -16,7 +16,7 @@ namespace ColorCode
 <span style=""color:Blue;"">Imports</span> System
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -31,7 +31,7 @@ namespace ColorCode
 <span style=""color:Blue;"">Imports</span> System.Regex
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -46,7 +46,7 @@ namespace ColorCode
     <span style=""color:Blue;"">Namespace</span> <span style=""color:Blue;"">My</span>.<span style=""color:Blue;"">Namespace</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -61,7 +61,7 @@ namespace ColorCode
 <span style=""color:Green;"">''' &lt;summary&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -76,7 +76,7 @@ namespace ColorCode
 <span style=""color:Green;"">' this is a comment</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -91,7 +91,7 @@ namespace ColorCode
 <span style=""color:#A31515;"">&quot;this is a double-quoted string&quot;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -112,7 +112,7 @@ End Class";
 <span style=""color:Blue;"">End</span> <span style=""color:Blue;"">Class</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -127,7 +127,7 @@ End Class";
 <span style=""color:Blue;"">Private</span> <span style=""color:Blue;"">Const</span> SomeVariable <span style=""color:Blue;"">As</span> <span style=""color:Blue;"">String</span> = <span style=""color:#A31515;"">&quot;SomeValue&quot;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -150,7 +150,7 @@ End Sub";
 <span style=""color:Blue;"">End</span> <span style=""color:Blue;"">Sub</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -197,7 +197,7 @@ CUShort(foo)";
 <span style=""color:Blue;"">CUShort</span>(foo)
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -244,7 +244,7 @@ Structure";
 <span style=""color:Blue;"">Structure</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -259,7 +259,7 @@ Structure";
 <span style=""color:Blue;"">AddHandler</span> <span style=""color:Blue;"">event</span>, <span style=""color:Blue;"">AddressOf</span> eventHandler
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -274,7 +274,7 @@ Structure";
 <span style=""color:Blue;"">Declare</span> <span style=""color:Blue;"">Function</span> FunctioName <span style=""color:Blue;"">Lib</span> <span style=""color:#A31515;"">&quot;some.dll&quot;</span> <span style=""color:Blue;"">Alias</span> <span style=""color:#A31515;"">&quot;FunctionNameInDll&quot;</span> (<span style=""color:Blue;"">ByVal</span> arg1 <span style=""color:Blue;"">As</span> <span style=""color:Blue;"">String</span>, <span style=""color:Blue;"">ByRef</span> arg2 <span style=""color:Blue;"">As</span> <span style=""color:Blue;"">Integer</span>) <span style=""color:Blue;"">As</span> <span style=""color:Blue;"">Integer</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -289,7 +289,7 @@ Structure";
 System.Object
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -304,7 +304,7 @@ System.Object
 <span style=""color:Blue;"">Dim</span> foo <span style=""color:Blue;"">as</span> <span style=""color:Blue;"">Object</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -319,7 +319,7 @@ System.Object
 <span style=""color:Blue;"">dim</span> foo <span style=""color:Blue;"">as</span> <span style=""color:Blue;"">object</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -334,7 +334,7 @@ System.Object
 &lt;Assembly: CLSCompliant(<span style=""color:Blue;"">True</span>)&gt;
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -359,7 +359,7 @@ System.Object
 <span style=""color:Blue;"">#End If</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         } 
@@ -422,7 +422,7 @@ End Class";
 <span style=""color:Blue;"">End</span> <span style=""color:Blue;"">Class</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -445,7 +445,7 @@ demoStr2 = <span style=""color:#A31515;"">&quot;Goodbye&quot;</span> <span style
 <span style=""color:Green;"">' This entire line is also a comment.</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -464,7 +464,7 @@ demoStr2 = <span style=""color:#A31515;"">&quot;Goodbye&quot;</span> <span style
 <span style=""color:Blue;"">#End ExternalSource</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -483,7 +483,7 @@ demoStr2 = <span style=""color:#A31515;"">&quot;Goodbye&quot;</span> <span style
 <span style=""color:Blue;"">#End ExternalSource</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }
@@ -514,7 +514,7 @@ End Class";
 <span style=""color:Blue;"">End</span> <span style=""color:Blue;"">Class</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.VbDotNet);
+            string actual = new CodeColorizer().Colorize(source, Languages.VbDotNet);
 
             Assert.Equal(expected, actual);
         }

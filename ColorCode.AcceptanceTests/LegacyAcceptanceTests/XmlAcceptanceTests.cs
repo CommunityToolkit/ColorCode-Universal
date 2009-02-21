@@ -14,7 +14,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">fnord</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Xml);
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);
         }
@@ -29,7 +29,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">elementName</span> <span style=""color:Red;"">attributeName</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">attributeValue</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Xml);
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);
         }
@@ -44,7 +44,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;?</span><span style=""color:#A31515;"">xml</span> <span style=""color:Red;"">version</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">1.0</span><span style=""color:Black;"">&quot;</span> <span style=""color:Red;"">encoding</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">UTF-8</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">?&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Xml);
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);
         }
@@ -59,7 +59,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">string</span><span style=""color:Blue;"">&gt;</span><span style=""color:Red;"">&amp;gt;</span><span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">string</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Xml);
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);
         }
@@ -74,7 +74,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">anElement.StyleName</span><span style=""color:Blue;"">&gt;</span>someText<span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">anElement.StyleName</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Xml);
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);
         }
@@ -89,7 +89,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">elementName</span> <span style=""color:Red;"">attributeName</span> <span style=""color:Blue;"">=</span> <span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">attributeValue</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">&gt;</span>someText<span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">eElementName</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Xml);
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);
         }
@@ -104,7 +104,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">namespaceName</span><span style=""color:Blue;"">:</span><span style=""color:#A31515;"">elementName</span> <span style=""color:Red;"">attributeName</span> <span style=""color:Blue;"">=</span> <span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">attributeValue</span><span style=""color:Black;"">&quot;</span> <span style=""color:Blue;"">/&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Xml);
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);
         }
@@ -121,7 +121,7 @@ xmlns=""http://tempuri.org/po.xsd"" elementFormDefault=""qualified"">";
 <span style=""color:Red;"">xmlns</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">http://tempuri.org/po.xsd</span><span style=""color:Black;"">&quot;</span> <span style=""color:Red;"">elementFormDefault</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">qualified</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Xml);
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);
         }
@@ -136,7 +136,7 @@ xmlns=""http://tempuri.org/po.xsd"" elementFormDefault=""qualified"">";
 <span style=""color:Blue;"">&lt;?</span><span style=""color:#A31515;"">xml-stylesheet</span> <span style=""color:Red;"">type</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">text/xsl</span><span style=""color:Black;"">&quot;</span> <span style=""color:Red;"">href</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">show_book.xsl</span><span style=""color:Black;"">&quot;</span> <span style=""color:Red;"">title</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">default stylesheet</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">?&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Xml);
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);
         }
@@ -151,7 +151,7 @@ xmlns=""http://tempuri.org/po.xsd"" elementFormDefault=""qualified"">";
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">xsl</span><span style=""color:Blue;"">:</span><span style=""color:#A31515;"">for-each</span> <span style=""color:Red;"">select</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">x | y/x</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Xml);
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);
         }
@@ -173,7 +173,7 @@ xmlns=""http://tempuri.org/po.xsd"" elementFormDefault=""qualified"">";
 <span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">catalog</span><span style=""color:Blue;"">&gt;</span>;
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Xml);
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);
         }
@@ -197,7 +197,7 @@ xmlns=""http://tempuri.org/po.xsd"" elementFormDefault=""qualified"">";
 <span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">catalog</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Xml);
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);
         }
@@ -217,7 +217,7 @@ xmlns=""http://tempuri.org/po.xsd"" elementFormDefault=""qualified"">";
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">catalog</span> <span style=""color:Blue;"">/&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Xml);
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);
         }
@@ -232,7 +232,7 @@ xmlns=""http://tempuri.org/po.xsd"" elementFormDefault=""qualified"">";
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">e_s</span><span style=""color:Blue;"">&gt;</span>someText<span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">e_s</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Xml);
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);
         }
@@ -247,7 +247,7 @@ xmlns=""http://tempuri.org/po.xsd"" elementFormDefault=""qualified"">";
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">e-s</span><span style=""color:Blue;"">&gt;</span>someText<span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">e-s</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Xml);
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
 
             Assert.Equal(expected, actual);
         }

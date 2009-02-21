@@ -18,7 +18,7 @@ namespace ColorCode.SqlAcceptanceTests
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
 
-                ColorCode.Colorize(source, Languages.Sql);
+                new CodeColorizer().Colorize(source, Languages.Sql);
 
                 sw.Stop();
                 TimeSpan elapsed = sw.Elapsed;

@@ -6,6 +6,13 @@ namespace ColorCode
 {
     public interface ICodeColorizer
     {
+        string Colorize(string sourceCode,
+                        ILanguage language);
+
+        void Colorize(string sourceCode,
+                      ILanguage language,
+                      TextWriter textWriter);
+
         void Colorize(string sourceCode,
                       ILanguage language,
                       IFormatter formatter,

@@ -36,7 +36,7 @@ GO
 <span style=""color:Blue;"">DROP</span> <span style=""color:Blue;"">TABLE</span> t1;
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -61,7 +61,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -82,7 +82,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -101,7 +101,7 @@ GO
 <span style=""color:Blue;"">SELECT</span> <span style=""color:Blue;"">DATABASEPROPERTY</span>(<span style=""color:#A31515;"">'master'</span>, <span style=""color:#A31515;"">'IsTruncLog'</span>);
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -160,7 +160,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -187,7 +187,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -208,7 +208,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -229,7 +229,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -250,7 +250,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -271,7 +271,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -292,7 +292,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -313,7 +313,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -334,7 +334,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -349,7 +349,7 @@ GO
 <span style=""color:Blue;"">SELECT</span> <span style=""color:Blue;"">fulltextserviceproperty</span>(<span style=""color:#A31515;"">'IsFulltextInstalled'</span>)
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -380,7 +380,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -407,7 +407,7 @@ GO
         1,1,<span style=""color:#A31515;"">'IsDescending'</span>) <span style=""color:Blue;"">AS</span> [Asc or Desc order];
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -440,7 +440,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -509,7 +509,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -532,7 +532,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -589,7 +589,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -616,7 +616,7 @@ WHERE colB = 1689";
 <span style=""color:Blue;"">WHERE</span> colB = 1689
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -637,7 +637,7 @@ SELECT TYPEPROPERTY( 'tinyint', 'PRECISION');";
 <span style=""color:Blue;"">SELECT</span> <span style=""color:Blue;"">TYPEPROPERTY</span>( <span style=""color:#A31515;"">'tinyint'</span>, <span style=""color:#A31515;"">'PRECISION'</span>);
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }

@@ -192,7 +192,7 @@ while";
 <span style=""color:Blue;"">while</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -223,7 +223,7 @@ while";
 [<span style=""color:Blue;"">event</span>: SomeAttribute]
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }

@@ -41,7 +41,6 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorCode.cs" />
     <Compile Include="Common\Guard.cs" />
     <Compile Include="Common\ILanguageRepository.cs">
       <SubType>Code</SubType>

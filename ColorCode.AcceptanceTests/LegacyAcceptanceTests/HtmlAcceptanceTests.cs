@@ -18,7 +18,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">html</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -33,7 +33,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">anElement</span> <span style=""color:Red;"">anAttribute</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;anAttributeValue&quot;</span> <span style=""color:Blue;"">/&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -52,7 +52,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">head</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -67,7 +67,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">span</span> <span style=""color:Red;"">class</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;className&quot;</span><span style=""color:Blue;"">&gt;</span><span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">span</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -82,7 +82,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">table</span> <span style=""color:Red;"">id</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;bannerImageTable&quot;</span> <span style=""color:Red;"">cellpadding</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;0&quot;</span> <span style=""color:Red;"">cellspacing</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;0&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -97,7 +97,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">div</span> <span style=""color:Red;"">id</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;anId&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -112,7 +112,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">script</span> <span style=""color:Red;"">type</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;text/javascript&quot;</span><span style=""color:Blue;"">&gt;</span><span style=""color:Blue;"">var</span> variableName = <span style=""color:#A31515;"">'aString'</span>;<span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">script</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -143,7 +143,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">div</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -158,7 +158,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">TheNameSpace</span><span style=""color:Blue;"">:</span><span style=""color:#A31515;"">TheElementName</span> <span style=""color:Red;"">TheAttributeName</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;theAttributeValue&quot;</span> <span style=""color:Blue;"">/&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -173,7 +173,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;!</span><span style=""color:#A31515;"">DOCTYPE</span> <span style=""color:Red;"">html</span> <span style=""color:Red;"">PUBLIC</span> <span style=""color:Blue;"">&quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot;</span> <span style=""color:Blue;"">&quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -188,7 +188,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">meta</span> <span style=""color:Red;"">http-equiv</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;Content-Type&quot;</span> <span style=""color:Red;"">content</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;text/html; charset=us-ascii&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -203,7 +203,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">elementName</span> <span style=""color:Red;"">attributeName</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">attributeValue</span> <span style=""color:Blue;"">/&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -218,7 +218,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">elementName</span> <span style=""color:Red;"">attributeName</span> <span style=""color:Blue;"">=</span> <span style=""color:Blue;"">&quot;attributeValue&quot;</span><span style=""color:Blue;"">&gt;</span>someText<span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">eElementName</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -233,7 +233,7 @@ namespace ColorCode
             Stopwatch sw = new Stopwatch();
             sw.Start();
             
-            ColorCode.Colorize(source, Languages.Html);
+            new CodeColorizer().Colorize(source, Languages.Html);
 
             sw.Stop();
             TimeSpan elapsed = sw.Elapsed;
@@ -251,7 +251,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">elementName</span><span style=""color:Blue;"">&gt;</span><span style=""color:Red;"">&amp;gt;</span><span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">elementName</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -266,7 +266,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">elementName</span> <span style=""color:Red;"">anAttribute_Name</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;attributeValue&quot;</span><span style=""color:Blue;"">&gt;</span><span style=""color:Red;"">&amp;gt;</span><span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">elementName</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -281,7 +281,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">elementName</span> <span style=""color:Red;"">attributeName1</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">attributeValue</span> <span style=""color:Red;"">attributeName2</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;attribute value 2&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -296,7 +296,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">elementName</span> <span style=""color:Red;"">attributeValue1</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;attributeValue1&quot;</span> <span style=""color:Red;"">attributeValue2</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">attributeValue2</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -313,7 +313,7 @@ namespace ColorCode
     1.1//EN&quot;</span> <span style=""color:Blue;"">&quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -328,7 +328,7 @@ namespace ColorCode
 <span style=""color:Red;"">&amp;#8211;</span><span style=""color:Red;"">&amp;#710;</span><span style=""color:Red;"">&amp;OElig;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }
@@ -345,7 +345,7 @@ namespace ColorCode
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">script</span> <span style=""color:Red;"">src</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;/script/progress.js&quot;</span> <span style=""color:Red;"">type</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;text/javascript&quot;</span><span style=""color:Blue;"">&gt;</span><span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">script</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.Html);
+            string actual = new CodeColorizer().Colorize(source, Languages.Html);
 
             Assert.Equal(expected, actual);
         }

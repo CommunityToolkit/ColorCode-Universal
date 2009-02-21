@@ -614,7 +614,7 @@ VAR
 TYPE
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }

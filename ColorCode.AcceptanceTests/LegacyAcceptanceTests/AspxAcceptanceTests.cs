@@ -59,7 +59,7 @@ control skin per control type is allowed in the same theme.
 
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -92,7 +92,7 @@ control skin per control type is allowed in the same theme.
 <span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">asp</span><span style=""color:Blue;"">:</span><span style=""color:#A31515;"">DropDownList</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -109,7 +109,7 @@ control skin per control type is allowed in the same theme.
     1.1//EN&quot;</span> <span style=""color:Blue;"">&quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }

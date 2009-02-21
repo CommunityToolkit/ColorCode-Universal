@@ -21,7 +21,7 @@ namespace ColorCode.AspxVbAcceptanceTests
 <span style=""background-color:Yellow;"">&lt;%</span><span style=""color:Blue;"">@</span> <span style=""color:#A31515;"">Page</span> <span style=""color:Red;"">LanguageDefinition</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;VB&quot;</span> <span style=""color:Red;"">AutoEventWireup</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;false&quot;</span> <span style=""color:Red;"">CodeFile</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;DefaultStyleSheet.aspx.vb&quot;</span> <span style=""color:Red;"">Inherits</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;_Default&quot;</span> <span style=""background-color:Yellow;"">%&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -44,7 +44,7 @@ namespace ColorCode.AspxVbAcceptanceTests
 <span style=""background-color:Yellow;"">%&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -59,7 +59,7 @@ namespace ColorCode.AspxVbAcceptanceTests
 <span style=""background-color:Yellow;"">&lt;%=</span><span style=""color:Blue;"">String</span>.Format(<span style=""color:#A31515;"">&quot;Foo{0}&quot;</span>, <span style=""color:#A31515;"">&quot;Bar&quot;</span>)<span style=""background-color:Yellow;"">%&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -82,7 +82,7 @@ namespace ColorCode.AspxVbAcceptanceTests
 <span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">script</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -101,7 +101,7 @@ namespace ColorCode.AspxVbAcceptanceTests
 --</span><span style=""background-color:Yellow;"">%&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -116,7 +116,7 @@ namespace ColorCode.AspxVbAcceptanceTests
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">asp</span><span style=""color:Blue;"">:</span><span style=""color:#A31515;"">LinkButton</span> <span style=""color:Red;"">id</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;LinkButton1&quot;</span> <span style=""color:Red;"">runat</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;Server&quot;</span> <span style=""color:Red;"">CommandName</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;Delete&quot;</span> <span style=""color:Red;"">CommandArgument</span><span style=""color:Blue;"">=</span>'<span style=""background-color:Yellow;"">&lt;%#</span> DataBinder.Eval(Container.DataItem,<span style=""color:#A31515;"">&quot;ID&quot;</span>) <span style=""background-color:Yellow;"">%&gt;</span>'<span style=""color:Blue;"">&gt;</span>x<span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">asp</span><span style=""color:Blue;"">:</span><span style=""color:#A31515;"">LinkButton</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -131,7 +131,7 @@ namespace ColorCode.AspxVbAcceptanceTests
 <span style=""color:Blue;"">&lt;</span><span style=""color:#A31515;"">asp</span><span style=""color:Blue;"">:</span><span style=""color:#A31515;"">LinkButton</span> <span style=""color:Red;"">id</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;LinkButton1&quot;</span> <span style=""color:Red;"">runat</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;Server&quot;</span> <span style=""color:Red;"">CommandName</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;Delete&quot;</span> <span style=""color:Red;"">CommandArgument</span><span style=""color:Blue;"">=</span>&quot;<span style=""background-color:Yellow;"">&lt;%#</span> DataBinder.Eval(Container.DataItem,<span style=""color:#A31515;"">&quot;ID&quot;</span>) <span style=""background-color:Yellow;"">%&gt;</span>&quot;<span style=""color:Blue;"">&gt;</span>x<span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">asp</span><span style=""color:Blue;"">:</span><span style=""color:#A31515;"">LinkButton</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -164,7 +164,7 @@ namespace ColorCode.AspxVbAcceptanceTests
 <span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">asp</span><span style=""color:Blue;"">:</span><span style=""color:#A31515;"">DropDownList</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -187,7 +187,7 @@ namespace ColorCode.AspxVbAcceptanceTests
 <span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">asp</span><span style=""color:Blue;"">:</span><span style=""color:#A31515;"">DataList</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -204,7 +204,7 @@ namespace ColorCode.AspxVbAcceptanceTests
     1.1//EN&quot;</span> <span style=""color:Blue;"">&quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -219,7 +219,7 @@ namespace ColorCode.AspxVbAcceptanceTests
 <span style=""background-color:Yellow;"">&lt;%</span><span style=""color:Blue;"">@</span> <span style=""color:#A31515;"">Assembly</span> <span style=""color:Red;"">StyleName</span> <span style=""color:Blue;"">=</span> <span style=""color:Blue;"">&quot;assemblyname&quot;</span> <span style=""color:Red;"">src</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;pathname&quot;</span> <span style=""background-color:Yellow;"">%&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }

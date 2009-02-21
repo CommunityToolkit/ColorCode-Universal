@@ -15,7 +15,7 @@ namespace ColorCode.CSharpAcceptanceTests
                 string expected =
                     "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;summary&gt;</span><span style=\"color:Green;\">The&lt;/summary&gt;</span>\r\n</pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -33,7 +33,7 @@ namespace ColorCode.CSharpAcceptanceTests
                 string expected =
                     "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;exception cref=&quot;CompositionException&quot;&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> An error occurred during composition. &lt;see cref=&quot;CompositionException.Issues&quot;/&gt; will \r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> contain a list of errors that occurred.\r</span>\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;/exception&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> test\r</span>\n\r\n</pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -57,7 +57,7 @@ public class Class1
 }";
                 string expected = "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Blue;\">using</span> System;\r\n\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;exception cref=&quot;Class1&quot;&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> An error occurred during composition. &lt;see cref=&quot;Class1.test&quot;/&gt; will \r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> contain a list of errors that occurred.\r</span>\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;/exception&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> test\r</span>\n<span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">class</span> Class1\r\n{\r\n    <span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">void</span> test()\r\n\t{\r\n\t}\r\n}\r\n</pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -74,7 +74,7 @@ public class Class1
 <span style=""color:Green;""><span style=""color:Gray;"">///</span></span><span style=""color:Green;""> This class implements the MD4 message digest algorithm.</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -88,7 +88,7 @@ public class Class1
 <span style=""color:Blue;"">throw</span> <span style=""color:Blue;"">new</span> InvalidOperationException(<span style=""color:#A31515;"">&quot;GetDigest cannot be called twice for a single hash sequence.  Call Reset() .&quot;</span>);
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -102,7 +102,7 @@ public class Class1
 
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -118,7 +118,7 @@ public class Class1
 <span style=""color:Blue;"">using</span> System;
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -136,7 +136,7 @@ using Fnord;";
 <span style=""color:Blue;"">using</span> Fnord;
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -178,7 +178,7 @@ namespace TheNamespace
 }
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -198,7 +198,7 @@ namespace TheNamespace
 }
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -221,7 +221,7 @@ Line 3
 */</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -237,7 +237,7 @@ Line 3
 <span style=""color:Blue;"">throw</span> <span style=""color:Blue;"">new</span> InvalidOperationException();
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -253,7 +253,7 @@ Line 3
 <span style=""color:Blue;"">string</span> aString = <span style=""color:#A31515;"">@&quot;&quot;&quot;someText&quot;&quot;&quot;</span>;
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -273,7 +273,7 @@ Line 3
 &quot;</span>;
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -288,7 +288,7 @@ Line 3
 [<span style=""color:Blue;"">assembly</span>: SomeAttribute]
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -305,7 +305,7 @@ Line 3
 {
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }
@@ -322,7 +322,7 @@ public class Assert";
                 string expected =
                     "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;summary&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> Contains various static methods that are used to verify that conditions are met during the\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> process of running tests.\r</span>\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;/summary&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">class</span> Assert\r\n</pre></div>";
 
-                string actual = ColorCode.Colorize(source, Languages.CSharp);
+                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
                 Assert.Equal(expected, actual);
             }

@@ -14,7 +14,7 @@ namespace ColorCode
 <span style=""color:Blue;"">var</span> variableName = <span style=""color:Blue;"">new</span> VariableType();
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.JavaScript);
+            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -33,7 +33,7 @@ namespace ColorCode
 }
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.JavaScript);
+            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -48,7 +48,7 @@ namespace ColorCode
 <span style=""color:Blue;"">var</span> variableName = <span style=""color:#A31515;"">&quot;aString&quot;</span>;
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.JavaScript);
+            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -63,7 +63,7 @@ namespace ColorCode
 <span style=""color:Blue;"">var</span> variableName = <span style=""color:#A31515;"">'aString'</span>;
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.JavaScript);
+            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -86,7 +86,7 @@ comment three
 */</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.JavaScript);
+            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -101,7 +101,7 @@ comment three
 
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.JavaScript);
+            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -116,7 +116,7 @@ comment three
 <span style=""color:Blue;"">var</span> variableName = <span style=""color:Blue;"">new</span> VariableType(); <span style=""color:Green;"">// a comment</span>
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.JavaScript);
+            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -137,7 +137,7 @@ comment three
     }
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.JavaScript);
+            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }
@@ -152,7 +152,7 @@ comment three
 <span style=""color:Blue;"">var</span> variableName = $(<span style=""color:#A31515;"">&quot;aString&quot;</span>);
 </pre></div>";
 
-            string actual = ColorCode.Colorize(source, Languages.JavaScript);
+            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript);
 
             Assert.Equal(expected, actual);
         }

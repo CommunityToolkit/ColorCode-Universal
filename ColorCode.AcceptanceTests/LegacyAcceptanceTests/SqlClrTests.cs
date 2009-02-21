@@ -32,7 +32,7 @@ WITH PERMISSION_SET = SAFE;";
 <span style=""color:Blue;"">WITH</span> PERMISSION_SET = SAFE;
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -49,7 +49,7 @@ ADD FILE FROM 'C:\MyClassProject\Class1.cs';";
 <span style=""color:Blue;"">ADD</span> <span style=""color:Blue;"">FILE</span> <span style=""color:Blue;"">FROM</span> <span style=""color:#A31515;"">'C:\MyClassProject\Class1.cs'</span>;
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -64,7 +64,7 @@ ADD FILE FROM 'C:\MyClassProject\Class1.cs';";
 <span style=""color:Blue;"">DROP</span> <span style=""color:Blue;"">ASSEMBLY</span> Helloworld
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -109,7 +109,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -123,7 +123,7 @@ GO
 <span style=""color:Blue;"">DROP</span> <span style=""color:Blue;"">AGGREGATE</span> dbo.Concatenate
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -147,7 +147,7 @@ GO
 GO
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }
@@ -161,7 +161,7 @@ GO
 <span style=""color:Blue;"">DROP</span> TYPE ssn ;
 </pre></div>";
 
-                string actual = ColorCode.Colorize(sourceText, Languages.Sql);
+                string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);
 
                 Assert.Equal(expected, actual);
             }

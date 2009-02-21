@@ -21,7 +21,7 @@ namespace ColorCode.AspxCsAcceptanceTests
 <span style=""background-color:Yellow;"">&lt;%</span><span style=""color:Blue;"">@</span> <span style=""color:#A31515;"">Page</span> <span style=""color:Red;"">LanguageDefinition</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;C#&quot;</span> <span style=""color:Red;"">AutoEventWireup</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;true&quot;</span> <span style=""color:Red;"">CodeBehind</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;DefaultStyleSheet.aspx.cs&quot;</span> <span style=""color:Red;"">Inherits</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;WebApplication2._Default&quot;</span> <span style=""background-color:Yellow;"">%&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -46,7 +46,7 @@ namespace ColorCode.AspxCsAcceptanceTests
 <span style=""background-color:Yellow;"">%&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -61,7 +61,7 @@ namespace ColorCode.AspxCsAcceptanceTests
 <span style=""background-color:Yellow;"">&lt;%=</span>String.Format(<span style=""color:#A31515;"">&quot;Foo{0}&quot;</span>, <span style=""color:#A31515;"">&quot;Bar&quot;</span>)<span style=""background-color:Yellow;"">%&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -80,7 +80,7 @@ namespace ColorCode.AspxCsAcceptanceTests
 --</span><span style=""background-color:Yellow;"">%&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -113,7 +113,7 @@ namespace ColorCode.AspxCsAcceptanceTests
 <span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">asp</span><span style=""color:Blue;"">:</span><span style=""color:#A31515;"">DropDownList</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -136,7 +136,7 @@ namespace ColorCode.AspxCsAcceptanceTests
 <span style=""color:Blue;"">&lt;/</span><span style=""color:#A31515;"">asp</span><span style=""color:Blue;"">:</span><span style=""color:#A31515;"">DataList</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -153,7 +153,7 @@ namespace ColorCode.AspxCsAcceptanceTests
     1.1//EN&quot;</span> <span style=""color:Blue;"">&quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;</span><span style=""color:Blue;"">&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
@@ -168,7 +168,7 @@ namespace ColorCode.AspxCsAcceptanceTests
 <span style=""background-color:Yellow;"">&lt;%</span><span style=""color:Blue;"">@</span> <span style=""color:#A31515;"">Assembly</span> <span style=""color:Red;"">StyleName</span> <span style=""color:Blue;"">=</span> <span style=""color:Blue;"">&quot;assemblyname&quot;</span> <span style=""color:Red;"">src</span><span style=""color:Blue;"">=</span><span style=""color:Blue;"">&quot;pathname&quot;</span> <span style=""background-color:Yellow;"">%&gt;</span>
 </pre></div>";
 
-                string actual = ColorCode.Colorize(source, GetGrammar());
+                string actual = new CodeColorizer().Colorize(source, GetGrammar());
 
                 Assert.Equal(expected, actual);
             }
