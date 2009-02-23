@@ -1,7 +1,7 @@
 ﻿// abstract_keyword.cs
 // Abstract Classes
 using System;
-abstract class MyBaseC   // Abstract class
+abstract class MyBaseC
 {
     protected int x = 100;
     protected int y = 150;

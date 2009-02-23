@@ -4,6 +4,7 @@ namespace ColorCode.Common
 {
     public class ScopeName
     {
+        public const string ClassName = "Class Name";
         public const string Comment = "Comment";
         public const string HtmlAttributeName = "HTML Attribute ScopeName";
         public const string HtmlAttributeValue = "HTML Attribute Value";

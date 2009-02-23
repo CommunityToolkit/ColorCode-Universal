@@ -2,8 +2,8 @@
 <span style="color:Green;">// abstract_keyword.cs</span>
 <span style="color:Green;">// Abstract Classes</span>
 <span style="color:Blue;">using</span> System;
-<span style="color:Blue;">abstract</span> <span style="color:Blue;">class</span> MyBaseC   <span style="color:Green;">// Abstract class</span>
-{
+<span style="color:Blue;">abstract</span> <span style="color:Blue;">class</span><span style="color:MediumTurquoise;"> MyBaseC
+</span>{
     <span style="color:Blue;">protected</span> <span style="color:Blue;">int</span> x = 100;
     <span style="color:Blue;">protected</span> <span style="color:Blue;">int</span> y = 150;
     <span style="color:Blue;">public</span> <span style="color:Blue;">abstract</span> <span style="color:Blue;">void</span> MyMethod();   <span style="color:Green;">// Abstract method</span>
@@ -19,8 +19,8 @@
     }
 }
 
-<span style="color:Blue;">class</span> MyDerivedC : MyBaseC
-{
+<span style="color:Blue;">class</span><span style="color:MediumTurquoise;"> MyDerivedC : MyBaseC
+</span>{
     <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> MyMethod()
     {
         x++;

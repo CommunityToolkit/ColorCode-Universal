@@ -109,6 +109,10 @@ namespace ColorCode.Styling.StyleSheets
                                new Style(ScopeName.XmlName)
                                    {
                                        Foreground = DullRed
+                                   },
+                               new Style(ScopeName.ClassName)
+                                   {
+                                       Foreground = Color.MediumTurquoise
                                    }
                            };
             }

@@ -55,7 +55,7 @@ public class Class1
 	{
 	}
 }";
-                string expected = "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Blue;\">using</span> System;\r\n\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;exception cref=&quot;Class1&quot;&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> An error occurred during composition. &lt;see cref=&quot;Class1.test&quot;/&gt; will \r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> contain a list of errors that occurred.\r</span>\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;/exception&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> test\r</span>\n<span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">class</span> Class1\r\n{\r\n    <span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">void</span> test()\r\n\t{\r\n\t}\r\n}\r\n</pre></div>";
+                string expected = "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Blue;\">using</span> System;\r\n\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;exception cref=&quot;Class1&quot;&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> An error occurred during composition. &lt;see cref=&quot;Class1.test&quot;/&gt; will \r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> contain a list of errors that occurred.\r</span>\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;/exception&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> test\r</span>\n<span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">class</span><span style=\"color:MediumTurquoise;\"> Class1\r\n</span>{\r\n    <span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">void</span> test()\r\n\t{\r\n\t}\r\n}\r\n</pre></div>";
 
                 string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
@@ -151,7 +151,7 @@ namespace TheNamespace
 {
     /* This is a comment */
     public class TheClass
-        : TheBaseClass
+        : TheBaseClass, Implements
     {
         public string AMethod()
         {
@@ -161,22 +161,7 @@ namespace TheNamespace
 }";
 
                 string expected =
-    @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">using</span> System;
-
-<span style=""color:Blue;"">namespace</span> TheNamespace
-{
-    <span style=""color:Green;"">/* This is a comment */</span>
-    <span style=""color:Blue;"">public</span> <span style=""color:Blue;"">class</span> TheClass
-        : TheBaseClass
-    {
-        <span style=""color:Blue;"">public</span> <span style=""color:Blue;"">string</span> AMethod()
-        {
-            <span style=""color:Blue;"">return</span> <span style=""color:#A31515;"">&quot;Hello World!&quot;</span>;
-        }
-    }
-}
-</pre></div>";
+                    "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Blue;\">using</span> System;\r\n\r\n<span style=\"color:Blue;\">namespace</span> TheNamespace\r\n{\r\n    <span style=\"color:Green;\">/* This is a comment */</span>\r\n    <span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">class</span><span style=\"color:MediumTurquoise;\"> TheClass\r\n        : TheBaseClass, Implements\r\n    </span>{\r\n        <span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">string</span> AMethod()\r\n        {\r\n            <span style=\"color:Blue;\">return</span> <span style=\"color:#A31515;\">&quot;Hello World!&quot;</span>;\r\n        }\r\n    }\r\n}\r\n</pre></div>";
 
                 string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
@@ -193,8 +178,8 @@ namespace TheNamespace
 
                 string expected =
     @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">public</span> <span style=""color:Blue;"">class</span> TheClass : TheBaseClass
-{
+<span style=""color:Blue;"">public</span> <span style=""color:Blue;"">class</span><span style=""color:MediumTurquoise;""> TheClass : TheBaseClass
+</span>{
 }
 </pre></div>";
 
@@ -293,7 +278,7 @@ Line 3
                 Assert.Equal(expected, actual);
             }
 
-            [Fact(Skip="Post-poning to v2.")]
+            [Fact]
             public void TransformWillStyleClassName()
             {
                 string source =
@@ -301,8 +286,8 @@ Line 3
 {";
                 string expected =
     @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">public</span> <span style=""color:Blue;"">class</span> <span style=""color:#2B91AF;"">ClassName</span> 
-{
+<span style=""color:Blue;"">public</span> <span style=""color:Blue;"">class</span><span style=""color:MediumTurquoise;""> ClassName 
+</span>{
 </pre></div>";
 
                 string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
@@ -318,9 +303,9 @@ Line 3
 /// Contains various static methods that are used to verify that conditions are met during the
 /// process of running tests.
 /// </summary>
-public class Assert";
+public class Assert {";
                 string expected =
-                    "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;summary&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> Contains various static methods that are used to verify that conditions are met during the\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> process of running tests.\r</span>\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;/summary&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">class</span> Assert\r\n</pre></div>";
+                    "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;summary&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> Contains various static methods that are used to verify that conditions are met during the\r</span>\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> process of running tests.\r</span>\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;/summary&gt;</span><span style=\"color:Green;\">\r</span>\n<span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">class</span><span style=\"color:MediumTurquoise;\"> Assert </span>{\r\n</pre></div>";
 
                 string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 

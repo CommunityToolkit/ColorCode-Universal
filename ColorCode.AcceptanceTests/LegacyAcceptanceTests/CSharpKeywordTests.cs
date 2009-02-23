@@ -55,7 +55,6 @@ if
 implicit
 in
 int
-interface
 internal
 is
 lock
@@ -146,7 +145,6 @@ while";
 <span style=""color:Blue;"">implicit</span>
 <span style=""color:Blue;"">in</span>
 <span style=""color:Blue;"">int</span>
-<span style=""color:Blue;"">interface</span>
 <span style=""color:Blue;"">internal</span>
 <span style=""color:Blue;"">is</span>
 <span style=""color:Blue;"">lock</span>
