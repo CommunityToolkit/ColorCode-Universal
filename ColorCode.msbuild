@@ -6,9 +6,12 @@
   <PropertyGroup Condition="'$(Configuration)' == ''">
     <Configuration>Debug</Configuration>
   </PropertyGroup>
-	<PropertyGroup Condition="'$(BuildNumber)' == ''">
-		<BuildNumber>$(ccnetlabel)</BuildNumber>
+  <PropertyGroup Condition="'$(BuildNumber)' == ''">
+		<BuildNumber>$(build_vcs_number_1)</BuildNumber>
 	</PropertyGroup>
+  <PropertyGroup Condition="'$(BuildNumber)' == ''">
+    <BuildNumber>$(ccnetlabel)</BuildNumber>
+  </PropertyGroup>
 	<PropertyGroup Condition="'$(BuildNumber)' == ''">
 		<BuildNumber>0</BuildNumber>
 	</PropertyGroup>
