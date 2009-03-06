@@ -113,7 +113,19 @@ namespace ColorCode.Styling.StyleSheets
                                new Style(ScopeName.ClassName)
                                    {
                                        Foreground = Color.MediumTurquoise
-                                   }
+                                   },
+                               new Style(ScopeName.CssSelector)
+                                   {
+                                       Foreground = DullRed
+                                   },
+                               new Style(ScopeName.CssPropertyName)
+                                   {
+                                       Foreground = Color.Red
+                                   },
+                               new Style(ScopeName.CssPropertyValue)
+                                   {
+                                       Foreground = Color.Blue
+                                   },
                            };
             }
         }

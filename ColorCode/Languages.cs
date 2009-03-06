@@ -31,6 +31,7 @@ namespace ColorCode
             languageRepository.Load(new Sql());
             languageRepository.Load(new Xml());
             languageRepository.Load(new Php());
+            languageRepository.Load(new Css());
         }
 
         public static ILanguage Ashx
@@ -91,6 +92,11 @@ namespace ColorCode
         public static ILanguage Php
         {
             get { return languageRepository.FindById(LanguageId.Php); }
+        }
+
+        public static ILanguage Css
+        {
+            get { return languageRepository.FindById(LanguageId.Css); }
         }
 
         public static ILanguage FindById(string id)

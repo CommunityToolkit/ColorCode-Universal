@@ -6,6 +6,9 @@ namespace ColorCode.Common
     {
         public const string ClassName = "Class Name";
         public const string Comment = "Comment";
+        public const string CssPropertyName = "CSS Property Name";
+        public const string CssPropertyValue = "CSS Property Value";
+        public const string CssSelector = "CSS Selector";
         public const string HtmlAttributeName = "HTML Attribute ScopeName";
         public const string HtmlAttributeValue = "HTML Attribute Value";
         public const string HtmlComment = "HTML Comment";
