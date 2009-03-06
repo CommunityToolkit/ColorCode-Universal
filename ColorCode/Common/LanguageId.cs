@@ -4,6 +4,7 @@ namespace ColorCode.Common
 {
     public static class LanguageId
     {
+        public const string Php = "php";
         public const string AspxVb = "aspx(vb.net)";
         public const string AspxCs = "aspx(c#)";
         public const string Xml = "xml";

@@ -56,6 +56,9 @@
     <Compile Include="Data\csharp\base-keyword.source.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <None Include="Data\php\sample.source.php">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="LegacyAcceptanceTests\AsaxAcceptanceTests.cs" />
     <Compile Include="LegacyAcceptanceTests\AshxAcceptanceTests.cs" />
     <Compile Include="LegacyAcceptanceTests\AspxAcceptanceTests.cs" />
@@ -138,6 +141,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\csharp\base-keyword.expected.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\php\sample.expected.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="LegacyAcceptanceTests\large.html" />

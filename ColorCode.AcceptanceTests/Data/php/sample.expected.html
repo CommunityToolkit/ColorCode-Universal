@@ -1,0 +1,40 @@
+<div style="color:Black;background-color:White;"><pre>
+<span style="color:Green;">/*
+more
+than
+one
+line
+comment
+*/</span>
+
+<span style="color:Green;">// single line comment</span>
+
+<span style="color:Green;"># a different single line comment</span>
+
+$foo = <span style="color:#A31515;">'a string'</span>
+
+$foo2 = <span style="color:#A31515;">&quot;a string&quot;</span>
+
+<span style="color:Green;">//$foo = 'a string'</span>
+
+<span style="color:Green;">//$foo2 = &quot;a string&quot;</span>
+
+$foo3 = <span style="color:#A31515;">&quot;a string&quot;</span> <span style="color:Green;">// a comment</span>
+
+<span style="color:Green;">/* Incorrect Method: */</span>
+<span style="color:Blue;">if</span>($a &gt; $b):
+    <span style="color:Blue;">echo</span> $a.<span style="color:#A31515;">&quot; is greater than &quot;</span>.$b;
+<span style="color:Blue;">else</span> <span style="color:Blue;">if</span>($a == $b): <span style="color:Green;">// Will not compile.</span>
+    <span style="color:Blue;">echo</span> <span style="color:#A31515;">&quot;The above line causes a parse error.&quot;</span>;
+<span style="color:Blue;">endif</span>;
+
+<span style="color:Green;">/* Correct Method: */</span>
+<span style="color:Blue;">if</span>($a &gt; $b):
+    <span style="color:Blue;">echo</span> $a.<span style="color:#A31515;">&quot; is greater than &quot;</span>.$b;
+<span style="color:Blue;">elseif</span>($a == $b): <span style="color:Green;">// Note the combination of the words.</span>
+    <span style="color:Blue;">echo</span> $a.<span style="color:#A31515;">&quot; equals &quot;</span>.$b;
+<span style="color:Blue;">else</span>:
+    <span style="color:Blue;">echo</span> $a.<span style="color:#A31515;">&quot; is neither greater than or equal to &quot;</span>.$b;
+<span style="color:Blue;">endif</span>;
+
+</pre></div>

@@ -51,6 +51,8 @@ namespace ColorCode
                     return LanguageId.Ashx;
                 case "cs":
                     return LanguageId.CSharp;
+                case "php":
+                    return LanguageId.Php;
                 default:
                     throw new ArgumentException(string.Format("Unexpected file extension: {0}.", fileExtension));
             }
