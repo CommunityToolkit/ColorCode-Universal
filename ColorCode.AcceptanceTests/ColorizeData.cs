@@ -4,7 +4,7 @@ using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using ColorCode.Common;
-using XunitExt;
+using Xunit.Extensions;
 
 namespace ColorCode
 {

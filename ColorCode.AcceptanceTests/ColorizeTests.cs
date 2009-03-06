@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using Xunit;
-using XunitExt;
+using Xunit.Extensions;
 
 namespace ColorCode
 {
