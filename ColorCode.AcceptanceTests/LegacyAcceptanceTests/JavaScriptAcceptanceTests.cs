@@ -156,5 +156,27 @@ comment three
 
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void TransformWillCommentMultipleCommentsCorrectly()
+        {
+            string source =
+@"function Comment(test)
+{
+    /* C style */
+    // single line
+    y++;
+    /* C style
+       multiple line */
+    y++;
+    // single line
+}";
+            string expected =
+                "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Blue;\">function</span> Comment(test)\r\n{\r\n    <span style=\"color:Green;\">/* C style */</span>\r\n    <span style=\"color:Green;\">// single line</span>\r\n    y++;\r\n    <span style=\"color:Green;\">/* C style\r\n       multiple line */</span>\r\n    y++;\r\n    <span style=\"color:Green;\">// single line</span>\r\n}\r\n</pre></div>";
+
+            string actual = new CodeColorizer().Colorize(source, Languages.JavaScript);
+
+            Assert.Equal(expected, actual);
+        }
     }
 }

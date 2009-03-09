@@ -251,5 +251,17 @@ xmlns=""http://tempuri.org/po.xsd"" elementFormDefault=""qualified"">";
 
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void TransformWillCommentMultipleCommentsCorrectly()
+        {
+            string source = "<!-- test --><root><elment><!-- comment inside of element --></element></root>";
+            string expected = 
+                "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Green;\">&lt;!-- test --&gt;</span><span style=\"color:Blue;\">&lt;</span><span style=\"color:#A31515;\">root</span><span style=\"color:Blue;\">&gt;</span><span style=\"color:Blue;\">&lt;</span><span style=\"color:#A31515;\">elment</span><span style=\"color:Blue;\">&gt;</span><span style=\"color:Green;\">&lt;!-- comment inside of element --&gt;</span><span style=\"color:Blue;\">&lt;/</span><span style=\"color:#A31515;\">element</span><span style=\"color:Blue;\">&gt;</span><span style=\"color:Blue;\">&lt;/</span><span style=\"color:#A31515;\">root</span><span style=\"color:Blue;\">&gt;</span>\r\n</pre></div>";
+            
+            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
+
+            Assert.Equal(expected, actual);
+        }
     }
 }

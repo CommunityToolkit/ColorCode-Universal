@@ -32,12 +32,10 @@ namespace ColorCode.Compilation.Languages
                 return new List<LanguageRule>
                            {
                                new LanguageRule(
-                                   @"(?s)(<!--)(.*)(-->)",
+                                   @"\<![ \r\n\t]*(--([^\-]|[\r\n]|-[^\-])*--[ \r\n\t]*)\>",
                                    new Dictionary<int, string>
                                        {
-                                           { 1, ScopeName.XmlDelimiter },
-                                           { 2, ScopeName.XmlComment },
-                                           { 3, ScopeName.XmlDelimiter }
+                                           { 0, ScopeName.HtmlComment },
                                        }),
                                new LanguageRule(
                                    @"(?i)(<!)(doctype)(?:\s+([a-z0-9]+))*(?:\s+("")([^\n]*?)(""))*(>)",
