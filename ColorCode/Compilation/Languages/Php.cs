@@ -62,7 +62,8 @@ namespace ColorCode.Compilation.Languages
                                            { 0, ScopeName.String },
                                        }),
                                new LanguageRule(
-                                   @"\b(abstract|and|array|as|break|case|catch|class|clone|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|exit|extends|eval|final|for|foreach|function|global|goto|if|implements|include|include_once|interface|instanceof|isset|list|namespace|new|or|print|private|protected|public|require|require_once|return|static|throw|try|unset|use|var|while|xor)\b",
+                                   // from http://us.php.net/manual/en/reserved.keywords.php
+                                   @"\b(abstract|and|array|as|break|case|catch|cfunction|class|clone|const|continue|declare|default|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|final|for|foreach|function|global|goto|if|implements|interface|instanceof|namespace|new|old_function|or|private|protected|public|static|switch|throw|try|use|var|while|xor|__CLASS__|__DIR__|__FILE__|__FUNCTION__|__METHOD__|__NAMESPACE__|die|echo|empty|exit|eval|include|include_once|isset|list|require|require_once|return|print|unset)\b",
                                    new Dictionary<int, string>
                                        {
                                            { 1, ScopeName.Keyword },
