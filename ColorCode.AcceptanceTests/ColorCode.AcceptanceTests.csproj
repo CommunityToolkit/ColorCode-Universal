@@ -74,6 +74,7 @@
     <Compile Include="LegacyAcceptanceTests\CSharpScenarioTest.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="LegacyAcceptanceTests\CSSAcceptanceTests.cs" />
     <Compile Include="LegacyAcceptanceTests\HtmlAcceptanceTests.cs">
       <SubType>Code</SubType>
     </Compile>

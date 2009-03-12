@@ -32,7 +32,7 @@ namespace ColorCode.Compilation.Languages
                 return new List<LanguageRule>
                            {
                                new LanguageRule(
-                                   @"(?msi)(?:(\s*/\*.*?\*/)|(([a-z0-9#. \[\]=\"":_-]+)\s*(?:,\s*|{))+(?:(\s*/\*.*?\*/)|(?:\s*([a-z0-9 -]+):\s*([a-z0-9#%. \(\)\\\/\*\{\}:'\""!_=-]+);?))*\s*})",
+                                   @"(?msi)(?:(\s*/\*.*?\*/)|(([a-z0-9#. \[\]=\"":_-]+)\s*(?:,\s*|{))+(?:(\s*/\*.*?\*/)|(?:\s*([a-z0-9 -]+):\s*([a-z0-9#,<>\?%. \(\)\\\/\*\{\}:'\""!_=-]+);?))*\s*})",
                                    new Dictionary<int, string>
                                        {
                                            { 3, ScopeName.CssSelector },
