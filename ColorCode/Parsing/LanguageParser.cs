@@ -70,10 +70,9 @@ namespace ColorCode.Parsing
 
         private static List<Scope> CreateCapturedStyleTree(IList<Scope> capturedStyles)
         {
-            capturedStyles.SortStable((x,
-                                       y) => x.Index.CompareTo(y.Index));
+            capturedStyles.SortStable((x, y) => x.Index.CompareTo(y.Index));
 
-            var capturedStyleTree = new List<Scope>();
+            var capturedStyleTree = new List<Scope>(capturedStyles.Count);
             Scope currentScope = null;
 
             foreach (Scope capturedStyle in capturedStyles)

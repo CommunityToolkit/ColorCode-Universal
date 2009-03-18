@@ -31,8 +31,21 @@ namespace ColorCode.Compilation
             
             CompiledLanguage compiledLanguage;
 
-            compileLock.EnterUpgradeableReadLock();
+            compileLock.EnterReadLock();
+            try
+            {
+                // for performance reasons we should first try with
+                // only a read lock since the majority of the time
+                // it'll be created already and upgradeable lock blocks
+                if (compiledLanguages.ContainsKey(language.Id))
+                    return compiledLanguages[language.Id];
+            }
+            finally
+            {
+                compileLock.ExitReadLock();
+            }
 
+            compileLock.EnterUpgradeableReadLock();
             try
             {
                 if (compiledLanguages.ContainsKey(language.Id))

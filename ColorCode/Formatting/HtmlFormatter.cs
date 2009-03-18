@@ -3,7 +3,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Text;
 using System.Web;
 using ColorCode.Common;
 using ColorCode.Parsing;
@@ -18,26 +17,26 @@ namespace ColorCode.Formatting
                           IStyleSheet styleSheet,
                           TextWriter textWriter)
         {
-            parsedSourceCode = HtmlEncode(parsedSourceCode, scopes);
-
-            List<TextInsertion> styleInsertions = new List<TextInsertion>();
+            var styleInsertions = new List<TextInsertion>();
 
             foreach (Scope scope in scopes)
-                GetStyleInsertionsForCapturedStyle(scope, styleInsertions, styleSheet);
+                GetStyleInsertionsForCapturedStyle(scope, styleInsertions);
 
             styleInsertions.SortStable((x, y) => x.Index.CompareTo(y.Index));
 
             int offset = 0;
 
-            string formattedSourceCode = parsedSourceCode;
-
             foreach (TextInsertion styleInsertion in styleInsertions)
             {
-                formattedSourceCode = formattedSourceCode.Insert(styleInsertion.Index + offset, styleInsertion.Text);
-                offset += styleInsertion.Text.Length;
+                textWriter.Write(HttpUtility.HtmlEncode(parsedSourceCode.Substring(offset, styleInsertion.Index - offset)));
+                if (string.IsNullOrEmpty(styleInsertion.Text))
+                    BuildSpanForCapturedStyle(styleInsertion.Scope, styleSheet, textWriter);
+                else
+                    textWriter.Write(styleInsertion.Text);
+                offset = styleInsertion.Index;
             }
 
-            textWriter.Write(formattedSourceCode);
+            textWriter.Write(HttpUtility.HtmlEncode(parsedSourceCode.Substring(offset)));
         }
 
         public void WriteFooter(IStyleSheet styleSheet,
@@ -62,18 +61,16 @@ namespace ColorCode.Formatting
             textWriter.WriteLine();
         }
 
-        private static void GetStyleInsertionsForCapturedStyle(Scope scope,
-                                                               ICollection<TextInsertion> styleInsertions,
-                                                               IStyleSheet styleSheet)
+        private static void GetStyleInsertionsForCapturedStyle(Scope scope, ICollection<TextInsertion> styleInsertions)
         {
             styleInsertions.Add(new TextInsertion {
                                                       Index = scope.Index,
-                                                      Text = BuildSpanForCapturedStyle(scope, styleSheet)
+                                                      Scope = scope
                                                   });
 
 
             foreach (Scope childScope in scope.Children)
-                GetStyleInsertionsForCapturedStyle(childScope, styleInsertions, styleSheet);
+                GetStyleInsertionsForCapturedStyle(childScope, styleInsertions);
 
             styleInsertions.Add(new TextInsertion {
                                                       Index = scope.Index + scope.Length,
@@ -81,8 +78,9 @@ namespace ColorCode.Formatting
                                                   });
         }
 
-        private static string BuildSpanForCapturedStyle(Scope scope,
-                                                        IStyleSheet styleSheet)
+        private static void BuildSpanForCapturedStyle(Scope scope,
+                                                        IStyleSheet styleSheet,
+                                                        TextWriter writer)
         {
             Color foreground = Color.Empty;
             Color background = Color.Empty;
@@ -95,75 +93,8 @@ namespace ColorCode.Formatting
                 background = style.Background;
             }
 
-            return BuildStyledElement("span", foreground, background);
+            WriteElementStart("span", foreground, background, writer);
         }
-
-        private static string BuildStyledElement(string elementName,
-                                                 Color foreground,
-                                                 Color background)
-        {
-            StringBuilder buffer = new StringBuilder();
-
-            buffer.AppendFormat("<{0} style=\"", elementName);
-
-            if (foreground != Color.Empty)
-                buffer.AppendFormat("color:{0};", foreground.ToHtmlColor());
-
-            if (background != Color.Empty)
-                buffer.AppendFormat("background-color:{0};", background.ToHtmlColor());
-
-            buffer.Append("\">");
-
-            return buffer.ToString();
-        }
-
-        private static string HtmlEncode(string parsedSourceCode,
-                                         IList<Scope> scopes)
-        {
-            StringBuilder encodedSourceCodeFragment = new StringBuilder();
-
-            int cursor = 0;
-
-            for (int i = 0; i < parsedSourceCode.Length; i++)
-            {
-                char c = parsedSourceCode[i];
-
-                string encodedValue = HttpUtility.HtmlEncode(c.ToString());
-
-                if (encodedValue != c.ToString())
-                {
-                    encodedSourceCodeFragment.Append(encodedValue);
-                    IncreaseCapturedStyleIndicies(scopes, cursor, encodedValue.Length - 1);
-                    cursor += encodedValue.Length;
-                }
-                else
-                {
-                    encodedSourceCodeFragment.Append(c);
-                    cursor += 1;
-                }
-            }
-
-            return encodedSourceCodeFragment.ToString();
-        }
-
-        private static void IncreaseCapturedStyleIndicies(IList<Scope> capturedStyles,
-                                                          int startIndex,
-                                                          int amountToIncrease)
-        {
-            for (int i = 0; i < capturedStyles.Count; i++)
-            {
-                Scope scope = capturedStyles[i];
-
-                if (scope.Index > startIndex)
-                    scope.Index += amountToIncrease;
-                else if (startIndex >= scope.Index && startIndex < scope.Index + scope.Length)
-                    scope.Length += amountToIncrease;
-
-                if (scope.Children.Count > 0)
-                    IncreaseCapturedStyleIndicies(scope.Children, startIndex, amountToIncrease);
-            }
-        }
-
 
         private static void WriteHeaderDivEnd(TextWriter writer)
         {

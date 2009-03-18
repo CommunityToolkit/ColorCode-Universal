@@ -27,7 +27,7 @@ namespace ColorCode
 
         public string Colorize(string sourceCode, ILanguage language)
         {
-            StringBuilder buffer = new StringBuilder();
+            var buffer = new StringBuilder(sourceCode.Length * 2);
 
             using (TextWriter writer = new StringWriter(buffer))
             {

@@ -8,14 +8,11 @@ namespace ColorCode.Styling.StyleSheets
     public class DefaultStyleSheet : IStyleSheet
     {
         public readonly static Color DullRed = Color.FromArgb(163, 21, 21);
-        
-        public string Name { get { return "DefaultStyleSheet"; } }
+        private static readonly StyleDictionary styles;
 
-        public StyleDictionary Styles
+        static DefaultStyleSheet()
         {
-            get
-            {
-                return new StyleDictionary
+            styles = new StyleDictionary
                            {
                                new Style(ScopeName.PlainText)
                                    {
@@ -127,6 +124,15 @@ namespace ColorCode.Styling.StyleSheets
                                        Foreground = Color.Blue
                                    },
                            };
+        }
+        
+        public string Name { get { return "DefaultStyleSheet"; } }
+
+        public StyleDictionary Styles
+        {
+            get
+            {
+                return styles;
             }
         }
     }
