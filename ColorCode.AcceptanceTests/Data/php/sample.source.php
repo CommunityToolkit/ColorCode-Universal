@@ -35,3 +35,23 @@ elseif($a == $b): // Note the combination of the words.
 else:
     echo $a." is neither greater than or equal to ".$b;
 endif;
+
+<?php
+$file = fopen("welcome.txt", "r") or exit("Unable to open file!");
+//Output a line of the file until the end is reached
+
+/* single line comment */
+
+while(!feof($file))
+ {
+ echo fgets($file). "<br />";
+/* single line comment */
+ }
+           /*multi line style
+            * Second line
+            * third line
+            * fourth line
+           */
+fclose($file);
+mysqli_fetch_object())
+?> 

@@ -37,4 +37,24 @@ $foo3 = <span style="color:#A31515;">&quot;a string&quot;</span> <span style="co
     <span style="color:Blue;">echo</span> $a.<span style="color:#A31515;">&quot; is neither greater than or equal to &quot;</span>.$b;
 <span style="color:Blue;">endif</span>;
 
+&lt;?php
+$<span style="color:Blue;">file</span> = fopen(<span style="color:#A31515;">&quot;welcome.txt&quot;</span>, <span style="color:#A31515;">&quot;r&quot;</span>) <span style="color:Blue;">or</span> <span style="color:Blue;">exit</span>(<span style="color:#A31515;">&quot;Unable to open file!&quot;</span>);
+<span style="color:Green;">//Output a line of the file until the end is reached</span>
+
+<span style="color:Green;">/* single line comment */</span>
+
+<span style="color:Blue;">while</span>(!feof($<span style="color:Blue;">file</span>))
+ {
+ <span style="color:Blue;">echo</span> fgets($<span style="color:Blue;">file</span>). <span style="color:#A31515;">&quot;&lt;br /&gt;&quot;</span>;
+<span style="color:Green;">/* single line comment */</span>
+ }
+           <span style="color:Green;">/*multi line style
+            * Second line
+            * third line
+            * fourth line
+           */</span>
+<span style="color:Blue;">fclose</span>($<span style="color:Blue;">file</span>);
+<span style="color:Blue;">mysqli_fetch_object</span>())
+?&gt; 
+
 </pre></div>
