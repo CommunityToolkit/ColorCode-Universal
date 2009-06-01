@@ -29,7 +29,7 @@ body
 	background-color:/*{css:Background.Standard}*/; 
 	font-style: normal;
 	font-size: .8em;
-	margin: 0;
+	margin	: 0;
 	position:relative;
 }
 html.Opera, .Opera form, .Opera form.table, .Opera body
