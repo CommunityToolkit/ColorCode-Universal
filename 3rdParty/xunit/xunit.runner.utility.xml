@@ -79,6 +79,11 @@
             Gets the full pathname to the assembly under test.
             </summary>
         </member>
+        <member name="P:Xunit.IExecutorWrapper.ConfigFilename">
+            <summary>
+            Gets the full pathname to the configuration file.
+            </summary>
+        </member>
         <member name="P:Xunit.IExecutorWrapper.XunitVersion">
             <summary>
             Gets the version of xunit.dll used by the test assembly.
@@ -118,6 +123,9 @@
         <member name="P:Xunit.ExecutorWrapper.AssemblyFilename">
             <inheritdoc/>
         </member>
+        <member name="P:Xunit.ExecutorWrapper.ConfigFilename">
+            <inheritdoc/>
+        </member>
         <member name="P:Xunit.ExecutorWrapper.XunitVersion">
             <inheritdoc/>
         </member>
@@ -136,11 +144,12 @@
             <param name="skipped">The number of skipped tests.</param>
             <param name="time">The time taken to run, in seconds.</param>
         </member>
-        <member name="M:Xunit.IRunnerLogger.AssemblyStart(System.String,System.String)">
+        <member name="M:Xunit.IRunnerLogger.AssemblyStart(System.String,System.String,System.String)">
             <summary>
             Called when the assembly has started running.
             </summary>
             <param name="assemblyFilename">The assembly filename.</param>
+            <param name="configFilename">The configuration filename, if given; null, otherwise.</param>
             <param name="xUnitVersion">The version of xunit.dll.</param>
         </member>
         <member name="M:Xunit.IRunnerLogger.ClassFailed(System.String,System.String,System.String,System.String)">
@@ -161,7 +170,7 @@
             <param name="assemblyFilename">The assembly filename.</param>
             <param name="exception">The exception that was thrown.</param>
         </member>
-        <member name="M:Xunit.IRunnerLogger.TestFailed(System.String,System.String,System.String,System.Double,System.String,System.String,System.String)">
+        <member name="M:Xunit.IRunnerLogger.TestFailed(System.String,System.String,System.String,System.Double,System.String,System.String,System.String,System.String)">
             <summary>
             Called when a test fails.
             </summary>
@@ -169,22 +178,21 @@
             <param name="type">The full type name of the test class.</param>
             <param name="method">The name of the method.</param>
             <param name="duration">The time spent running the test, in seconds.</param>
+            <param name="output">The output of the test during its run.</param>
             <param name="exceptionType">The full type name of the exception.</param>
             <param name="message">The exception message.</param>
             <param name="stackTrace">The exception stack trace.</param>
         </member>
-        <member name="M:Xunit.IRunnerLogger.TestFinished(System.String,System.String,System.String,System.Double,System.String)">
+        <member name="M:Xunit.IRunnerLogger.TestFinished(System.String,System.String,System.String)">
             <summary>
             Called when a test has finished running, regardless of what the result was.
             </summary>
             <param name="name">The description name of the test.</param>
             <param name="type">The full type name of the test class.</param>
             <param name="method">The name of the method.</param>
-            <param name="duration">The time spent running the test, in seconds.</param>
-            <param name="output">The output of the test during its run.</param>
             <returns>Return true to continue running tests; return false to stop the test run.</returns>
         </member>
-        <member name="M:Xunit.IRunnerLogger.TestPassed(System.String,System.String,System.String,System.Double)">
+        <member name="M:Xunit.IRunnerLogger.TestPassed(System.String,System.String,System.String,System.Double,System.String)">
             <summary>
             Called when a test has passed.
             </summary>
@@ -192,6 +200,7 @@
             <param name="type">The full type name of the test class.</param>
             <param name="method">The name of the method.</param>
             <param name="duration">The time spent running the test, in seconds.</param>
+            <param name="output">The output of the test during its run.</param>
         </member>
         <member name="M:Xunit.IRunnerLogger.TestSkipped(System.String,System.String,System.String,System.String)">
             <summary>
@@ -218,6 +227,46 @@
             <param name="outputType">The transform's output type, if known; null if not.</param>
             <param name="filename">The filename the transform is writing to, if known;
             null if the results are not being written to file.</param>
+        </member>
+        <member name="T:Xunit.ITestRunner">
+            <summary>
+            Interface which represents a high level test runner.
+            </summary>
+        </member>
+        <member name="M:Xunit.ITestRunner.RunAssembly">
+            <summary>
+            Executes the tests in the assembly.
+            </summary>
+            <returns>Returns true if there were no failures; return false otherwise.</returns>
+        </member>
+        <member name="M:Xunit.ITestRunner.RunAssembly(System.Collections.Generic.IEnumerable{Xunit.IResultXmlTransform})">
+            <summary>
+            Executes the tests in the assembly, and then executes the transforms with the
+            resulting assembly XML.
+            </summary>
+            <param name="transforms">The transforms to execute.</param>
+            <returns>Returns true if there were no failures; return false otherwise.</returns>
+        </member>
+        <member name="M:Xunit.ITestRunner.RunClass(System.String)">
+            <summary>
+            Runs the class.
+            </summary>
+            <param name="type">The type.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Xunit.ITestRunner.RunTest(System.String,System.String)">
+            <summary>
+            Runs a single test in a test class.
+            </summary>
+            <param name="type">The full name of the class.</param>
+            <param name="method">The name of the method.</param>
+        </member>
+        <member name="M:Xunit.ITestRunner.RunTests(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Runs the list of tests in a test class.
+            </summary>
+            <param name="type">The full name of the class.</param>
+            <param name="methods">The names of the methods to run.</param>
         </member>
         <member name="T:Xunit.TestRunnerResult">
             <summary>
@@ -274,39 +323,19 @@
             <param name="logger">The logger.</param>
         </member>
         <member name="M:Xunit.TestRunner.RunAssembly">
-            <summary>
-            Executes the tests in the assembly.
-            </summary>
-            <returns>Returns true if there were no failures; return false otherwise.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Xunit.TestRunner.RunAssembly(System.Collections.Generic.IEnumerable{Xunit.IResultXmlTransform})">
-            <summary>
-            Executes the tetss in the assembly, and then executes the transforms with the
-            resulting assembly XML.
-            </summary>
-            <param name="transforms">The transforms to execute.</param>
-            <returns>Returns true if there were no failures; return false otherwise.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Xunit.TestRunner.RunClass(System.String)">
-            <summary>
-            Runs the class.
-            </summary>
-            <param name="type">The type.</param>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:Xunit.TestRunner.RunTest(System.String,System.String)">
-            <summary>
-            Runs a single test in a test class.
-            </summary>
-            <param name="type">The full name of the class.</param>
-            <param name="method">The name of the method.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Xunit.TestRunner.RunTests(System.String,System.Collections.Generic.List{System.String})">
-            <summary>
-            Runs the list of tests in a test class.
-            </summary>
-            <param name="type">The full name of the class.</param>
-            <param name="methods">The names of the methods to run.</param>
+            <inheritdoc/>
         </member>
         <member name="T:Xunit.NullTransformer">
             <summary>
@@ -395,8 +424,8 @@
         </member>
         <member name="M:Xunit.XmlLoggerAdapter.LogTestNode(System.Xml.XmlNode,Xunit.IRunnerLogger)">
             <summary>
-            Logs the test node by calling <see cref="M:Xunit.IRunnerLogger.TestFinished(System.String,System.String,System.String,System.Double,System.String)"/>. It will also call
-            <see cref="M:Xunit.IRunnerLogger.TestPassed(System.String,System.String,System.String,System.Double)"/>, <see cref="M:Xunit.IRunnerLogger.TestFailed(System.String,System.String,System.String,System.Double,System.String,System.String,System.String)"/>, or
+            Logs the test node by calling <see cref="M:Xunit.IRunnerLogger.TestFinished(System.String,System.String,System.String)"/>. It will also call
+            <see cref="M:Xunit.IRunnerLogger.TestPassed(System.String,System.String,System.String,System.Double,System.String)"/>, <see cref="M:Xunit.IRunnerLogger.TestFailed(System.String,System.String,System.String,System.Double,System.String,System.String,System.String,System.String)"/>, or
             <see cref="M:Xunit.IRunnerLogger.TestSkipped(System.String,System.String,System.String,System.String)"/> as appropriate.
             </summary>
             <param name="testNode">The test node.</param>

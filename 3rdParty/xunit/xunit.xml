@@ -306,9 +306,40 @@
             <returns>The exception that was thrown, when successful</returns>
             <exception cref="T:Xunit.Sdk.ThrowsException">Thrown when an exception was not thrown, or when an exception of the incorrect type is thrown</exception>
         </member>
+        <member name="M:Xunit.Assert.Throws``1(Xunit.Assert.ThrowsDelegateWithReturn)">
+            <summary>
+            Verifies that the exact exception is thrown (and not a derived exception type).
+            Generally used to test property accessors.
+            </summary>
+            <typeparam name="T">The type of the exception expected to be thrown</typeparam>
+            <param name="testCode">A delegate to the code to be tested</param>
+            <returns>The exception that was thrown, when successful</returns>
+            <exception cref="T:Xunit.Sdk.ThrowsException">Thrown when an exception was not thrown, or when an exception of the incorrect type is thrown</exception>
+        </member>
+        <member name="M:Xunit.Assert.Throws``1(System.String,Xunit.Assert.ThrowsDelegateWithReturn)">
+            <summary>
+            Verifies that the exact exception is thrown (and not a derived exception type).
+            Generally used to test property accessors.
+            </summary>
+            <typeparam name="T">The type of the exception expected to be thrown</typeparam>
+            <param name="userMessage">The message to be shown if the test fails</param>
+            <param name="testCode">A delegate to the code to be tested</param>
+            <returns>The exception that was thrown, when successful</returns>
+            <exception cref="T:Xunit.Sdk.ThrowsException">Thrown when an exception was not thrown, or when an exception of the incorrect type is thrown</exception>
+        </member>
         <member name="M:Xunit.Assert.Throws(System.Type,Xunit.Assert.ThrowsDelegate)">
             <summary>
             Verifies that the exact exception is thrown (and not a derived exception type).
+            </summary>
+            <param name="exceptionType">The type of the exception expected to be thrown</param>
+            <param name="testCode">A delegate to the code to be tested</param>
+            <returns>The exception that was thrown, when successful</returns>
+            <exception cref="T:Xunit.Sdk.ThrowsException">Thrown when an exception was not thrown, or when an exception of the incorrect type is thrown</exception>
+        </member>
+        <member name="M:Xunit.Assert.Throws(System.Type,Xunit.Assert.ThrowsDelegateWithReturn)">
+            <summary>
+            Verifies that the exact exception is thrown (and not a derived exception type).
+            Generally used to test property accessors.
             </summary>
             <param name="exceptionType">The type of the exception expected to be thrown</param>
             <param name="testCode">A delegate to the code to be tested</param>
@@ -331,6 +362,11 @@
             <exception cref="T:Xunit.Sdk.TrueException">Thrown when the condition is false</exception>
         </member>
         <member name="T:Xunit.Assert.ThrowsDelegate">
+            <summary>
+            Used by the Throws and DoesNotThrow methods.
+            </summary>
+        </member>
+        <member name="T:Xunit.Assert.ThrowsDelegateWithReturn">
             <summary>
             Used by the Throws and DoesNotThrow methods.
             </summary>
@@ -575,6 +611,14 @@
             <param name="code">The code which may thrown an exception.</param>
             <returns>Returns the exception that was thrown by the code; null, otherwise.</returns>
         </member>
+        <member name="M:Xunit.Record.Exception(Xunit.Assert.ThrowsDelegateWithReturn)">
+            <summary>
+            Records any exception which is thrown by the given code that has
+            a return value. Generally used for testing property accessors.
+            </summary>
+            <param name="code">The code which may thrown an exception.</param>
+            <returns>Returns the exception that was thrown by the code; null, otherwise.</returns>
+        </member>
         <member name="T:Xunit.Sdk.AfterTestException">
             <summary>
             Exception that is thrown when one or more exceptions are thrown from
@@ -742,13 +786,6 @@
             <param name="node">The XML node.</param>
             <param name="name">The attribute name.</param>
             <param name="value">The attribute value.</param>
-        </member>
-        <member name="M:Xunit.Sdk.XmlUtility.AddCDataSection(System.Xml.XmlNode,System.String)">
-            <summary>
-            Adds a CDATA section to an XML node.
-            </summary>
-            <param name="node">The XML node.</param>
-            <param name="text">The text for the CDATA section.</param>
         </member>
         <member name="M:Xunit.Sdk.XmlUtility.AddElement(System.Xml.XmlNode,System.String)">
             <summary>
@@ -1360,19 +1397,25 @@
         <member name="P:Xunit.Sdk.TestCommand.ShouldCreateInstance">
             <inheritdoc/>
         </member>
-        <member name="M:Xunit.Sdk.SkipCommand.#ctor(System.Reflection.MethodInfo,System.String)">
+        <member name="M:Xunit.Sdk.SkipCommand.#ctor(System.Reflection.MethodInfo,System.String,System.String)">
             <summary>
             Creates a new instance of the <see cref="T:Xunit.Sdk.SkipCommand"/> class.
             </summary>
             <param name="testMethod">The method that is being skipped</param>
             <param name="displayName">The display name for the test. If null, the fully qualified
             type name is used.</param>
+            <param name="reason">The reason the test was skipped.</param>
         </member>
         <member name="M:Xunit.Sdk.SkipCommand.Execute(System.Object)">
             <inheritdoc/>
         </member>
         <member name="M:Xunit.Sdk.SkipCommand.ToStartXml">
             <inheritdoc/>
+        </member>
+        <member name="P:Xunit.Sdk.SkipCommand.Reason">
+            <summary>
+            Gets the skip reason.
+            </summary>
         </member>
         <member name="P:Xunit.Sdk.SkipCommand.ShouldCreateInstance">
             <inheritdoc/>
@@ -1486,7 +1529,14 @@
             <summary>
             Creates a new instance of the <see cref="T:Xunit.Sdk.AssemblyResult"/> class.
             </summary>
-            <param name="filename">The filename of the assembly</param>
+            <param name="assemblyFilename">The filename of the assembly</param>
+        </member>
+        <member name="M:Xunit.Sdk.AssemblyResult.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new instance of the <see cref="T:Xunit.Sdk.AssemblyResult"/> class.
+            </summary>
+            <param name="assemblyFilename">The filename of the assembly</param>
+            <param name="configFilename">The configuration filename</param>
         </member>
         <member name="M:Xunit.Sdk.AssemblyResult.ToXml(System.Xml.XmlNode)">
             <summary>
@@ -1494,6 +1544,11 @@
             </summary>
             <param name="parentNode">The parent node.</param>
             <returns>The newly created XML node.</returns>
+        </member>
+        <member name="P:Xunit.Sdk.AssemblyResult.ConfigFilename">
+            <summary>
+            Gets the fully qualified filename of the configuration file.
+            </summary>
         </member>
         <member name="P:Xunit.Sdk.AssemblyResult.Directory">
             <summary>
@@ -1738,7 +1793,7 @@
             Represents a skipped test result.
             </summary>
         </member>
-        <member name="M:Xunit.Sdk.SkipResult.#ctor(System.Reflection.MethodInfo,System.String)">
+        <member name="M:Xunit.Sdk.SkipResult.#ctor(System.Reflection.MethodInfo,System.String,System.String)">
             <summary>
             Creates a new instance of the <see cref="T:Xunit.Sdk.SkipResult"/> class. Uses reflection to discover
             the skip reason.
@@ -1746,6 +1801,7 @@
             <param name="method">The method under test</param>
             <param name="displayName">The display name for the test. If null, the fully qualified
             type name is used.</param>
+            <param name="reason">The reason the test was skipped.</param>
         </member>
         <member name="M:Xunit.Sdk.SkipResult.#ctor(System.String,System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
             <summary>
@@ -1850,6 +1906,13 @@
             </summary>
             <param name="attributeType">The type of the attribute</param>
             <returns>The matching attributes that decorate the type</returns>
+        </member>
+        <member name="M:Xunit.Sdk.ITypeInfo.GetMethod(System.String)">
+            <summary>
+            Gets a test method by name.
+            </summary>
+            <param name="methodName">The name of the method</param>
+            <returns>The method, if it exists; null, otherwise.</returns>
         </member>
         <member name="M:Xunit.Sdk.ITypeInfo.GetMethods">
             <summary>
