@@ -55,6 +55,8 @@ namespace ColorCode
                     return LanguageId.Php;
                 case "css":
                     return LanguageId.Css;
+                case "vb":
+                    return LanguageId.VbDotNet;
                 default:
                     throw new ArgumentException(string.Format("Unexpected file extension: {0}.", fileExtension));
             }
