@@ -25,11 +25,11 @@
 	</Target>
 	
 	<Target Name="run-facts" DependsOnTargets="compile">
-		<Exec Command="3rdParty\xunit-1.1\xunit.console.exe ColorCode.Facts\bin\$(Configuration)\ColorCode.Facts.dll /xml ColorCode.Facts.xunit.results.xml "/>
+		<Exec Command="3rdParty\xunit\xunit.console.exe ColorCode.Facts\bin\$(Configuration)\ColorCode.Facts.dll /xml ColorCode.Facts.xunit.results.xml "/>
 	</Target>
 	
 	<Target Name="run-tests" DependsOnTargets="compile">
-		<Exec Command="3rdParty\xunit-1.1\xunit.console.exe ColorCode.AcceptanceTests\bin\$(Configuration)\ColorCode.AcceptanceTests.dll /noshadow /xml ColorCode.AcceptanceTests.xunit.results.xml "/>
+		<Exec Command="3rdParty\xunit\xunit.console.exe ColorCode.AcceptanceTests\bin\$(Configuration)\ColorCode.AcceptanceTests.dll /noshadow /xml ColorCode.AcceptanceTests.xunit.results.xml "/>
 	</Target>
 	
 	<Target Name="all" DependsOnTargets="compile;run-facts;run-tests" />
