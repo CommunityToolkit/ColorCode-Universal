@@ -44,6 +44,7 @@ $<span style="color:Blue;">file</span> = fopen(<span style="color:#A31515;">&quo
 <span style="color:Green;">/* single line comment */</span>
 
 <span style="color:Blue;">echo</span> <span style="color:#A31515;">&quot;&lt;table width=\&quot;175\&quot; border=\&quot;1\&quot; class=\&quot;Table1\&quot;&gt;\n&quot;</span>;
+$regex = <span style="color:#A31515;">'/(?:(&quot;)|(?:\'))((?(1)[^&quot;]+|[^\']+))(?(1)&quot;|\')/'</span>;
 
 <span style="color:Blue;">while</span>(!feof($<span style="color:Blue;">file</span>))
  {
