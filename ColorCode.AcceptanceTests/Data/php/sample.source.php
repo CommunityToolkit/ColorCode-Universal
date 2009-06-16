@@ -42,6 +42,8 @@ $file = fopen("welcome.txt", "r") or exit("Unable to open file!");
 
 /* single line comment */
 
+echo "<table width=\"175\" border=\"1\" class=\"Table1\">\n";
+
 while(!feof($file))
  {
  echo fgets($file). "<br />";

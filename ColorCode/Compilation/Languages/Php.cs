@@ -56,7 +56,7 @@ namespace ColorCode.Compilation.Languages
                                            { 0, ScopeName.String },
                                        }),
                                new LanguageRule(
-                                   @"""[^\n]*?""",
+                                   @"""[^\n]*?(?<!\\)""",
                                    new Dictionary<int, string>
                                        {
                                            { 0, ScopeName.String },

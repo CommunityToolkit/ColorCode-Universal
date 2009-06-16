@@ -228,42 +228,6 @@ Line 3
             }
 
             [Fact]
-            public void WillStyleStringWithEmbeddedDoubleQuotes()
-            {
-                string source =
-    @"string aString = @""""""someText"""""";";
-
-                string expected =
-    @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">string</span> aString = <span style=""color:#A31515;"">@&quot;&quot;&quot;someText&quot;&quot;&quot;</span>;
-</pre></div>";
-
-                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
-
-                Assert.Equal(expected, actual);
-            }
-
-            [Fact]
-            public void WillStyleVerbatimStringLiteralOnMultipleLines()
-            {
-                string source =
-    @"string aString = @""
-""""someText""""
-"";";
-
-                string expected =
-    @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">string</span> aString = <span style=""color:#A31515;"">@&quot;
-&quot;&quot;someText&quot;&quot;
-&quot;</span>;
-</pre></div>";
-
-                string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
-
-                Assert.Equal(expected, actual);
-            }
-
-            [Fact]
             public void TransformWillStyleAttributeTarget()
             {
                 string source =

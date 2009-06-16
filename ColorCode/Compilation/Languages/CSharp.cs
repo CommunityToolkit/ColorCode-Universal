@@ -52,7 +52,7 @@ namespace ColorCode.Compilation.Languages
                                            { 1, ScopeName.Comment }
                                        }),
                                new LanguageRule(
-                                   @"'[^\n]*?'",
+                                   @"'[^\n]*?(?<!\\)'",
                                    new Dictionary<int, string>
                                        {
                                            { 0, ScopeName.String }
@@ -64,7 +64,7 @@ namespace ColorCode.Compilation.Languages
                                            { 0, ScopeName.StringCSharpVerbatim }
                                        }),
                                new LanguageRule(
-                                   @"(?s)(""[^\n]*?"")",
+                                   @"(?s)(""[^\n]*?(?<!\\)"")",
                                    new Dictionary<int, string>
                                        {
                                            { 0, ScopeName.String }
