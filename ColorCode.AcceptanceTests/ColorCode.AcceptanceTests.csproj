@@ -62,6 +62,9 @@
     <None Include="Data\php\sample.source.php">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Data\csharp\comments.source.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="Data\csharp\linq-keyword.source.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
@@ -144,6 +147,12 @@
     <None Include="LegacyAcceptanceTests\large.sql" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Data\asax\class.expected.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\asax\class.source.asax">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Data\ashx\simple.expected.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -156,6 +165,7 @@
     <Content Include="Data\csharp\base-keyword.expected.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\csharp\comments.expected.html" />
     <Content Include="Data\csharp\linq-keyword.expected.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

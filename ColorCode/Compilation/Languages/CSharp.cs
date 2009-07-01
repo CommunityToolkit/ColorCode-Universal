@@ -38,7 +38,7 @@ namespace ColorCode.Compilation.Languages
                                            { 0, ScopeName.Comment },
                                        }),
                                new LanguageRule(
-                                   @"(///)(?:\s*?(<[/a-zA-Z0-9\s""=]+>))*(.*?)$",
+                                   @"(///)(?:\s*?(<[/a-zA-Z0-9\s""=]+>))*([^\r\n]*)",
                                    new Dictionary<int, string>
                                        {
                                            { 1, ScopeName.XmlDocTag },

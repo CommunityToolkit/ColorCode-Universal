@@ -47,6 +47,8 @@ namespace ColorCode
         {
             switch (fileExtension)
             {
+                case "asax":
+                    return LanguageId.Asax;
                 case "ashx":
                     return LanguageId.Ashx;
                 case "cs":
