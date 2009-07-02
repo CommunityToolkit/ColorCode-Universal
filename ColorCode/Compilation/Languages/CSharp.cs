@@ -70,10 +70,11 @@ namespace ColorCode.Compilation.Languages
                                            { 0, ScopeName.String }
                                        }),
                                new LanguageRule(
-                                   @"\[(assembly|module|type|return|param|method|field|property|event):.*?\]",
+                                   @"\[(assembly|module|type|return|param|method|field|property|event):[^\]""]*(?:(""[^""]+"")?[^\]""]*)*\]",
                                    new Dictionary<int, string>
                                        {
-                                           { 1, ScopeName.Keyword }
+                                           { 1, ScopeName.Keyword },
+                                           { 2, ScopeName.String }
                                        }),
                                new LanguageRule(
                                    @"^\s*(\#define|\#elif|\#else|\#endif|\#endregion|\#error|\#if|\#line|\#pragma|\#region|\#undef|\#warning).*?$",

@@ -56,6 +56,9 @@
     <Compile Include="Data\csharp\as-keyword.source.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
+    <None Include="Data\csharp\assembly-attribute.source.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Compile Include="Data\csharp\base-keyword.source.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
@@ -162,6 +165,7 @@
     <Content Include="Data\csharp\as-keyword.expected.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\csharp\assembly-attribute.expected.html" />
     <Content Include="Data\csharp\base-keyword.expected.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
