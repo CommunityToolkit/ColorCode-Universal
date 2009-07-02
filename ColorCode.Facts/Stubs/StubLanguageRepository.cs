@@ -25,5 +25,15 @@ namespace ColorCode.Stubs
         {
             throw new System.NotImplementedException();
         }
+
+        public void Unload(ILanguage language)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Unload(string languageId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

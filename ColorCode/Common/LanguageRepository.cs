@@ -61,5 +61,30 @@ namespace ColorCode.Common
                 loadLock.ExitWriteLock();
             }
         }
+
+        public void Unload(ILanguage language)
+        {
+            Guard.ArgNotNull(language, "language");
+
+            Unload(language.Id);
+        }
+
+        public void Unload(string languageId)
+        {
+            if (string.IsNullOrEmpty(languageId))
+                throw new ArgumentException("The language identifier must not be null or empty.", "language");
+
+            loadLock.EnterWriteLock();
+
+            try
+            {
+                if (loadedLanguages.ContainsKey(languageId))
+                    loadedLanguages.Remove(languageId);
+            }
+            finally
+            {
+                loadLock.ExitWriteLock();
+            }
+        }
     }
 }

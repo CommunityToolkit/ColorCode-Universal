@@ -15,7 +15,7 @@ namespace ColorCode
 
         public CodeColorizer()
         {
-            languageParser = new LanguageParser(new LanguageCompiler(Languages.CompiledLanguages), new LanguageRepository(Languages.LoadedLanguages));
+            languageParser = new LanguageParser(new LanguageCompiler(Languages.CompiledLanguages), Languages.LanguageRepository);
         }
 
         public CodeColorizer(ILanguageParser languageParser)
