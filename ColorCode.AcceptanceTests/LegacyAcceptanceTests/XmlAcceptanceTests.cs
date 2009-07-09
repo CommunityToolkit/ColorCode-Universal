@@ -127,21 +127,6 @@ xmlns=""http://tempuri.org/po.xsd"" elementFormDefault=""qualified"">";
         }
 
         [Fact]
-        public void TransformWillStyleXmlStylesheetPreProcessorDirective()
-        {
-            string source =
-@"<?xml-stylesheet type=""text/xsl"" href=""show_book.xsl"" title=""default stylesheet""?>";
-            string expected =
-@"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">&lt;?</span><span style=""color:#A31515;"">xml-stylesheet</span> <span style=""color:Red;"">type</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">text/xsl</span><span style=""color:Black;"">&quot;</span> <span style=""color:Red;"">href</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">show_book.xsl</span><span style=""color:Black;"">&quot;</span> <span style=""color:Red;"">title</span><span style=""color:Blue;"">=</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">default stylesheet</span><span style=""color:Black;"">&quot;</span><span style=""color:Blue;"">?&gt;</span>
-</pre></div>";
-
-            string actual = new CodeColorizer().Colorize(source, Languages.Xml);
-
-            Assert.Equal(expected, actual);
-        }
-
-        [Fact]
         public void TransformWillStyleXmlElementsContainingAHyphen()
         {
             string source =

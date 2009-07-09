@@ -50,6 +50,16 @@ namespace ColorCode.Compilation.Languages
                                            { 7, ScopeName.XmlDelimiter }
                                        }),
                                new LanguageRule(
+                                   @"(?i)(<\?)(xml-stylesheet)((?:\s+[a-z0-9]+=""[^\n""]*"")*(?:\s+[a-z0-9]+=\'[^\n\']*\')*\s*?)(\?>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 1, ScopeName.XmlDelimiter },
+                                           { 2, ScopeName.XmlName },
+                                           { 3, ScopeName.XmlDocTag },
+                                           { 4, ScopeName.XmlDelimiter }
+                                       }
+                                   ),
+                               new LanguageRule(
                                    @"(?i)(<\?)([a-z][a-z0-9-]*)(?:\s+([a-z0-9]+)(=)("")([^\n]*?)(""))*(?:\s+([a-z0-9]+)(=)(\')([^\n]*?)(\'))*\s*?(\?>)",
                                    new Dictionary<int, string>
                                        {

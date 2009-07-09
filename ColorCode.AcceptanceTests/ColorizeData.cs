@@ -59,6 +59,8 @@ namespace ColorCode
                     return LanguageId.Css;
                 case "vb":
                     return LanguageId.VbDotNet;
+                case "xml":
+                    return LanguageId.Xml;
                 default:
                     throw new ArgumentException(string.Format("Unexpected file extension: {0}.", fileExtension));
             }
