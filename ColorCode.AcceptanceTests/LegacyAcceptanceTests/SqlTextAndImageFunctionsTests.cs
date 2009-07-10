@@ -20,7 +20,7 @@ GO";
 @"<div style=""color:Black;background-color:White;""><pre>
 <span style=""color:Blue;"">USE</span> AdventureWorks;
 GO
-<span style=""color:Blue;"">SELECT</span> <span style=""color:Blue;"">PATINDEX</span>(<span style=""color:#A31515;"">'%ensure%'</span>,DocumentSummary)
+<span style=""color:Blue;"">SELECT</span> <span style=""color:Magenta;"">PATINDEX</span>(<span style=""color:#A31515;"">'%ensure%'</span>,DocumentSummary)
 <span style=""color:Blue;"">FROM</span> Production.Document
 <span style=""color:Blue;"">WHERE</span> DocumentID = 3;
 GO

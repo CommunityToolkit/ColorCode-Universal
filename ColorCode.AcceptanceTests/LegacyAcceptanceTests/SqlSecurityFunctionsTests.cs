@@ -36,7 +36,7 @@ go
 
 <span style=""color:Green;"">-- Execute SELECT if user is a member of ADVWORKS\Shipping.</span>
 <span style=""color:Blue;"">IF</span> <span style=""color:Blue;"">IS_MEMBER</span> (<span style=""color:#A31515;"">'ADVWORKS\Shipping'</span>) = 1
-    <span style=""color:Blue;"">SELECT</span> <span style=""color:#A31515;"">'User '</span> + <span style=""color:Blue;"">USER</span> + <span style=""color:#A31515;"">' is a member of ADVWORKS\Shipping.'</span> 
+    <span style=""color:Blue;"">SELECT</span> <span style=""color:#A31515;"">'User '</span> + <span style=""color:Magenta;"">USER</span> + <span style=""color:#A31515;"">' is a member of ADVWORKS\Shipping.'</span> 
 go
 </pre></div>";
 
@@ -68,9 +68,9 @@ GO
 <span style=""color:Blue;"">CREATE</span> <span style=""color:Blue;"">TABLE</span> sid_example
 (
 login_sid   <span style=""color:Blue;"">varbinary</span>(85) <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Blue;"">SUSER_SID</span>(),
-login_name  <span style=""color:Blue;"">varchar</span>(30) <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Blue;"">SYSTEM_USER</span>,
+login_name  <span style=""color:Blue;"">varchar</span>(30) <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Magenta;"">SYSTEM_USER</span>,
 login_dept  <span style=""color:Blue;"">varchar</span>(10) <span style=""color:Blue;"">DEFAULT</span> <span style=""color:#A31515;"">'SALES'</span>,
-login_date  <span style=""color:Blue;"">datetime</span> <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Blue;"">GETDATE</span>()
+login_date  <span style=""color:Blue;"">datetime</span> <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Magenta;"">GETDATE</span>()
 ) 
 GO
 <span style=""color:Blue;"">INSERT</span> sid_example <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Blue;"">VALUES</span>
@@ -116,8 +116,8 @@ GO
 <span style=""color:Blue;"">CREATE</span> <span style=""color:Blue;"">TABLE</span> sname_example
 (
 login_sname <span style=""color:Blue;"">sysname</span> <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Blue;"">SUSER_SNAME</span>(),
-employee_id <span style=""color:Blue;"">uniqueidentifier</span> <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Blue;"">NEWID</span>(),
-login_date  <span style=""color:Blue;"">datetime</span> <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Blue;"">GETDATE</span>()
+employee_id <span style=""color:Blue;"">uniqueidentifier</span> <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Magenta;"">NEWID</span>(),
+login_date  <span style=""color:Blue;"">datetime</span> <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Magenta;"">GETDATE</span>()
 ) 
 GO
 <span style=""color:Blue;"">INSERT</span> sname_example <span style=""color:Blue;"">DEFAULT</span> <span style=""color:Blue;"">VALUES</span>
@@ -202,7 +202,7 @@ ELSE
 @"SELECT SUSER_NAME(1)";
                 string expected =
 @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">SELECT</span> <span style=""color:Blue;"">SUSER_NAME</span>(1)
+<span style=""color:Blue;"">SELECT</span> <span style=""color:Magenta;"">SUSER_NAME</span>(1)
 </pre></div>";
 
                 string actual = new CodeColorizer().Colorize(sourceText, Languages.Sql);

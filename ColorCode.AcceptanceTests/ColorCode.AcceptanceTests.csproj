@@ -37,6 +37,7 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="xunit, Version=1.4.9.1416, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -96,19 +97,10 @@
     <Compile Include="LegacyAcceptanceTests\JavaScriptAcceptanceTests.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="LegacyAcceptanceTests\SqlAggregateFunctionsTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="LegacyAcceptanceTests\SqlClrTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LegacyAcceptanceTests\SqlConfiigurationFunctionsTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LegacyAcceptanceTests\SqlKeywordTests.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="LegacyAcceptanceTests\SqlMathFunctionsTests.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="LegacyAcceptanceTests\SqlMetadataFunctionsTests.cs">
@@ -182,6 +174,27 @@
     <Content Include="Data\php\sample.expected.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Data\sql\aggregate-functions.source.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\sql\keyword-color.source.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\sql\math-functions.source.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\sql\system-function-color.expected.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\sql\aggregate-functions.expected.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\sql\math-functions.expected.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\sql\keyword-color.expected.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <Content Include="Data\vb\linq-keyword.expected.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -194,6 +207,9 @@
     <Content Include="Data\vb\strings.source.vb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Data\sql\system-function-color.source.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Data\xml\xml-stylesheet.expected.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

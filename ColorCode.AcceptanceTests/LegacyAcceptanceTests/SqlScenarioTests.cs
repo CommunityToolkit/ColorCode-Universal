@@ -190,7 +190,7 @@ GO
 <span style=""color:Blue;"">FETCH</span> <span style=""color:Blue;"">NEXT</span> <span style=""color:Blue;"">FROM</span> cursorName
 <span style=""color:Blue;"">INTO</span> @columnNameOne
 
-<span style=""color:Blue;"">WHILE</span> @@FETCH_STATUS = 0
+<span style=""color:Blue;"">WHILE</span> <span style=""color:Magenta;"">@@FETCH_STATUS</span> = 0
 <span style=""color:Blue;"">BEGIN</span>
     <span style=""color:Blue;"">PRINT</span> <span style=""color:#A31515;"">'Column StyleName One: '</span> + @columnOneName
 

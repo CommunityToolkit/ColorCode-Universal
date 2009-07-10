@@ -123,6 +123,10 @@ namespace ColorCode.Styling.StyleSheets
                                    {
                                        Foreground = Color.Blue
                                    },
+                               new Style(ScopeName.SqlSystemFunction)
+                                   {
+                                        Foreground = Color.Magenta    
+                                   },
                            };
         }
         

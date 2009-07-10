@@ -21,6 +21,7 @@ namespace ColorCode.Common
         public const string LanguagePrefix = "&";
         public const string PlainText = "Plain Text";
         public const string PreprocessorKeyword = "Preprocessor Keyword";
+        public const string SqlSystemFunction = "SQL System Function";
         public const string String = "String";
         public const string StringCSharpVerbatim = "String (C# @ Verbatim)";
         public const string XmlAttribute = "XML Attribute";

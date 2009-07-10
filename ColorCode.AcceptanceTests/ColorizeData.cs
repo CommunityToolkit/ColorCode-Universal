@@ -59,6 +59,8 @@ namespace ColorCode
                     return LanguageId.Css;
                 case "vb":
                     return LanguageId.VbDotNet;
+                case "sql":
+                    return LanguageId.Sql;
                 case "xml":
                     return LanguageId.Xml;
                 default:

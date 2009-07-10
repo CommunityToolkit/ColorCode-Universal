@@ -135,15 +135,15 @@ ELSE
 GO";
                 string expected =
 @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">SELECT</span> <span style=""color:Blue;"">DB_ID</span>() <span style=""color:Blue;"">AS</span> [Database ID];
+<span style=""color:Blue;"">SELECT</span> <span style=""color:Magenta;"">DB_ID</span>() <span style=""color:Blue;"">AS</span> [Database ID];
 GO
 
-<span style=""color:Blue;"">SELECT</span> <span style=""color:Blue;"">DB_ID</span>(N<span style=""color:#A31515;"">'AdventureWorks'</span>) <span style=""color:Blue;"">AS</span> [Database ID];
+<span style=""color:Blue;"">SELECT</span> <span style=""color:Magenta;"">DB_ID</span>(N<span style=""color:#A31515;"">'AdventureWorks'</span>) <span style=""color:Blue;"">AS</span> [Database ID];
 GO
 
 <span style=""color:Blue;"">DECLARE</span> @db_id <span style=""color:Blue;"">smallint</span>;
 <span style=""color:Blue;"">DECLARE</span> @object_id <span style=""color:Blue;"">int</span>;
-<span style=""color:Blue;"">SET</span> @db_id = <span style=""color:Blue;"">DB_ID</span>(N<span style=""color:#A31515;"">'AdventureWorks'</span>);
+<span style=""color:Blue;"">SET</span> @db_id = <span style=""color:Magenta;"">DB_ID</span>(N<span style=""color:#A31515;"">'AdventureWorks'</span>);
 <span style=""color:Blue;"">SET</span> @object_id = <span style=""color:Blue;"">OBJECT_ID</span>(N<span style=""color:#A31515;"">'AdventureWorks.Person.Address'</span>);
 <span style=""color:Blue;"">IF</span> @db_id <span style=""color:Blue;"">IS</span> <span style=""color:Blue;"">NULL</span> 
     <span style=""color:Blue;"">BEGIN</span>;
@@ -178,12 +178,12 @@ SELECT DB_NAME(3)AS [Database StyleName];
 GO";
                 string expected =
 @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">SELECT</span> <span style=""color:Blue;"">DB_NAME</span>() <span style=""color:Blue;"">AS</span> [Current Database];
+<span style=""color:Blue;"">SELECT</span> <span style=""color:Magenta;"">DB_NAME</span>() <span style=""color:Blue;"">AS</span> [Current Database];
 GO
 
 <span style=""color:Blue;"">USE</span> master;
 GO
-<span style=""color:Blue;"">SELECT</span> <span style=""color:Blue;"">DB_NAME</span>(3)<span style=""color:Blue;"">AS</span> [Database StyleName];
+<span style=""color:Blue;"">SELECT</span> <span style=""color:Magenta;"">DB_NAME</span>(3)<span style=""color:Blue;"">AS</span> [Database StyleName];
 GO
 </pre></div>";
 
@@ -492,7 +492,7 @@ GO
 
 <span style=""color:Blue;"">DECLARE</span> @db_id <span style=""color:Blue;"">smallint</span>;
 <span style=""color:Blue;"">DECLARE</span> @object_id <span style=""color:Blue;"">int</span>;
-<span style=""color:Blue;"">SET</span> @db_id = <span style=""color:Blue;"">DB_ID</span>(N<span style=""color:#A31515;"">'AdventureWorks'</span>);
+<span style=""color:Blue;"">SET</span> @db_id = <span style=""color:Magenta;"">DB_ID</span>(N<span style=""color:#A31515;"">'AdventureWorks'</span>);
 <span style=""color:Blue;"">SET</span> @object_id = <span style=""color:Blue;"">OBJECT_ID</span>(N<span style=""color:#A31515;"">'AdventureWorks.Person.Address'</span>);
 <span style=""color:Blue;"">IF</span> @db_id <span style=""color:Blue;"">IS</span> <span style=""color:Blue;"">NULL</span> 
     <span style=""color:Blue;"">BEGIN</span>;
@@ -607,11 +607,11 @@ FROM tableA
 WHERE colB = 1689";
                 string expected =
 @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">CREATE</span> <span style=""color:Blue;"">TABLE</span> tableA(colA <span style=""color:Blue;"">sql_variant</span>, colB <span style=""color:Blue;"">int</span>)
-<span style=""color:Blue;"">INSERT</span> <span style=""color:Blue;"">INTO</span> tableA <span style=""color:Blue;"">values</span> ( <span style=""color:Blue;"">cast</span> (46279.1 <span style=""color:Blue;"">as</span> <span style=""color:Blue;"">decimal</span>(8,2)), 1689)
-<span style=""color:Blue;"">SELECT</span> <span style=""color:Blue;"">SQL_VARIANT_PROPERTY</span>(colA,<span style=""color:#A31515;"">'BaseType'</span>) <span style=""color:Blue;"">AS</span> <span style=""color:#A31515;"">'Base Type'</span>,
-       <span style=""color:Blue;"">SQL_VARIANT_PROPERTY</span>(colA,<span style=""color:#A31515;"">'Precision'</span>) <span style=""color:Blue;"">AS</span> <span style=""color:#A31515;"">'Precision'</span>,
-       <span style=""color:Blue;"">SQL_VARIANT_PROPERTY</span>(colA,<span style=""color:#A31515;"">'Scale'</span>) <span style=""color:Blue;"">AS</span> <span style=""color:#A31515;"">'Scale'</span>
+<span style=""color:Blue;"">CREATE</span> <span style=""color:Blue;"">TABLE</span> tableA(colA <span style=""color:Magenta;"">sql_variant</span>, colB <span style=""color:Blue;"">int</span>)
+<span style=""color:Blue;"">INSERT</span> <span style=""color:Blue;"">INTO</span> tableA <span style=""color:Blue;"">values</span> ( <span style=""color:Magenta;"">cast</span> (46279.1 <span style=""color:Blue;"">as</span> <span style=""color:Blue;"">decimal</span>(8,2)), 1689)
+<span style=""color:Blue;"">SELECT</span> <span style=""color:Magenta;"">SQL_VARIANT_PROPERTY</span>(colA,<span style=""color:#A31515;"">'BaseType'</span>) <span style=""color:Blue;"">AS</span> <span style=""color:#A31515;"">'Base Type'</span>,
+       <span style=""color:Magenta;"">SQL_VARIANT_PROPERTY</span>(colA,<span style=""color:#A31515;"">'Precision'</span>) <span style=""color:Blue;"">AS</span> <span style=""color:#A31515;"">'Precision'</span>,
+       <span style=""color:Magenta;"">SQL_VARIANT_PROPERTY</span>(colA,<span style=""color:#A31515;"">'Scale'</span>) <span style=""color:Blue;"">AS</span> <span style=""color:#A31515;"">'Scale'</span>
 <span style=""color:Blue;"">FROM</span> tableA
 <span style=""color:Blue;"">WHERE</span> colB = 1689
 </pre></div>";
