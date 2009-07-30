@@ -53,7 +53,7 @@ namespace ColorCode.Compilation
                 CompiledLanguage compiledLanguage = languageCompiler.Compile(stubLanguage);
 
                 Assert.Equal(@"(?x)
-(?-x-i-s)(?m)(a language rule)(?x)", compiledLanguage.Regex.ToString());
+(?-xis)(?m)(a language rule)(?x)", compiledLanguage.Regex.ToString());
                 Assert.Null(compiledLanguage.Captures[0]);
                 Assert.Equal("style for whole rule", compiledLanguage.Captures[1]);
             }
@@ -79,7 +79,7 @@ namespace ColorCode.Compilation
                 CompiledLanguage compiledLanguage = languageCompiler.Compile(stubLanguage);
 
                 Assert.Equal(@"(?x)
-(?-x-i-s)(?m)((a) (language) (rule))(?x)", compiledLanguage.Regex.ToString());
+(?-xis)(?m)((a) (language) (rule))(?x)", compiledLanguage.Regex.ToString());
                 Assert.Null(compiledLanguage.Captures[0]);
                 Assert.Null(compiledLanguage.Captures[1]);
                 Assert.Equal("style for the a part", compiledLanguage.Captures[2]);
@@ -109,7 +109,7 @@ namespace ColorCode.Compilation
                 CompiledLanguage compiledLanguage = languageCompiler.Compile(stubLanguage);
 
                 Assert.Equal(@"(?x)
-(?-x-i-s)(?m)((a) (language) (rule))(?x)", compiledLanguage.Regex.ToString());
+(?-xis)(?m)((a) (language) (rule))(?x)", compiledLanguage.Regex.ToString());
                 Assert.Null(compiledLanguage.Captures[0]);
                 Assert.Equal("style for whole rule", compiledLanguage.Captures[1]);
                 Assert.Equal("style for the a part", compiledLanguage.Captures[2]);
@@ -143,11 +143,11 @@ namespace ColorCode.Compilation
                 CompiledLanguage compiledLanguage = languageCompiler.Compile(stubLanguage);
 
                 Assert.Equal(@"(?x)
-(?-x-i-s)(?m)((a) (language) (rule))(?x)
+(?-xis)(?m)((a) (language) (rule))(?x)
 
 |
 
-(?-x-i-s)(?m)(a (second) language rule)(?x)", compiledLanguage.Regex.ToString());
+(?-xis)(?m)(a (second) language rule)(?x)", compiledLanguage.Regex.ToString());
                 Assert.Null(compiledLanguage.Captures[0]);
                 Assert.Equal("style for whole rule", compiledLanguage.Captures[1]);
                 Assert.Equal("style for the a part", compiledLanguage.Captures[2]);

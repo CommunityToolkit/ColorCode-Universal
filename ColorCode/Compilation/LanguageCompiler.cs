@@ -124,7 +124,7 @@ namespace ColorCode.Compilation
                 regex.AppendLine();
             }
             
-            regex.AppendFormat("(?-x-i-s)(?m)({0})(?x)", languageRule.Regex);
+            regex.AppendFormat("(?-xis)(?m)({0})(?x)", languageRule.Regex);
 
             int numberOfCaptures = GetNumberOfCaptures(languageRule.Regex);
 
