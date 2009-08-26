@@ -89,7 +89,7 @@ namespace ColorCode.Compilation.Languages
                                            { 1, ScopeName.Keyword }
                                        }),
                                new LanguageRule(
-                                   @"(class|interface)([^{]+?){",
+                                   @"\b(class|interface)\b([^{]+?){",
                                    new Dictionary<int, string>
                                        {
                                            { 1, ScopeName.Keyword },
