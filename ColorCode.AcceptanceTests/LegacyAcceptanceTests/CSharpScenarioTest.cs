@@ -55,7 +55,7 @@ public class Class1
 	{
 	}
 }";
-                string expected = "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Blue;\">using</span> System;\r\n\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;exception cref=&quot;Class1&quot;&gt;</span>\r\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> An error occurred during composition. &lt;see cref=&quot;Class1.test&quot;/&gt; will </span>\r\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> contain a list of errors that occurred.</span>\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;/exception&gt;</span>\r\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> test</span>\r\n<span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">class</span><span style=\"color:MediumTurquoise;\"> Class1\r\n</span>{\r\n    <span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">void</span> test()\r\n\t{\r\n\t}\r\n}\r\n</pre></div>";
+                string expected = "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Blue;\">using</span> System;\r\n\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;exception cref=&quot;Class1&quot;&gt;</span>\r\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> An error occurred during composition. &lt;see cref=&quot;Class1.test&quot;/&gt; will </span>\r\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> contain a list of errors that occurred.</span>\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;/exception&gt;</span>\r\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> test</span>\r\n<span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">class</span> Class1\r\n{\r\n    <span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">void</span> test()\r\n\t{\r\n\t}\r\n}\r\n</pre></div>";
 
                 string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
@@ -161,7 +161,7 @@ namespace TheNamespace
 }";
 
                 string expected =
-                    "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Blue;\">using</span> System;\r\n\r\n<span style=\"color:Blue;\">namespace</span> TheNamespace\r\n{\r\n    <span style=\"color:Green;\">/* This is a comment */</span>\r\n    <span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">class</span><span style=\"color:MediumTurquoise;\"> TheClass\r\n        : TheBaseClass, Implements\r\n    </span>{\r\n        <span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">string</span> AMethod()\r\n        {\r\n            <span style=\"color:Blue;\">return</span> <span style=\"color:#A31515;\">&quot;Hello World!&quot;</span>;\r\n        }\r\n    }\r\n}\r\n</pre></div>";
+                    "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Blue;\">using</span> System;\r\n\r\n<span style=\"color:Blue;\">namespace</span> TheNamespace\r\n{\r\n    <span style=\"color:Green;\">/* This is a comment */</span>\r\n    <span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">class</span> TheClass\r\n        : TheBaseClass, Implements\r\n    {\r\n        <span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">string</span> AMethod()\r\n        {\r\n            <span style=\"color:Blue;\">return</span> <span style=\"color:#A31515;\">&quot;Hello World!&quot;</span>;\r\n        }\r\n    }\r\n}\r\n</pre></div>";
 
                 string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 
@@ -178,8 +178,8 @@ namespace TheNamespace
 
                 string expected =
     @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">public</span> <span style=""color:Blue;"">class</span><span style=""color:MediumTurquoise;""> TheClass : TheBaseClass
-</span>{
+<span style=""color:Blue;"">public</span> <span style=""color:Blue;"">class</span> TheClass : TheBaseClass
+{
 }
 </pre></div>";
 
@@ -250,8 +250,8 @@ Line 3
 {";
                 string expected =
     @"<div style=""color:Black;background-color:White;""><pre>
-<span style=""color:Blue;"">public</span> <span style=""color:Blue;"">class</span><span style=""color:MediumTurquoise;""> ClassName 
-</span>{
+<span style=""color:Blue;"">public</span> <span style=""color:Blue;"">class</span> ClassName 
+{
 </pre></div>";
 
                 string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
@@ -269,7 +269,7 @@ Line 3
 /// </summary>
 public class Assert {";
                 string expected =
-                    "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;summary&gt;</span>\r\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> Contains various static methods that are used to verify that conditions are met during the</span>\r\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> process of running tests.</span>\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;/summary&gt;</span>\r\n<span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">class</span><span style=\"color:MediumTurquoise;\"> Assert </span>{\r\n</pre></div>";
+                    "<div style=\"color:Black;background-color:White;\"><pre>\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;summary&gt;</span>\r\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> Contains various static methods that are used to verify that conditions are met during the</span>\r\n<span style=\"color:Gray;\">///</span><span style=\"color:Green;\"> process of running tests.</span>\r\n<span style=\"color:Gray;\">///</span> <span style=\"color:Gray;\">&lt;/summary&gt;</span>\r\n<span style=\"color:Blue;\">public</span> <span style=\"color:Blue;\">class</span> Assert {\r\n</pre></div>";
 
                 string actual = new CodeColorizer().Colorize(source, Languages.CSharp);
 

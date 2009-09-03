@@ -2,8 +2,8 @@
 <span style="color:Green;">// keywords_base.cs</span>
 <span style="color:Green;">// Accessing base class members</span>
 <span style="color:Blue;">using</span> System;
-<span style="color:Blue;">public</span> <span style="color:Blue;">class</span><span style="color:MediumTurquoise;"> Person
-</span>{
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> Person
+{
     <span style="color:Blue;">protected</span> <span style="color:Blue;">string</span> ssn = <span style="color:#A31515;">&quot;444-55-6666&quot;</span>;
     <span style="color:Blue;">protected</span> <span style="color:Blue;">string</span> name = <span style="color:#A31515;">&quot;John L. Malgraine&quot;</span>;
 
@@ -13,8 +13,8 @@
         Console.WriteLine(<span style="color:#A31515;">&quot;SSN: {0}&quot;</span>, ssn);
     }
 }
-<span style="color:Blue;">class</span><span style="color:MediumTurquoise;"> Employee : Person
-</span>{
+<span style="color:Blue;">class</span> Employee : Person
+{
     <span style="color:Blue;">public</span> <span style="color:Blue;">string</span> id = <span style="color:#A31515;">&quot;ABC567EFG&quot;</span>;
 
     <span style="color:Blue;">public</span> <span style="color:Blue;">override</span> <span style="color:Blue;">void</span> GetInfo()
@@ -25,8 +25,8 @@
     }
 }
 
-<span style="color:Blue;">class</span><span style="color:MediumTurquoise;"> TestClass
-</span>{
+<span style="color:Blue;">class</span> TestClass
+{
     <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> Main()
     {
         Employee E = <span style="color:Blue;">new</span> Employee();
