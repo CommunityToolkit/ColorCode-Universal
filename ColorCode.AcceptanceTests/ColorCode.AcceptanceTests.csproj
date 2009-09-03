@@ -50,8 +50,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcceptanceHelper.cs" />
     <Compile Include="ColorizeData.cs" />
     <Compile Include="ColorizeTests.cs" />
+    <Compile Include="CppAcceptanceTests.cs" />
     <Compile Include="Data\csharp\abstract-keyword.source.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>

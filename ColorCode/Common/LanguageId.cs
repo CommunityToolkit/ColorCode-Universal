@@ -17,5 +17,6 @@ namespace ColorCode.Common
         public const string JavaScript = "javascript";
         public const string Sql = "sql";
         public const string VbDotNet = "vb.net";
+        public const string Cpp = "cpp";
     }
 }
