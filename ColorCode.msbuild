@@ -17,19 +17,21 @@
 	</PropertyGroup>
 	
 	<Target Name="clean">
-		<MSBuild Projects="ColorCode.sln" Targets="Clean" Properties="Configuration=$(Configuration)"/>
+		<MSBuild Projects="ColorCode.sln" Targets="Clean" Properties="Configuration=Debug"/>
+    <MSBuild Projects="ColorCode.sln" Targets="Clean" Properties="Configuration=Release"/>
 	</Target>
 
 	<Target Name="compile" DependsOnTargets="clean">
-		<MSBuild Projects="ColorCode.sln" Targets="Build" Properties="Configuration=$(Configuration)"/>
+		<MSBuild Projects="ColorCode.sln" Targets="Build" Properties="Configuration=Debug"/>
+    <MSBuild Projects="ColorCode.sln" Targets="Build" Properties="Configuration=Release"/>
 	</Target>
 	
 	<Target Name="run-facts" DependsOnTargets="compile">
-		<Exec Command="3rdParty\xunit\xunit.console.exe ColorCode.Facts\bin\$(Configuration)\ColorCode.Facts.dll /xml ColorCode.Facts.xunit.results.xml "/>
+		<Exec Command="3rdParty\xunit\xunit.console.exe ColorCode.Facts\bin\Debug\ColorCode.Facts.dll /xml ColorCode.Facts.xunit.results.xml "/>
 	</Target>
 	
 	<Target Name="run-tests" DependsOnTargets="compile">
-		<Exec Command="3rdParty\xunit\xunit.console.exe ColorCode.AcceptanceTests\bin\$(Configuration)\ColorCode.AcceptanceTests.dll /noshadow /xml ColorCode.AcceptanceTests.xunit.results.xml "/>
+		<Exec Command="3rdParty\xunit\xunit.console.exe ColorCode.AcceptanceTests\bin\Debug\ColorCode.AcceptanceTests.dll /noshadow /xml ColorCode.AcceptanceTests.xunit.results.xml "/>
 	</Target>
 	
 	<Target Name="all" DependsOnTargets="compile;run-facts;run-tests" />
@@ -40,12 +42,17 @@
 	</Target>
 	
 	<Target Name="archive" Condition="'$(ArchivePath)' != ''">
-		<CreateItem Include="ColorCode\bin\$(Configuration)\ColorCode.dll;ColorCode\bin\$(Configuration)\ColorCode.pdb">
-			<Output TaskParameter="Include" ItemName="FilesToArchive"/>
+		<CreateItem Include="ColorCode\bin\Debug\ColorCode.dll;ColorCode\bin\Debug\ColorCode.pdb;ColorCode\bin\Debug\ColorCode.xml">
+			<Output TaskParameter="Include" ItemName="DebugFilesToArchive"/>
 		</CreateItem>
+    <CreateItem Include="ColorCode\bin\Release\ColorCode.dll;ColorCode\bin\Release\ColorCode.pdb">
+      <Output TaskParameter="Include" ItemName="ReleaseFilesToArchive"/>
+    </CreateItem>
 		<MakeDir Directories="$(ArchivePath)" Condition="!Exists('$(ArchivePath)')"/>
-		<Delete Files="$(ArchivePath)\ColorCode-$(BuildNumber).zip"/>
-		<Zip ZipFileName="$(ArchivePath)\ColorCode-$(BuildNumber).zip" Files="@(FilesToArchive)" StripPath="true"/>
+		<Delete Files="$(ArchivePath)\ColorCode-$(BuildNumber).debug.zip"/>
+		<Zip ZipFileName="$(ArchivePath)\ColorCode-$(BuildNumber).debug.zip" Files="@(DebugFilesToArchive)" StripPath="true"/>
+    <Delete Files="$(ArchivePath)\ColorCode-$(BuildNumber).release.zip"/>
+    <Zip ZipFileName="$(ArchivePath)\ColorCode-$(BuildNumber).release.zip" Files="@(ReleaseFilesToArchive)" StripPath="true"/>
 	</Target>
 
 	<Target Name="ci" DependsOnTargets="set-version;all;archive" />
