@@ -9,7 +9,5 @@ namespace ColorCode.Common
         IEnumerable<ILanguage> All { get; }
         ILanguage FindById(string languageId);
         void Load(ILanguage language);
-        void Unload(ILanguage language);
-        void Unload(string languageId);
     }
 }

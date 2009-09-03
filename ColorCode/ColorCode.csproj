@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\ColorCode.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -73,6 +74,7 @@
     <Compile Include="Compilation\Languages\Xml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Formatters.cs" />
     <Compile Include="Formatting\HtmlFormatter.cs" />
     <Compile Include="Parsing\Scope.cs" />
     <Compile Include="IFormatter.cs" />
@@ -88,7 +90,7 @@
     <Compile Include="Compilation\Languages\Ashx.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Compilation\LanguageRule.cs" />
+    <Compile Include="LanguageRule.cs" />
     <Compile Include="ICodeColorizer.cs" />
     <Compile Include="CodeColorizer.cs" />
     <Compile Include="Common\ExtensionMethods.cs" />
@@ -98,8 +100,8 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Styling\Style.cs" />
-    <Compile Include="Styling\StyleDictionary.cs">
+    <Compile Include="Style.cs" />
+    <Compile Include="StyleDictionary.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Formatting\TextInsertion.cs" />

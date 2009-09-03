@@ -107,7 +107,7 @@ namespace ColorCode.Compilation
             for (int i = 1; i < rules.Count; i++)
                 CompileRule(rules[i], regexBuilder, captures, false);
 
-            regex = new Regex(regexBuilder.ToString(), RegexOptions.Compiled);
+            regex = new Regex(regexBuilder.ToString());
         }
 
 

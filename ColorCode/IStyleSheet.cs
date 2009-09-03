@@ -4,9 +4,14 @@ using ColorCode.Styling;
 
 namespace ColorCode
 {
+    /// <summary>
+    /// Defines the contract for a style sheet.
+    /// </summary>
     public interface IStyleSheet
     {
-        string Name { get; }
+        /// <summary>
+        /// Gets the dictionary of styles for the style sheet.
+        /// </summary>
         StyleDictionary Styles { get; }
     }
 }
