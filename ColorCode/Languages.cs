@@ -36,6 +36,7 @@ namespace ColorCode
             Load<Php>();
             Load<Css>();
             Load<Cpp>();
+            Load<Java>();
         }
 
         /// <summary>
@@ -99,6 +100,15 @@ namespace ColorCode
         public static ILanguage Html
         {
             get { return LanguageRepository.FindById(LanguageId.Html); }
+        }
+
+        /// <summary>
+        /// Language support for Java.
+        /// </summary>
+        /// <value>Language support for Java.</value>
+        public static ILanguage Java
+        {
+            get { return LanguageRepository.FindById(LanguageId.Java); }
         }
 
         /// <summary>

@@ -61,6 +61,7 @@
     <Compile Include="Compilation\Languages\Html.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Compilation\Languages\Java.cs" />
     <Compile Include="Compilation\Languages\JavaScript.cs">
       <SubType>Code</SubType>
     </Compile>

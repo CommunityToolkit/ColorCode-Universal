@@ -81,6 +81,7 @@
     <None Include="Data\csharp\strings.source.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Compile Include="JavaAcceptanceTests.cs" />
     <Compile Include="LegacyAcceptanceTests\AsaxAcceptanceTests.cs" />
     <Compile Include="LegacyAcceptanceTests\AshxAcceptanceTests.cs" />
     <Compile Include="LegacyAcceptanceTests\AspxAcceptanceTests.cs" />
