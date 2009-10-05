@@ -169,6 +169,8 @@ comment line 2
                                       new object[] {"property"},
                                       new object[] {"protected"},
                                       new object[] {"public"},
+                                      new object[] {"ref class"},
+                                      new object[] {"ref struct"},
                                       new object[] {"register"},
                                       new object[] {"reinterpret_cast"},
                                       new object[] {"return"},
