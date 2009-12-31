@@ -125,5 +125,10 @@ namespace ColorCode.Compilation.Languages
                            };
             }
         }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
