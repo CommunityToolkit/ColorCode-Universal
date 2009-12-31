@@ -40,14 +40,6 @@ namespace ColorCode
         }
 
         /// <summary>
-        /// Gets an enumerable list of all loaded languages.
-        /// </summary>
-        public IEnumerable<ILanguage> All 
-        {
-            get { return LanguageRepository.All; }
-        }
-
-        /// <summary>
         /// Language support for ASP.NET HTTP Handlers (.ashx files).
         /// </summary>
         /// <value>Language support for ASP.NET HTTP Handlers (.ashx files).</value>
