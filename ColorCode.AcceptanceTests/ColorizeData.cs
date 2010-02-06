@@ -10,7 +10,7 @@ namespace ColorCode
 {
     public class ColorizeData : DataAttribute
     {
-        readonly Regex sourceFileRegex = new Regex(@"(?i)[a-z]+\.source\.([a-z]+)", RegexOptions.Compiled);
+        readonly Regex sourceFileRegex = new Regex(@"(?i)[a-z]+\.source\.([a-z0-9]+)", RegexOptions.Compiled);
 
         public override IEnumerable<object[]> GetData(MethodInfo methodUnderTest, Type[] parameterTypes)
         {
@@ -63,6 +63,8 @@ namespace ColorCode
                     return LanguageId.Sql;
                 case "xml":
                     return LanguageId.Xml;
+                case "ps1":
+                    return LanguageId.PowerShell;
                 default:
                     throw new ArgumentException(string.Format("Unexpected file extension: {0}.", fileExtension));
             }
