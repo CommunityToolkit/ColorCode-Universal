@@ -1,0 +1,3 @@
+relre:.+/(bin|obj)/.+
+relre:_ReSharper.+
+glob:ColorCode.suo
