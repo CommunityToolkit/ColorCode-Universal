@@ -2,6 +2,7 @@
 	
 	<UsingTask AssemblyFile="3rdParty\CodePlex.MSBuildTasks.dll" TaskName="CodePlex.MSBuildTasks.RegexReplace"/>
 	<UsingTask AssemblyFile="3rdParty\CodePlex.MSBuildTasks.dll" TaskName="CodePlex.MSBuildTasks.Zip"/>
+  <UsingTask AssemblyFile="3rdParty\xUnit\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit"/>
 
   <PropertyGroup Condition="'$(Configuration)' == ''">
     <Configuration>Debug</Configuration>
@@ -27,11 +28,11 @@
 	</Target>
 	
 	<Target Name="run-facts" DependsOnTargets="compile">
-		<Exec Command="3rdParty\xunit\xunit.console.exe ColorCode.Facts\bin\Debug\ColorCode.Facts.dll /xml ColorCode.Facts.xunit.results.xml "/>
+    <xunit Assembly="ColorCode.Facts\bin\Debug\ColorCode.Facts.dll" Xml="ColorCode.Facts.xunit.results.xml" />
 	</Target>
 	
 	<Target Name="run-tests" DependsOnTargets="compile">
-		<Exec Command="3rdParty\xunit\xunit.console.exe ColorCode.AcceptanceTests\bin\Debug\ColorCode.AcceptanceTests.dll /noshadow /xml ColorCode.AcceptanceTests.xunit.results.xml "/>
+    <xunit Assembly="ColorCode.AcceptanceTests\bin\Debug\ColorCode.AcceptanceTests.dll" ShadowCopy="false" Xml="ColorCode.AcceptanceTests.xunit.results.xml" />
 	</Target>
 	
 	<Target Name="all" DependsOnTargets="compile;run-facts;run-tests" />
