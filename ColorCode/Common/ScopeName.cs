@@ -20,6 +20,10 @@ namespace ColorCode.Common
         public const string Keyword = "Keyword";
         public const string LanguagePrefix = "&";
         public const string PlainText = "Plain Text";
+        public const string PowerShellAttribute = "PowerShell PowerShellAttribute";
+        public const string PowerShellOperator = "PowerShell Operator";
+        public const string PowerShellType = "PowerShell Type";
+        public const string PowerShellVariable = "PowerShell Variable";
         public const string PreprocessorKeyword = "Preprocessor Keyword";
         public const string SqlSystemFunction = "SQL System Function";
         public const string String = "String";

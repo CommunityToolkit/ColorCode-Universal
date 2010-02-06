@@ -66,6 +66,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Compilation\Languages\Php.cs" />
+    <Compile Include="Compilation\Languages\PowerShell.cs" />
     <Compile Include="Compilation\Languages\Sql.cs">
       <SubType>Code</SubType>
     </Compile>

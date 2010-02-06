@@ -37,6 +37,7 @@ namespace ColorCode
             Load<Css>();
             Load<Cpp>();
             Load<Java>();
+            Load<PowerShell>();
         }
 
         /// <summary>
@@ -126,6 +127,15 @@ namespace ColorCode
         public static ILanguage JavaScript
         {
             get { return LanguageRepository.FindById(LanguageId.JavaScript); }
+        }
+
+        /// <summary>
+        /// Language support for PowerShell
+        /// </summary>
+        /// <value>Language support for PowerShell.</value>
+        public static ILanguage PowerShell
+        {
+            get { return LanguageRepository.FindById(LanguageId.PowerShell); }
         }
 
         /// <summary>
