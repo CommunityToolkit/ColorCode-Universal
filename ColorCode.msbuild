@@ -8,7 +8,7 @@
     <Configuration>Debug</Configuration>
   </PropertyGroup>
   <PropertyGroup Condition="'$(BuildNumber)' == ''">
-		<BuildNumber>$(build_vcs_number_1)</BuildNumber>
+		<BuildNumber>$(BUILD_NUMBER)</BuildNumber>
 	</PropertyGroup>
   <PropertyGroup Condition="'$(BuildNumber)' == ''">
     <BuildNumber>$(ccnetlabel)</BuildNumber>
