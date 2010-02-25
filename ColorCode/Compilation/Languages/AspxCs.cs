@@ -65,12 +65,7 @@ namespace ColorCode.Compilation.Languages
                                            { 2, string.Format("{0}{1}", ScopeName.LanguagePrefix, LanguageId.CSharp) },
                                            { 3, ScopeName.HtmlServerSideScript }
                                        }),
-                               new LanguageRule(
-                                   @"(?is)(?<=<script.+?runat=""server"".*?>)(.+?)(?=</script>)",
-                                   new Dictionary<int, string>
-                                       {
-                                           { 1, string.Format("{0}{1}", ScopeName.LanguagePrefix, LanguageId.CSharp) },
-                                       }),
+                               new LanguageRule(RuleFormats.ServerScript, RuleCaptures.CSharpScript),
                                new LanguageRule(
                                    @"(?i)(<!)(DOCTYPE)(?:\s+([a-zA-Z0-9]+))*(?:\s+(""[^""]*?""))*(>)",
                                    new Dictionary<int, string>
@@ -81,12 +76,7 @@ namespace ColorCode.Compilation.Languages
                                            { 4, ScopeName.HtmlAttributeValue },
                                            { 5, ScopeName.HtmlTagDelimiter }
                                        }),
-                               new LanguageRule(
-                                   @"(?is)(?<=<script.+?language="".*?javascript"".*?>)(.+?)(?=</script>)",
-                                   new Dictionary<int, string>
-                                       {
-                                           { 1, string.Format("{0}{1}", ScopeName.LanguagePrefix, LanguageId.JavaScript) },
-                                       }),
+                               new LanguageRule(RuleFormats.JavaScript, RuleCaptures.JavaScript),
                                new LanguageRule(
                                    @"(?xis)(</?)
                                           (?: ([a-z][a-z0-9-]*)(:) )*

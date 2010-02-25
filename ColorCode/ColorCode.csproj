@@ -66,6 +66,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Compilation\Languages\Php.cs" />
+    <Compile Include="Compilation\RuleCaptures.cs" />
+    <Compile Include="Compilation\RuleFormats.cs" />
     <Compile Include="Compilation\Languages\Sql.cs">
       <SubType>Code</SubType>
     </Compile>
