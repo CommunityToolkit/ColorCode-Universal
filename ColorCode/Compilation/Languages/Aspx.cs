@@ -74,12 +74,7 @@ namespace ColorCode.Compilation.Languages
                                            { 4, ScopeName.HtmlAttributeValue },
                                            { 5, ScopeName.HtmlTagDelimiter }
                                        }),
-                               new LanguageRule(
-                                   @"(?s)(?<=<script.+?language="".*?javascript"".*?>)(.+?)(?=</script>)",
-                                   new Dictionary<int, string>
-                                       {
-                                           { 1, string.Format("{0}{1}", ScopeName.LanguagePrefix, LanguageId.JavaScript) }
-                                       }),
+                               new LanguageRule(RuleFormats.JavaScript, RuleCaptures.JavaScript),
                                new LanguageRule(
                                    @"(?xi)(</?)
                                          (?: ([a-z][a-z0-9-]*)(:) )*
