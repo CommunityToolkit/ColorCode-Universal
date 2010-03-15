@@ -85,16 +85,33 @@ namespace ColorCode.Compilation.Languages
                                        }
                                    ),
                                new LanguageRule(
+                                   @"(?:\+=|-=|\*=|/=|%=|=|\+\+|--|\+|-|\*|/|%)",
+                                   new Dictionary<int, string>
+                                       {
+                                           {0, ScopeName.PowerShellOperator}
+                                       }
+                                   ),
+                               new LanguageRule(
+                                   @"(?:\>\>|2\>&1|\>|2\>\>|2\>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           {0, ScopeName.PowerShellOperator}
+                                       }
+                                   ),
+                               new LanguageRule(
                                    @"(?s)\[(CmdletBinding)[^\]]+\]",
                                    new Dictionary<int, string>
                                        {
                                            {1, ScopeName.PowerShellAttribute}
                                        }),
                                new LanguageRule(
-                                   @"\[[^\]]+\]",
+                                   @"(\[)([^\]]+)(\])(::)?",
                                    new Dictionary<int, string>
                                        {
-                                           {0, ScopeName.PowerShellType}
+                                           {1, ScopeName.PowerShellOperator},
+                                           {2, ScopeName.PowerShellType},
+                                           {3, ScopeName.PowerShellOperator},
+                                           {4, ScopeName.PowerShellOperator}
                                        })
                            };
             }
