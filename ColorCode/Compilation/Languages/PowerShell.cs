@@ -29,6 +29,12 @@ namespace ColorCode.Compilation.Languages
                 return new List<LanguageRule>
                            {
                                new LanguageRule(
+                                   @"(?s)(<\#.*?\#>)",
+                                   new Dictionary<int, string>
+                                       {
+                                           {1, ScopeName.Comment}
+                                       }),
+                               new LanguageRule(
                                    @"(\#.*?)\r?$",
                                    new Dictionary<int, string>
                                        {
