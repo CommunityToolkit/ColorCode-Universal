@@ -1,17 +1,17 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorCode", "ColorCode\ColorCode.csproj", "{37438935-D221-4FD8-A10E-4EC5356B0F94}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorCode.AcceptanceTests", "ColorCode.AcceptanceTests\ColorCode.AcceptanceTests.csproj", "{B25E2B63-11CB-4F5C-AADE-99278AC8DCAC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorCode.Facts", "ColorCode.Facts\ColorCode.Facts.csproj", "{87A33AAD-7496-4C6A-9D3A-258276A97188}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F7333FE4-B5FB-463E-A1DF-7B95405AE755}"
 	ProjectSection(SolutionItems) = preProject
 		ColorCode.msbuild = ColorCode.msbuild
 		GlobalAssemblyInfo.cs = GlobalAssemblyInfo.cs
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorCode", "ColorCode\ColorCode.csproj", "{37438935-D221-4FD8-A10E-4EC5356B0F94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorCode.AcceptanceTests", "ColorCode.AcceptanceTests\ColorCode.AcceptanceTests.csproj", "{B25E2B63-11CB-4F5C-AADE-99278AC8DCAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorCode.Facts", "ColorCode.Facts\ColorCode.Facts.csproj", "{87A33AAD-7496-4C6A-9D3A-258276A97188}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
