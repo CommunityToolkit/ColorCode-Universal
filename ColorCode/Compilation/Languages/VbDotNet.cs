@@ -17,6 +17,11 @@ namespace ColorCode.Compilation.Languages
             get { return "VB.NET"; }
         }
 
+        public string CssClassName
+        {
+            get { return "vb-net"; }
+        }
+
         public string FirstLinePattern
         {
             get

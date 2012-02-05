@@ -27,16 +27,20 @@ namespace ColorCode
         /// Generates and writes the footer to the output.
         /// </summary>
         /// <param name="styleSheet">The style sheet according to which the footer will be generated.</param>
+        /// <param name="language">The language that is having its footer written.</param>
         /// <param name="textWriter">The text writer to which footer will be written.</param>
         void WriteFooter(IStyleSheet styleSheet,
+                         ILanguage language,
                          TextWriter textWriter);
 
         /// <summary>
         /// Generates and writes the header to the output.
         /// </summary>
         /// <param name="styleSheet">The style sheet according to which the header will be generated.</param>
+        /// <param name="language">The language that is having its header written.</param>
         /// <param name="textWriter">The text writer to which header will be written.</param>
         void WriteHeader(IStyleSheet styleSheet,
+                         ILanguage language,
                          TextWriter textWriter);
     }
 }

@@ -17,6 +17,11 @@ namespace ColorCode.Compilation.Languages
             get { return "C++"; }
         }
 
+        public string CssClassName
+        {
+            get { return "cplusplus"; }
+        }
+
         public string FirstLinePattern
         {
             get

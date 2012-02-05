@@ -36,6 +36,11 @@ namespace ColorCode
         /// </summary>
         /// <value>The name of the scope the style defines.</value>
         public string ScopeName { get; set; }
+        /// <summary>
+        /// Gets or sets the name of the CSS class.
+        /// </summary>
+        /// <value>The CSS class name.</value>
+        public string CssClassName { get; set; }
 
         /// <summary>
         /// Returns a <see cref="System.String"/> that represents this instance.

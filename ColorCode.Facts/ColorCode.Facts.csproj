@@ -79,6 +79,7 @@
     <Compile Include="Compilation\CompiledLanguageFacts.cs" />
     <Compile Include="Compilation\LanguageCompilerFacts.cs" />
     <Compile Include="Compilation\LanguageRuleFacts.cs" />
+    <Compile Include="Formatting\HtmlClassFormatterFacts.cs" />
     <Compile Include="Formatting\HtmlFormatterFacts.cs" />
     <Compile Include="Parsing\LanguageParserFacts.cs" />
     <Compile Include="Parsing\ScopeFacts.cs" />

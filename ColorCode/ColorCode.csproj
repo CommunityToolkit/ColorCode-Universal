@@ -100,6 +100,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Formatters.cs" />
+    <Compile Include="Formatting\HtmlClassFormatter.cs" />
     <Compile Include="Formatting\HtmlFormatter.cs" />
     <Compile Include="Parsing\Scope.cs" />
     <Compile Include="IFormatter.cs" />

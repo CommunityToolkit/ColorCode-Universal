@@ -17,6 +17,11 @@ namespace ColorCode.Compilation.Languages
             get { return "ASPX (VB.NET)"; }
         }
 
+        public string CssClassName
+        {
+            get { return "aspx-vb"; }
+        }
+
         public string FirstLinePattern
         {
             get

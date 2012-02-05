@@ -29,5 +29,10 @@ namespace ColorCode
         /// Gets the collection of language rules in the language.
         /// </summary>
         IList<LanguageRule> Rules { get; }
+
+        /// <summary>
+        /// Get the CSS class name to use for a language
+        /// </summary>
+        string CssClassName { get; }
     }
 }

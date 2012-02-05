@@ -17,6 +17,11 @@ namespace ColorCode.Compilation.Languages
             get { return "XML"; }
         }
 
+        public string CssClassName
+        {
+            get { return "xml"; }
+        }
+
         public string FirstLinePattern
         {
             get

@@ -1,16 +1,14 @@
-// Copyright (c) Microsoft Corporation.  All rights reserved.
-
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Web;
 using ColorCode.Common;
 using ColorCode.Parsing;
-using ColorCode.Styling;
 
 namespace ColorCode.Formatting
 {
-    public class HtmlFormatter : IFormatter
+    public class HtmlClassFormatter : IFormatter
     {
         public void Write(string parsedSourceCode,
                           IList<Scope> scopes,
@@ -44,8 +42,9 @@ namespace ColorCode.Formatting
                                 TextWriter textWriter)
         {
             Guard.ArgNotNull(styleSheet, "styleSheet");
+            Guard.ArgNotNull(language, "language");
             Guard.ArgNotNull(textWriter, "textWriter");
-            
+
             textWriter.WriteLine();
             WriteHeaderPreEnd(textWriter);
             WriteHeaderDivEnd(textWriter);
@@ -56,46 +55,47 @@ namespace ColorCode.Formatting
                                 TextWriter textWriter)
         {
             Guard.ArgNotNull(styleSheet, "styleSheet");
+            Guard.ArgNotNull(language, "language");
             Guard.ArgNotNull(textWriter, "textWriter");
-            
-            WriteHeaderDivStart(styleSheet, textWriter);
+
+            WriteHeaderDivStart(styleSheet, language, textWriter);
             WriteHeaderPreStart(textWriter);
             textWriter.WriteLine();
         }
 
         private static void GetStyleInsertionsForCapturedStyle(Scope scope, ICollection<TextInsertion> styleInsertions)
         {
-            styleInsertions.Add(new TextInsertion {
-                                                      Index = scope.Index,
-                                                      Scope = scope
-                                                  });
+            styleInsertions.Add(new TextInsertion
+            {
+                Index = scope.Index,
+                Scope = scope
+            });
 
 
             foreach (Scope childScope in scope.Children)
                 GetStyleInsertionsForCapturedStyle(childScope, styleInsertions);
 
-            styleInsertions.Add(new TextInsertion {
-                                                      Index = scope.Index + scope.Length,
-                                                      Text = "</span>"
-                                                  });
+            styleInsertions.Add(new TextInsertion
+            {
+                Index = scope.Index + scope.Length,
+                Text = "</span>"
+            });
         }
 
         private static void BuildSpanForCapturedStyle(Scope scope,
                                                         IStyleSheet styleSheet,
                                                         TextWriter writer)
         {
-            Color foreground = Color.Empty;
-            Color background = Color.Empty;
+            string cssClassName = "";
 
             if (styleSheet.Styles.Contains(scope.Name))
             {
                 Style style = styleSheet.Styles[scope.Name];
 
-                foreground = style.Foreground;
-                background = style.Background;
+                cssClassName = style.CssClassName;
             }
 
-            WriteElementStart("span", foreground, background, writer);
+            WriteElementStart("span", cssClassName, writer);
         }
 
         private static void WriteHeaderDivEnd(TextWriter writer)
@@ -120,48 +120,26 @@ namespace ColorCode.Formatting
         }
 
         private static void WriteHeaderDivStart(IStyleSheet styleSheet,
+                                                ILanguage language,
                                                 TextWriter writer)
         {
-            Color foreground = Color.Empty;
-            Color background = Color.Empty;
-
-            if (styleSheet.Styles.Contains(ScopeName.PlainText))
-            {
-                Style plainTextStyle = styleSheet.Styles[ScopeName.PlainText];
-
-                foreground = plainTextStyle.Foreground;
-                background = plainTextStyle.Background;
-            }
-
-            WriteElementStart("div", foreground, background, writer);
+            WriteElementStart("div", language.CssClassName, writer);
         }
 
         private static void WriteElementStart(string elementName,
                                               TextWriter writer)
         {
-            WriteElementStart(elementName, Color.Empty, Color.Empty, writer);
+            WriteElementStart(elementName, "", writer);
         }
 
         private static void WriteElementStart(string elementName,
-                                              Color foreground,
-                                              Color background,
+                                              string cssClassName,
                                               TextWriter writer)
         {
             writer.Write("<{0}", elementName);
-
-            if (foreground != Color.Empty || background != Color.Empty)
-            {
-                writer.Write(" style=\"");
-
-                if (foreground != Color.Empty)
-                    writer.Write("color:{0};", foreground.ToHtmlColor());
-
-                if (background != Color.Empty)
-                    writer.Write("background-color:{0};", background.ToHtmlColor());
-
-                writer.Write("\"");
+            if (!String.IsNullOrEmpty(cssClassName)) {
+                writer.Write(" class=\"{0}\"", cssClassName);
             }
-
             writer.Write(">");
         }
     }

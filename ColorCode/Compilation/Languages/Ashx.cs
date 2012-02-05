@@ -16,6 +16,11 @@ namespace ColorCode.Compilation.Languages
         {
             get { return "ASHX"; }
         }
+        
+        public string CssClassName
+        {
+            get { return "ashx"; }
+        }
 
         public string FirstLinePattern
         {

@@ -17,6 +17,11 @@ namespace ColorCode.Compilation.Languages
             get { return "PowerShell"; }
         }
 
+        public string CssClassName
+        {
+            get { return "powershell"; }
+        }
+
         public string FirstLinePattern
         {
             get { return null; }

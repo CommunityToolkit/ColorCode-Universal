@@ -36,7 +36,7 @@ namespace ColorCode
 
                 codeColorizer.Colorize(sourceCode, new StubLanguage(), stubFormatter, stubStyleSheet, stubTextWriter);
 
-                Assert.Equal(stubTextWriter, stubFormatter.writeHeader__textWriter);
+                Assert.Equal(stubTextWriter, stubFormatter.WriteHeader__textWriter);
                 Assert.Equal(stubStyleSheet, stubFormatter.WriteHeader__styleSheet);
             }
 

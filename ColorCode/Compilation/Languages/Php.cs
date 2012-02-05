@@ -17,6 +17,11 @@ namespace ColorCode.Compilation.Languages
             get { return "PHP"; }
         }
 
+        public string CssClassName
+        {
+            get { return "php"; }
+        }
+
         public string FirstLinePattern
         {
             get

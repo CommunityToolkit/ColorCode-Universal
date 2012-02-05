@@ -17,6 +17,11 @@ namespace ColorCode.Compilation.Languages
             get { return "JavaScript"; }
         }
 
+        public string CssClassName
+        {
+            get { return "javascript"; }
+        }
+
         public string FirstLinePattern
         {
             get
