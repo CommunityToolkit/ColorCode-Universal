@@ -36,14 +36,8 @@ namespace ColorCode.Common
                 // If we have a matching name for the language then use it
                 // otherwise check if any languages have that string as an
                 // alias. For example: "js" is an alias for Javascript.
-                if (loadedLanguages.ContainsKey(languageId))
-                {
-                    language = loadedLanguages[languageId];
-                }
-                else
-                {
-                    language = loadedLanguages.FirstOrDefault(x => x.Value.HasAlias(languageId)).Value;
-                }
+                language = loadedLanguages.FirstOrDefault(x => (x.Key.ToLower() == languageId.ToLower()) ||
+                                                               (x.Value.HasAlias(languageId))).Value;
             }
             finally
             {

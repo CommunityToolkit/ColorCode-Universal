@@ -45,6 +45,20 @@ namespace ColorCode.Common
             }
 
             [Fact]
+            public void Will_find_a_loaded_language_with_a_matching_case_insensitive_identfier()
+            {
+                var expected = new StubLanguage();
+                expected.id__getValue = "fnord";
+                var loadedLanguages = new Dictionary<string, ILanguage>();
+                loadedLanguages.Add(expected.Id, expected);
+                var languageRepository = new LanguageRepository(loadedLanguages);
+
+                ILanguage actual = languageRepository.FindById(expected.Id.ToUpper());
+
+                Assert.Equal(expected, actual);
+            }
+
+            [Fact]
             public void Will_find_a_loaded_language_with_a_matching_alias()
             {
                 var expected = new StubLanguage();
