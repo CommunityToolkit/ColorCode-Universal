@@ -38,6 +38,7 @@ namespace ColorCode
             Load<Cpp>();
             Load<Java>();
             Load<PowerShell>();
+            Load<Typescript>();
         }
 
         /// <summary>
@@ -190,6 +191,15 @@ namespace ColorCode
         public static ILanguage Cpp
         {
             get { return LanguageRepository.FindById(LanguageId.Cpp); }
+        }
+
+        /// <summary>
+        /// Language support for Typescript.
+        /// </summary>
+        /// <value>Language support for typescript.</value>
+        public static ILanguage Typescript
+        {
+            get { return LanguageRepository.FindById(LanguageId.TypeScript); }
         }
 
         /// <summary>

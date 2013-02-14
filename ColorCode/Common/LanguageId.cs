@@ -15,6 +15,7 @@ namespace ColorCode.Common
         public const string Html = "html";
         public const string Java = "java";
         public const string JavaScript = "javascript";
+        public const string TypeScript = "typescript";
         public const string Php = "php";
         public const string PowerShell = "powershell";
         public const string Sql = "sql";
