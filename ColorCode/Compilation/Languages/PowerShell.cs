@@ -127,5 +127,18 @@ namespace ColorCode.Compilation.Languages
                            };
             }
         }
+
+        public bool HasAlias(string lang)
+        {
+            switch (lang.ToLower())
+            {
+                case "posh":
+                case "ps1":
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
     }
 }

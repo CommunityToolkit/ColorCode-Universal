@@ -70,6 +70,18 @@ namespace ColorCode.Compilation.Languages
             }
         }
 
+        public bool HasAlias(string lang)
+        {
+            switch (lang.ToLower())
+            {
+                case "js":
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
         public override string ToString()
         {
             return Name;

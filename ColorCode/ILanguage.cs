@@ -34,5 +34,10 @@ namespace ColorCode
         /// Get the CSS class name to use for a language
         /// </summary>
         string CssClassName { get; }
+
+        /// <summary>
+        /// Returns true if the specified string is an alias for the language
+        /// </summary>
+        bool HasAlias(string lang);
     }
 }

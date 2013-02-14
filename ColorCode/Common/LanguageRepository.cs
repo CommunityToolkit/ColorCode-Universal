@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 
 namespace ColorCode.Common
@@ -32,8 +33,17 @@ namespace ColorCode.Common
 
             try
             {
+                // If we have a matching name for the language then use it
+                // otherwise check if any languages have that string as an
+                // alias. For example: "js" is an alias for Javascript.
                 if (loadedLanguages.ContainsKey(languageId))
+                {
                     language = loadedLanguages[languageId];
+                }
+                else
+                {
+                    language = loadedLanguages.FirstOrDefault(x => x.Value.HasAlias(languageId)).Value;
+                }
             }
             finally
             {

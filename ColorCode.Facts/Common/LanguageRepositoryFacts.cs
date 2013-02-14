@@ -45,6 +45,36 @@ namespace ColorCode.Common
             }
 
             [Fact]
+            public void Will_find_a_loaded_language_with_a_matching_alias()
+            {
+                var expected = new StubLanguage();
+                expected.id__getValue = "fnord";
+                expected.Alias_getValue = "alias";
+                var loadedLanguages = new Dictionary<string, ILanguage>();
+                loadedLanguages.Add(expected.Id, expected);
+                var languageRepository = new LanguageRepository(loadedLanguages);
+
+                ILanguage actual = languageRepository.FindById(expected.Alias_getValue);
+
+                Assert.Equal(expected, actual);
+            }
+
+            [Fact]
+            public void Will_return_null_if_no_loaded_languages_match_the_language_identifier_nor_the_alias()
+            {
+                var expected = new StubLanguage();
+                expected.id__getValue = "fnord";
+                expected.Alias_getValue = "alias";
+                var loadedLanguages = new Dictionary<string, ILanguage>();
+                loadedLanguages.Add(expected.Id, expected);
+                var languageRepository = new LanguageRepository(loadedLanguages);
+
+                ILanguage actual = languageRepository.FindById("fake");
+
+                Assert.Null(actual);
+            }
+
+            [Fact]
             public void Will_return_null_if_no_loaded_languages_match_the_language_identifier()
             {
                 var languageRepository = new LanguageRepository(new Dictionary<string, ILanguage>());

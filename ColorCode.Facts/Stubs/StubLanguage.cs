@@ -13,6 +13,7 @@ namespace ColorCode.Stubs
         public bool FirstLinePattern__getInvoked;
         public string FirstLinePattern__getValue;
         public string CssClassName_getValue;
+        public string Alias_getValue;
 
         public string Id
         {
@@ -45,7 +46,11 @@ namespace ColorCode.Stubs
                 return rules__getValue; 
             }
         }
-    
+
+        public bool HasAlias(string lang)
+        {
+            return (lang == Alias_getValue);
+        }
 
         public string  CssClassName
         {
