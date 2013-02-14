@@ -65,6 +65,8 @@ namespace ColorCode
                     return LanguageId.Xml;
                 case "ps1":
                     return LanguageId.PowerShell;
+                case "ts":
+                    return LanguageId.TypeScript;
                 default:
                     throw new ArgumentException(string.Format("Unexpected file extension: {0}.", fileExtension));
             }
