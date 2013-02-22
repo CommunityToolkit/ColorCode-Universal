@@ -39,6 +39,7 @@ namespace ColorCode
             Load<Java>();
             Load<PowerShell>();
             Load<Typescript>();
+            Load<FSharp>();
         }
 
         /// <summary>
@@ -200,6 +201,15 @@ namespace ColorCode
         public static ILanguage Typescript
         {
             get { return LanguageRepository.FindById(LanguageId.TypeScript); }
+        }
+
+        /// <summary>
+        /// Language support for Typescript.
+        /// </summary>
+        /// <value>Language support for typescript.</value>
+        public static ILanguage FSharp
+        {
+            get { return LanguageRepository.FindById(LanguageId.FSharp); }
         }
 
         /// <summary>

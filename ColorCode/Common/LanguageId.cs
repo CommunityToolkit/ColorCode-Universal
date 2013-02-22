@@ -12,6 +12,7 @@ namespace ColorCode.Common
         public const string CSharp = "c#";
         public const string Cpp = "cpp";
         public const string Css = "css";
+        public const string FSharp = "f#";
         public const string Html = "html";
         public const string Java = "java";
         public const string JavaScript = "javascript";
