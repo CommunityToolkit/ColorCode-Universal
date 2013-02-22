@@ -204,9 +204,9 @@ namespace ColorCode
         }
 
         /// <summary>
-        /// Language support for Typescript.
+        /// Language support for F#.
         /// </summary>
-        /// <value>Language support for typescript.</value>
+        /// <value>Language support for F#.</value>
         public static ILanguage FSharp
         {
             get { return LanguageRepository.FindById(LanguageId.FSharp); }
