@@ -56,7 +56,7 @@
     <span style="color:Blue;">let</span> sampleNumbers = [ 0 .. 99 ]
 
     <span style="color:Gray;">///</span><span style="color:Green;"> A list of all tuples containing all the numbers from 0 to 99 and their squares</span>
-    <span style="color:Blue;">let</span> sampleTableOfSquares = [ <span style="color:Blue;">for</span> i <span style="color:Blue;">in</span> 0 .. 99 -&gt; (i, i*i) ]
+    <span style="color:Blue;">let</span> sampleTableOfSquares = [ <span style="color:Blue;">for</span> i <span style="color:Blue;">in</span> 0 .. 99 <span style="color:Blue;">-&gt;</span> (i, i*i) ]
 
     <span style="color:Green;">// The next line prints a list that includes tuples, using %A for generic printing</span>
     printfn <span style="color:#A31515;">&quot;The table of squares from 0 to 99 is:\n%A&quot;</span> sampleTableOfSquares
@@ -183,13 +183,13 @@
     <span style="color:Gray;">///</span><span style="color:Green;"> Square the numbers in numberList, using the pipeline operator to pass an argument to List.map    </span>
     <span style="color:Blue;">let</span> squares = 
         numberList 
-        |&gt; List.map (<span style="color:Blue;">fun</span> x -&gt; x*x) 
+        |&gt; List.map (<span style="color:Blue;">fun</span> x <span style="color:Blue;">-&gt;</span> x*x) 
 
     <span style="color:Gray;">///</span><span style="color:Green;"> Computes the sum of the squares of the numbers divisible by 3.</span>
     <span style="color:Blue;">let</span> sumOfSquaresUpTo n = 
         numberList
-        |&gt; List.filter (<span style="color:Blue;">fun</span> x -&gt; x % 3 = 0)
-        |&gt; List.sumBy (<span style="color:Blue;">fun</span> x -&gt; x * x)
+        |&gt; List.filter (<span style="color:Blue;">fun</span> x <span style="color:Blue;">-&gt;</span> x % 3 = 0)
+        |&gt; List.sumBy (<span style="color:Blue;">fun</span> x <span style="color:Blue;">-&gt;</span> x * x)
 
 
 
@@ -289,7 +289,7 @@
                             <span style="color:Blue;">yield</span> word |]
 
     <span style="color:Gray;">///</span><span style="color:Green;"> An array initialized by index and containing the even numbers from 0 to 2000</span>
-    <span style="color:Blue;">let</span> evenNumbers = Array.init 1001 (<span style="color:Blue;">fun</span> n -&gt; n * 2) 
+    <span style="color:Blue;">let</span> evenNumbers = Array.init 1001 (<span style="color:Blue;">fun</span> n <span style="color:Blue;">-&gt;</span> n * 2) 
 
     <span style="color:Gray;">///</span><span style="color:Green;"> sub-array extracted using slicing notation</span>
     <span style="color:Blue;">let</span> evenNumbersSlice = evenNumbers.[0..500]
@@ -303,8 +303,8 @@
     <span style="color:Gray;">///</span><span style="color:Green;"> Calculates the sum of the lengths of the words that start with 'h'</span>
     <span style="color:Blue;">let</span> sumOfLengthsOfWords = 
         array2
-        |&gt; Array.filter (<span style="color:Blue;">fun</span> x -&gt; x.StartsWith <span style="color:#A31515;">&quot;h&quot;</span>)
-        |&gt; Array.sumBy (<span style="color:Blue;">fun</span> x -&gt; x.Length)
+        |&gt; Array.filter (<span style="color:Blue;">fun</span> x <span style="color:Blue;">-&gt;</span> x.StartsWith <span style="color:#A31515;">&quot;h&quot;</span>)
+        |&gt; Array.sumBy (<span style="color:Blue;">fun</span> x <span style="color:Blue;">-&gt;</span> x.Length)
 
 
 
@@ -330,7 +330,7 @@
                   <span style="color:Blue;">if</span> word.Contains(<span style="color:#A31515;">&quot;l&quot;</span>) <span style="color:Blue;">then</span> 
                       <span style="color:Blue;">yield</span> word }
 
-    <span style="color:Blue;">let</span> evenNumbers = Seq.init 1001 (<span style="color:Blue;">fun</span> n -&gt; n * 2) 
+    <span style="color:Blue;">let</span> evenNumbers = Seq.init 1001 (<span style="color:Blue;">fun</span> n <span style="color:Blue;">-&gt;</span> n * 2) 
 
     <span style="color:Blue;">let</span> rnd = System.Random()
 
@@ -338,7 +338,7 @@
     <span style="color:Green;">//  Use yield! to return each element of a subsequence, similar to IEnumerable.SelectMany.</span>
     <span style="color:Blue;">let</span> <span style="color:Blue;">rec</span> randomWalk x =
         seq { <span style="color:Blue;">yield</span> x
-              <span style="color:Blue;">yield</span>! randomWalk (x + rnd.NextDouble() - 0.5) }
+              <span style="color:Blue;">yield!</span> randomWalk (x + rnd.NextDouble() - 0.5) }
 
     <span style="color:Blue;">let</span> first100ValuesOfRandomWalk = 
         randomWalk 5.0 
@@ -368,14 +368,14 @@
     <span style="color:Gray;">///</span><span style="color:Green;"> Computes the sum of a list of integers using recursion.</span>
     <span style="color:Blue;">let</span> <span style="color:Blue;">rec</span> sumList xs =
         <span style="color:Blue;">match</span> xs <span style="color:Blue;">with</span>
-        | []    -&gt; 0
-        | y::ys -&gt; y + sumList ys
+        | []    <span style="color:Blue;">-&gt;</span> 0
+        | y::ys <span style="color:Blue;">-&gt;</span> y + sumList ys
 
     <span style="color:Gray;">///</span><span style="color:Green;"> Make the function tail recursive, using a helper function with a result accumulator</span>
     <span style="color:Blue;">let</span> <span style="color:Blue;">rec</span> <span style="color:Blue;">private</span> sumListTailRecHelper accumulator xs =
         <span style="color:Blue;">match</span> xs <span style="color:Blue;">with</span>
-        | []    -&gt; accumulator
-        | y::ys -&gt; sumListTailRecHelper (accumulator+y) ys
+        | []    <span style="color:Blue;">-&gt;</span> accumulator
+        | y::ys <span style="color:Blue;">-&gt;</span> sumListTailRecHelper (accumulator+y) ys
 
     <span style="color:Blue;">let</span> sumListTailRecursive xs = sumListTailRecHelper 0 xs
 
@@ -445,17 +445,17 @@
     <span style="color:Blue;">let</span> showCard c = 
         <span style="color:Blue;">let</span> rankString = 
             <span style="color:Blue;">match</span> c.Rank <span style="color:Blue;">with</span> 
-            | Ace -&gt; <span style="color:#A31515;">&quot;Ace&quot;</span>
-            | King -&gt; <span style="color:#A31515;">&quot;King&quot;</span>
-            | Queen -&gt; <span style="color:#A31515;">&quot;Queen&quot;</span>
-            | Jack -&gt; <span style="color:#A31515;">&quot;Jack&quot;</span>
-            | Value n -&gt; string n
+            | Ace <span style="color:Blue;">-&gt;</span> <span style="color:#A31515;">&quot;Ace&quot;</span>
+            | King <span style="color:Blue;">-&gt;</span> <span style="color:#A31515;">&quot;King&quot;</span>
+            | Queen <span style="color:Blue;">-&gt;</span> <span style="color:#A31515;">&quot;Queen&quot;</span>
+            | Jack <span style="color:Blue;">-&gt;</span> <span style="color:#A31515;">&quot;Jack&quot;</span>
+            | Value n <span style="color:Blue;">-&gt;</span> string n
         <span style="color:Blue;">let</span> suitString = 
             <span style="color:Blue;">match</span> c.Suit <span style="color:Blue;">with</span> 
-            | Clubs -&gt; <span style="color:#A31515;">&quot;clubs&quot;</span>
-            | Diamonds -&gt; <span style="color:#A31515;">&quot;diamonds&quot;</span>
-            | Spades -&gt; <span style="color:#A31515;">&quot;spades&quot;</span>
-            | Hearts -&gt; <span style="color:#A31515;">&quot;hearts&quot;</span>
+            | Clubs <span style="color:Blue;">-&gt;</span> <span style="color:#A31515;">&quot;clubs&quot;</span>
+            | Diamonds <span style="color:Blue;">-&gt;</span> <span style="color:#A31515;">&quot;diamonds&quot;</span>
+            | Spades <span style="color:Blue;">-&gt;</span> <span style="color:#A31515;">&quot;spades&quot;</span>
+            | Hearts <span style="color:Blue;">-&gt;</span> <span style="color:#A31515;">&quot;hearts&quot;</span>
         rankString  + <span style="color:#A31515;">&quot; of &quot;</span> + suitString
 
     <span style="color:Blue;">let</span> printAllCards() = 
@@ -479,8 +479,8 @@
     <span style="color:Gray;">///</span><span style="color:Green;"> given implementations for the 'getState' and 'getShippingZone' abstract methods.</span>
     [&lt;AbstractClass&gt;]
     <span style="color:Blue;">type</span> ShippingCalculator =
-        <span style="color:Blue;">abstract</span> getState : decimal -&gt; string option
-        <span style="color:Blue;">abstract</span> getShippingZone : string -&gt; int
+        <span style="color:Blue;">abstract</span> getState : decimal <span style="color:Blue;">-&gt;</span> string option
+        <span style="color:Blue;">abstract</span> getShippingZone : string <span style="color:Blue;">-&gt;</span> int
 
         <span style="color:Gray;">///</span><span style="color:Green;"> Return the shipping zone corresponding to the customer's ZIP code</span>
         <span style="color:Gray;">///</span><span style="color:Green;"> Customer may not yet have a ZIP code or the ZIP code may be invalid</span>
@@ -510,11 +510,11 @@
     <span style="color:Gray;">///</span><span style="color:Green;"> count everyone underneath the employee in the management hierarchy, including the employee</span>
     <span style="color:Blue;">let</span> <span style="color:Blue;">rec</span> countReports(emp : Employee) = 
         1 + <span style="color:Blue;">match</span> emp <span style="color:Blue;">with</span>
-            | Engineer(id) -&gt; 
+            | Engineer(id) <span style="color:Blue;">-&gt;</span> 
                 0
-            | Manager(id, reports) -&gt; 
+            | Manager(id, reports) <span style="color:Blue;">-&gt;</span> 
                 reports |&gt; List.sumBy countReports 
-            | Executive(id, reports, assistant) -&gt;
+            | Executive(id, reports, assistant) <span style="color:Blue;">-&gt;</span>
                 (reports |&gt; List.sumBy countReports) + countReports assistant
 
 
@@ -522,9 +522,9 @@
     <span style="color:Blue;">let</span> <span style="color:Blue;">rec</span> findDaveWithOpenPosition(emps : Employee list) =
         emps 
         |&gt; List.filter(<span style="color:Blue;">function</span> 
-                       | Manager({First = <span style="color:#A31515;">&quot;Dave&quot;</span>}, []) -&gt; <span style="color:Blue;">true</span>       <span style="color:Green;">// [] matches the empty list</span>
-                       | Executive({First = <span style="color:#A31515;">&quot;Dave&quot;</span>}, [], _) -&gt; <span style="color:Blue;">true</span>
-                       | _ -&gt; <span style="color:Blue;">false</span>)                                 <span style="color:Green;">// '_' is a wildcard pattern that matches anything</span>
+                       | Manager({First = <span style="color:#A31515;">&quot;Dave&quot;</span>}, []) <span style="color:Blue;">-&gt;</span> <span style="color:Blue;">true</span>       <span style="color:Green;">// [] matches the empty list</span>
+                       | Executive({First = <span style="color:#A31515;">&quot;Dave&quot;</span>}, [], _) <span style="color:Blue;">-&gt;</span> <span style="color:Blue;">true</span>
+                       | _ <span style="color:Blue;">-&gt;</span> <span style="color:Blue;">false</span>)                                 <span style="color:Green;">// '_' is a wildcard pattern that matches anything</span>
                                                                      <span style="color:Green;">// this handles the &quot;or else&quot; case</span>
 
 
@@ -566,7 +566,7 @@
         <span style="color:Blue;">else</span> computeSomeFunction (x - 1) + computeSomeFunction (x - 2)
        
     <span style="color:Green;">// Do a parallel map over a large input array</span>
-    <span style="color:Blue;">let</span> computeResults() = oneBigArray |&gt; Array.Parallel.map (<span style="color:Blue;">fun</span> x -&gt; computeSomeFunction (x % 20))
+    <span style="color:Blue;">let</span> computeResults() = oneBigArray |&gt; Array.Parallel.map (<span style="color:Blue;">fun</span> x <span style="color:Blue;">-&gt;</span> computeSomeFunction (x % 20))
 
     printfn <span style="color:#A31515;">&quot;Parallel computation results: %A&quot;</span> (computeResults())
 
@@ -585,7 +585,7 @@
 
     <span style="color:Green;">// add handler</span>
     simpleEvent.Publish.Add(
-        <span style="color:Blue;">fun</span> x -&gt; printfn <span style="color:#A31515;">&quot;this is handler was added with Publish.Add: %d&quot;</span> x)
+        <span style="color:Blue;">fun</span> x <span style="color:Blue;">-&gt;</span> printfn <span style="color:#A31515;">&quot;this is handler was added with Publish.Add: %d&quot;</span> x)
 
     <span style="color:Green;">// trigger event</span>
     simpleEvent.Trigger(5)
@@ -595,7 +595,7 @@
 
     <span style="color:Green;">// add handler</span>
     eventForDelegateType.Publish.AddHandler(
-        EventHandler(<span style="color:Blue;">fun</span> _ _ -&gt; printfn <span style="color:#A31515;">&quot;this is handler was added with Publish.AddHandler&quot;</span>))
+        EventHandler(<span style="color:Blue;">fun</span> _ _ <span style="color:Blue;">-&gt;</span> printfn <span style="color:#A31515;">&quot;this is handler was added with Publish.AddHandler&quot;</span>))
 
     <span style="color:Green;">// trigger event (note that sender argument should be set)</span>
     eventForDelegateType.Trigger(<span style="color:Blue;">null</span>, EventArgs.Empty)
