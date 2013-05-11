@@ -120,13 +120,13 @@ namespace ColorCode.Parsing
             for (int i = 0; i < regexMatch.Groups.Count; i++)
             {
                 Group regexGroup = regexMatch.Groups[i];
-                string styleName = compiledLanguage.Captures[i];
-
-                if (regexGroup.Length == 0 || String.IsNullOrEmpty(styleName))
-                    continue;
-                else
-                    foreach (Capture regexCapture in regexGroup.Captures)
-                        AppendCapturedStylesForRegexCapture(regexCapture, currentIndex, styleName, capturedStyles);
+                if (regexGroup.Length > 0 && i < compiledLanguage.Captures.Count) {  //note: i can be >= Captures.Count due to named groups; these do capture a group but always get added after all non-named groups (which is why we do not count them in numberOfCaptures)
+                    string styleName = compiledLanguage.Captures[i];
+                    if (!String.IsNullOrEmpty(styleName)) {
+                        foreach (Capture regexCapture in regexGroup.Captures)
+                            AppendCapturedStylesForRegexCapture(regexCapture, currentIndex, styleName, capturedStyles);
+                    }
+                }
             }
 
             return capturedStyles;
