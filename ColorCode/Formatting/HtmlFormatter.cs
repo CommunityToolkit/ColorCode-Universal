@@ -86,6 +86,8 @@ namespace ColorCode.Formatting
         {
             Color foreground = Color.Empty;
             Color background = Color.Empty;
+            bool italic = false;
+            bool bold = false;
 
             if (styleSheet.Styles.Contains(scope.Name))
             {
@@ -93,9 +95,11 @@ namespace ColorCode.Formatting
 
                 foreground = style.Foreground;
                 background = style.Background;
+                italic = style.Italic;
+                bold = style.Bold;
             }
 
-            WriteElementStart("span", foreground, background, writer);
+            WriteElementStart(writer, "span", foreground, background, italic, bold);
         }
 
         private static void WriteHeaderDivEnd(TextWriter writer)
@@ -116,7 +120,7 @@ namespace ColorCode.Formatting
 
         private static void WriteHeaderPreStart(TextWriter writer)
         {
-            WriteElementStart("pre", writer);
+            WriteElementStart(writer,"pre");
         }
 
         private static void WriteHeaderDivStart(IStyleSheet styleSheet,
@@ -133,19 +137,22 @@ namespace ColorCode.Formatting
                 background = plainTextStyle.Background;
             }
 
-            WriteElementStart("div", foreground, background, writer);
+            WriteElementStart(writer, "div", foreground, background );
         }
 
-        private static void WriteElementStart(string elementName,
-                                              TextWriter writer)
+        private static void WriteElementStart(TextWriter writer,
+                                              string elementName)
         {
-            WriteElementStart(elementName, Color.Empty, Color.Empty, writer);
+            WriteElementStart(writer, elementName, Color.Empty, Color.Empty);
         }
 
-        private static void WriteElementStart(string elementName,
+        private static void WriteElementStart(TextWriter writer,
+                                              string elementName,
                                               Color foreground,
                                               Color background,
-                                              TextWriter writer)
+                                              bool italic = false,
+                                              bool bold = false
+                                              )
         {
             writer.Write("<{0}", elementName);
 
@@ -158,6 +165,12 @@ namespace ColorCode.Formatting
 
                 if (background != Color.Empty)
                     writer.Write("background-color:{0};", background.ToHtmlColor());
+
+                if (italic)
+                    writer.Write("font-style: italic;");
+
+                if (bold)
+                    writer.Write("font-weight: bold;");
 
                 writer.Write("\"");
             }
