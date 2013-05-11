@@ -40,6 +40,7 @@ namespace ColorCode
             Load<PowerShell>();
             Load<Typescript>();
             Load<FSharp>();
+            Load<Koka>();
         }
 
         /// <summary>
@@ -210,6 +211,15 @@ namespace ColorCode
         public static ILanguage FSharp
         {
             get { return LanguageRepository.FindById(LanguageId.FSharp); }
+        }
+
+        /// <summary>
+        /// Language support for Koka.
+        /// </summary>
+        /// <value>Language support for Koka.</value>
+        public static ILanguage Koka
+        {
+          get { return LanguageRepository.FindById(LanguageId.Koka); }
         }
 
         /// <summary>
