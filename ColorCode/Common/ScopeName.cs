@@ -37,5 +37,16 @@ namespace ColorCode.Common
         public const string XmlDocComment = "XML Doc Comment";
         public const string XmlDocTag = "XML Doc Tag";
         public const string XmlName = "XML Name";
+        public const string Type = "Type";
+        public const string TypeVariable = "Type Variable";
+        public const string NameSpace = "Name Space";
+        public const string Constructor = "Constructor";
+        public const string Predefined = "Predefined";
+        public const string PseudoKeyword = "Pseudo Keyword";
+        public const string StringEscape = "String Escape";
+        public const string ControlKeyword = "Control Keyword";
+        public const string Number = "Number";
+        public const string Operator = "Operator";
+        public const string Delimiter = "Delimiter";
     }
 }

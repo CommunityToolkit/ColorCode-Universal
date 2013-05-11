@@ -174,7 +174,60 @@ namespace ColorCode.Styling.StyleSheets
                                  {
                                      Foreground = Color.OrangeRed,
                                      CssClassName = "powershellVariable"
-                                 }
+                                 },
+                             new Style(ScopeName.Type)
+                                {
+                                    Foreground = Color.Teal,
+                                    CssClassName = "type"
+                                },
+                             new Style(ScopeName.TypeVariable)
+                                {
+                                    Foreground = Color.Teal,
+                                    Italic = true,
+                                    CssClassName = "typevariable"
+                                },
+                             new Style(ScopeName.NameSpace)
+                                {
+                                    Foreground = Color.Navy,
+                                    CssClassName = "namespace"
+                                },
+                             new Style(ScopeName.Constructor)
+                                {
+                                    Foreground = Color.Purple,
+                                    CssClassName = "constructor"
+                                },
+                             new Style(ScopeName.Predefined)
+                                {
+                                    Foreground = Color.Navy,
+                                    CssClassName = "predefined"
+                                },
+                             new Style(ScopeName.PseudoKeyword)
+                                {
+                                    Foreground = Color.Navy,
+                                    CssClassName = "pseudokeyword"
+                                },
+                             new Style(ScopeName.StringEscape)
+                                {
+                                    Foreground = Color.Gray,
+                                    CssClassName = "stringescape"
+                                },
+                             new Style(ScopeName.ControlKeyword)
+                                {
+                                    Foreground = Color.Blue,
+                                    CssClassName = "controlkeyword"
+                                },
+                             new Style(ScopeName.Number)
+                                {
+                                    CssClassName = "number"
+                                },
+                             new Style(ScopeName.Operator)
+                                {
+                                    CssClassName = "operator"
+                                },
+                             new Style(ScopeName.Delimiter)
+                                {
+                                    CssClassName = "delimiter"
+                                },
                          };
         }
 
