@@ -43,6 +43,18 @@ namespace ColorCode
         public string CssClassName { get; set; }
 
         /// <summary>
+        /// Gets or sets italic font style.
+        /// </summary>
+        /// <value>True if italic.</value>
+        public bool Italic { get; set; }
+
+        /// <summary>
+        /// Gets or sets bold font style.
+        /// </summary>
+        /// <value>True if bold.</value>
+        public bool Bold { get; set; }
+
+        /// <summary>
         /// Returns a <see cref="System.String"/> that represents this instance.
         /// </summary>
         /// <returns>
