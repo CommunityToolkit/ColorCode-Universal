@@ -30,7 +30,7 @@ namespace ColorCode.Compilation.Languages
             }
         }
 
-        private const string incomment = @"([^*/]|/+[^*/]|\*+[^*/])*";
+        private const string incomment = @"([^*/]|/(?!\*)|\*(?!/))*";
 
         private const string plainKeywords = @"infix|infixr|infixl|type|cotype|rectype|struct|alias|interface|instance|external|fun|function|val|var|con|module|import|as|public|private|abstract|yield";
         private const string controlKeywords = @"if|then|else|elif|match|return";
@@ -38,7 +38,7 @@ namespace ColorCode.Compilation.Languages
         private const string pseudoKeywords = @"include|inline|cs|js|file";
         private const string opkeywords = @"[=\.\|]|\->|\:=";
 
-        private const string intype = @"\b(" + typeKeywords + @")\b|(?:[a-z]\w*/)*[a-z]\w+|(?:[a-z]\w*/)*[A-Z]\w*|([a-z][0-9]*|_\w*)|\->|[\s\|]+";
+        private const string intype = @"\b(" + typeKeywords + @")\b|(?:[a-z]\w*/)*[a-z]\w+\b|(?:[a-z]\w*/)*[A-Z]\w*\b|([a-z][0-9]*\b|_\w*\b)|\->|[\s\|]";
         private const string toptype = "(?:" + intype + "|::)";
         private const string nestedtype = @"(?:([a-z]\w*)\s*[:]|" + intype + ")";
 
@@ -52,7 +52,7 @@ namespace ColorCode.Compilation.Languages
             get
             {
                 return new List<LanguageRule> {
-                    // Nested block comments
+                    // Nested block comments. note: does not match on unclosed comments 
                     new LanguageRule(
                       // Handle nested block comments using named balanced groups
                       @"/\*" + incomment +
