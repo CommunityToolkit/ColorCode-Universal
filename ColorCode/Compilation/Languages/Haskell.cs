@@ -30,12 +30,12 @@ namespace ColorCode.Compilation.Languages
             }
         }
 
-        private const string incomment = @"([^-{}]|{+[^-]|-+[^}]|(?<!-)})*";
+        private const string incomment = @"([^-{}]|{(?!-)|-(?!})|(?<!-)})*";
         private const string keywords = @"case|class|data|default|deriving|do|else|foreign|if|import|in|infix|infixl|infixr|instance|let|module|newtype|of|then|type|where";
         private const string opKeywords = @"\.\.|:|::|=|\\|\||<-|->|@|~|=>";
         private const string symbol = @"\!|\#|$|%|\&|\⋆|\+|\.|/|<|=|>|\?|@|\\|^|\||-|~|:";
         
-        private const string intype = @"(\bforall\b|=>)|(?:[A-Z]\w*\.)*[A-Z]\w*|(?!where|data|type|newtype|instance|class)([a-z]\w*)|\->|[ \t\r]|\n[ \t]+(?:[\(\)\[\]]|->|=>)";
+        private const string intype = @"(\bforall\b|=>)|(?:[A-Z]\w*\.)*[A-Z]\w*\b|(?!where|data|type|newtype|instance|class)([a-z]\w*)\b|\->|[ \t\r]|\n[ \t]+(?:[\(\)\[\]]|->|=>)";
         private const string toptype = "(?:" + intype + "|::)";
         private const string nestedtype = @"(?:" + intype + ")";
 
@@ -45,13 +45,13 @@ namespace ColorCode.Compilation.Languages
             get
             {
                 return new List<LanguageRule> {
-                    // Nested block comments
+                    // Nested block comments: note does not match no unclosed block comments.
                     new LanguageRule(
                         // Handle nested block comments using named balanced groups
                         @"{-+" + incomment +
-                        @"(" +
-                        @"((?<comment>{-)" + incomment + ")+" +
-                        @"((?<-comment>-})" + incomment + ")+" +
+                        @"(?>" +
+                        @"(?>(?<comment>{-)" + incomment + ")+" +
+                        @"(?>(?<-comment>-})" + incomment + ")+" +
                         @")*" +
                         @"(-+})",
                         new Dictionary<int, string>
