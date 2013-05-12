@@ -30,6 +30,8 @@ namespace ColorCode.Compilation.Languages
             }
         }
 
+        private const string incomment = @"([^*/]|/+[^*/]|\*+[^*/])*";
+
         private const string plainKeywords = @"infix|infixr|infixl|type|cotype|rectype|struct|alias|interface|instance|external|fun|function|val|var|con|module|import|as|public|private|abstract|yield";
         private const string controlKeywords = @"if|then|else|elif|match|return";
         private const string typeKeywords = @"forall|exists|some|with";
@@ -53,10 +55,10 @@ namespace ColorCode.Compilation.Languages
                     // Nested block comments
                     new LanguageRule(
                       // Handle nested block comments using named balanced groups
-                      @"/\*([^*/]+|/+[^*/]|\*+[^*/])*" +
+                      @"/\*" + incomment +
                       @"(" +
-                       @"((?<comment>/\*)([^*/]+|/+[^*/]|\*+[^*/])*)+" +
-                       @"((?<-comment>\*/)([^*/]+|/+[^*/]|\*+[^*/])*)+" +
+                       @"((?<comment>/\*)" + incomment + ")+" +
+                       @"((?<-comment>\*/)" + incomment + ")+" +
                       @")*" +
                       @"(\*+/)",
                       new Dictionary<int, string>
@@ -104,11 +106,11 @@ namespace ColorCode.Compilation.Languages
                             { 4, ScopeName.Keyword},
                             { 5, ScopeName.TypeVariable },
                     
-                            { 6, ScopeName.StringEscape },  // use stringescape (gray) for type parameters
+                            { 6, ScopeName.PlainText }, 
                             { 7, ScopeName.Keyword },
                             { 8, ScopeName.TypeVariable },
                     
-                            { 9, ScopeName.StringEscape },
+                            { 9, ScopeName.PlainText },
                             { 10, ScopeName.Keyword },
                             { 11, ScopeName.TypeVariable },                
                         }),
