@@ -80,6 +80,7 @@
     <Compile Include="Compilation\Languages\FSharp.cs" />
     <Compile Include="Compilation\Languages\Cpp.cs" />
     <Compile Include="Compilation\Languages\Css.cs" />
+    <Compile Include="Compilation\Languages\Haskell.cs" />
     <Compile Include="Compilation\Languages\Html.cs">
       <SubType>Code</SubType>
     </Compile>

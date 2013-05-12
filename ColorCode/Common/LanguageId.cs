@@ -23,5 +23,6 @@ namespace ColorCode.Common
         public const string VbDotNet = "vb.net";
         public const string Xml = "xml";
         public const string Koka = "koka";
+        public const string Haskell = "haskell";
     }
 }

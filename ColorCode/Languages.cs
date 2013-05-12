@@ -41,6 +41,7 @@ namespace ColorCode
             Load<Typescript>();
             Load<FSharp>();
             Load<Koka>();
+            Load<Haskell>();
         }
 
         /// <summary>
@@ -220,6 +221,15 @@ namespace ColorCode
         public static ILanguage Koka
         {
           get { return LanguageRepository.FindById(LanguageId.Koka); }
+        }
+
+        /// <summary>
+        /// Language support for Haskell.
+        /// </summary>
+        /// <value>Language support for Haskell.</value>
+        public static ILanguage Haskell
+        {
+            get { return LanguageRepository.FindById(LanguageId.Haskell); }
         }
 
         /// <summary>
