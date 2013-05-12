@@ -34,8 +34,8 @@ namespace ColorCode.Compilation.Languages
         private const string keywords = @"case|class|data|default|deriving|do|else|foreign|if|import|in|infix|infixl|infixr|instance|let|module|newtype|of|then|type|where";
         private const string opKeywords = @"\.\.|:|::|=|\\|\||<-|->|@|~|=>";
         private const string symbol = @"\!|\#|$|%|\&|\⋆|\+|\.|/|<|=|>|\?|@|\\|^|\||-|~|:";
-        
-        private const string intype = @"(\bforall\b|=>)|(?:[A-Z]\w*\.)*[A-Z]\w*\b|(?!where|data|type|newtype|instance|class)([a-z]\w*)\b|\->|[ \t\r]|\n[ \t]+(?:[\(\)\[\]]|->|=>)";
+
+        private const string intype = @"(\bforall\b|=>)|(?:[A-Z][\w']*\.)*[A-Z][\w']*\b|(?!where|data|type|newtype|instance|class)([a-z][\w']*)\b|\->|[ \t\r]|\n[ \t]+(?:[\(\)\[\]]|->|=>)";
         private const string toptype = "(?:" + intype + "|::)";
         private const string nestedtype = @"(?:" + intype + ")";
 
@@ -96,7 +96,7 @@ namespace ColorCode.Compilation.Languages
 
                     // Special sequences
                     new LanguageRule(
-                        @"\b(module|as)\s+((?:[A-Z]\w*\.)*[A-Z]\w*)",
+                        @"\b(module|as)\s+((?:[A-Z][\w']*\.)*[A-Z][\w']*)",
                         new Dictionary<int, string>
                             {
                                 { 1, ScopeName.Keyword },
@@ -104,7 +104,7 @@ namespace ColorCode.Compilation.Languages
                             }),
     
                     new LanguageRule(
-                        @"\b(import)\s+(qualified\s+)?((?:[A-Z]\w*\.)*[A-Z]\w*)",
+                        @"\b(import)\s+(qualified\s+)?((?:[A-Z][\w']*\.)*[A-Z][\w']*)",
                         new Dictionary<int, string>
                             {
                                 { 1, ScopeName.Keyword },
@@ -128,13 +128,13 @@ namespace ColorCode.Compilation.Languages
                                    
                     // Names
                     new LanguageRule(
-                        @"([A-Z]\w*\.)*([a-z]\w*|\((" + symbol + @")+\))",
+                        @"([A-Z][\w']*\.)*([a-z][\w']*|\((" + symbol + @")+\))",
                         new Dictionary<int, string>
                             {
                                 { 1, ScopeName.NameSpace }
                             }),
                     new LanguageRule(
-                        @"([A-Z]\w*\.)*([A-Z]\w*)",
+                        @"([A-Z][\w']*\.)*([A-Z][\w']*)",
                         new Dictionary<int, string>
                             {
                                 { 1, ScopeName.NameSpace },
