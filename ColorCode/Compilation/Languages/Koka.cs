@@ -45,7 +45,7 @@ namespace ColorCode.Compilation.Languages
         private const string symbol = @"[$%&\*\+@!\\\^~=\.:\-\?\|<>/]";
         private const string symbols = @"(?:" + symbol + @")+";
 
-        private const string escape = @"\\(?:[nrtv\\""']|x[\da-fA-F]{2})";
+        private const string escape = @"\\(?:[nrt\\""']|x[\da-fA-F]{2}|u[\da-fA-F]{4}|U[\da-fA-F]{6})";
 
         public IList<LanguageRule> Rules
         {
