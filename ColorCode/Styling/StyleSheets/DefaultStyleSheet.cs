@@ -185,7 +185,7 @@ namespace ColorCode.Styling.StyleSheets
                                 {
                                     Foreground = Color.Teal,
                                     Italic = true,
-                                    CssClassName = "typevariable"
+                                    CssClassName = "typeVariable"
                                 },
                              new Style(ScopeName.NameSpace)
                                 {
@@ -205,17 +205,17 @@ namespace ColorCode.Styling.StyleSheets
                              new Style(ScopeName.PseudoKeyword)
                                 {
                                     Foreground = Color.Navy,
-                                    CssClassName = "pseudokeyword"
+                                    CssClassName = "pseudoKeyword"
                                 },
                              new Style(ScopeName.StringEscape)
                                 {
                                     Foreground = Color.Gray,
-                                    CssClassName = "stringescape"
+                                    CssClassName = "stringEscape"
                                 },
                              new Style(ScopeName.ControlKeyword)
                                 {
                                     Foreground = Color.Blue,
-                                    CssClassName = "controlkeyword"
+                                    CssClassName = "controlKeyword"
                                 },
                              new Style(ScopeName.Number)
                                 {
@@ -234,17 +234,17 @@ namespace ColorCode.Styling.StyleSheets
                                 {
                                     // Foreground = Color.Blue,
                                     Bold = true,
-                                    CssClassName = "header"
+                                    CssClassName = "markdownHeader"
                                 },
                              new Style(ScopeName.MarkdownCode)
                                 {
                                     Foreground = Color.Teal,
-                                    CssClassName = "code"
+                                    CssClassName = "markdownCode"
                                 },
                              new Style(ScopeName.MarkdownListItem)
                                 {
                                     Bold = true,
-                                    CssClassName = "listitem"
+                                    CssClassName = "markdownListItem"
                                 },
                              new Style(ScopeName.MarkdownEmph)
                                 {
