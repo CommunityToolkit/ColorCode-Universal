@@ -175,6 +175,7 @@ namespace ColorCode.Styling.StyleSheets
                                      Foreground = Color.OrangeRed,
                                      CssClassName = "powershellVariable"
                                  },
+
                              new Style(ScopeName.Type)
                                 {
                                     Foreground = Color.Teal,
@@ -227,6 +228,33 @@ namespace ColorCode.Styling.StyleSheets
                              new Style(ScopeName.Delimiter)
                                 {
                                     CssClassName = "delimiter"
+                                },
+
+                             new Style(ScopeName.MarkdownHeader)
+                                {
+                                    // Foreground = Color.Blue,
+                                    Bold = true,
+                                    CssClassName = "header"
+                                },
+                             new Style(ScopeName.MarkdownCode)
+                                {
+                                    Foreground = Color.Purple,
+                                    CssClassName = "code"
+                                },
+                             new Style(ScopeName.MarkdownListItem)
+                                {
+                                    Bold = true,
+                                    CssClassName = "listitem"
+                                },
+                             new Style(ScopeName.MarkdownEmph)
+                                {
+                                    Italic = true,
+                                    CssClassName = "italic"
+                                },
+                             new Style(ScopeName.MarkdownBold)
+                                {
+                                    Bold = true,
+                                    CssClassName = "bold"
                                 },
                          };
         }

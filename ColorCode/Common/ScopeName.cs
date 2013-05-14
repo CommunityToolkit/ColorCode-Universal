@@ -48,5 +48,10 @@ namespace ColorCode.Common
         public const string Number = "Number";
         public const string Operator = "Operator";
         public const string Delimiter = "Delimiter";
+        public const string MarkdownHeader = "Markdown Header";
+        public const string MarkdownCode = "Markdown Code";
+        public const string MarkdownListItem = "Markdown List Item";
+        public const string MarkdownEmph = "Markdown Emphasized";
+        public const string MarkdownBold = "Markdown Bold";
     }
 }
