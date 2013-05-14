@@ -89,6 +89,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Compilation\Languages\Koka.cs" />
+    <Compile Include="Compilation\Languages\Markdown.cs" />
     <Compile Include="Compilation\Languages\Php.cs" />
     <Compile Include="Compilation\Languages\PowerShell.cs" />
     <Compile Include="Compilation\Languages\Typescript.cs" />

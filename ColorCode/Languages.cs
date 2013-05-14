@@ -42,6 +42,7 @@ namespace ColorCode
             Load<FSharp>();
             Load<Koka>();
             Load<Haskell>();
+            Load<Markdown>();
         }
 
         /// <summary>
@@ -230,6 +231,15 @@ namespace ColorCode
         public static ILanguage Haskell
         {
             get { return LanguageRepository.FindById(LanguageId.Haskell); }
+        }
+
+        /// <summary>
+        /// Language support for Markdown.
+        /// </summary>
+        /// <value>Language support for Markdown.</value>
+        public static ILanguage Markdown
+        {
+            get { return LanguageRepository.FindById(LanguageId.Markdown); }
         }
 
         /// <summary>
