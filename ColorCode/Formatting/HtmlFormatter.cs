@@ -156,7 +156,7 @@ namespace ColorCode.Formatting
         {
             writer.Write("<{0}", elementName);
 
-            if (foreground != Color.Empty || background != Color.Empty)
+            if (foreground != Color.Empty || background != Color.Empty || italic || bold)
             {
                 writer.Write(" style=\"");
 
