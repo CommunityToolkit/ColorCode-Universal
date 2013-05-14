@@ -238,7 +238,7 @@ namespace ColorCode.Styling.StyleSheets
                                 },
                              new Style(ScopeName.MarkdownCode)
                                 {
-                                    Foreground = Color.Purple,
+                                    Foreground = Color.Teal,
                                     CssClassName = "code"
                                 },
                              new Style(ScopeName.MarkdownListItem)
