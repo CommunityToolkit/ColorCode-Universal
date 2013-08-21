@@ -23,6 +23,7 @@ ColorCode.AcceptanceTests/Data/sql/system-function-color.actual.html
 ColorCode.AcceptanceTests/Data/vb/linq-keyword.actual.html
 ColorCode.AcceptanceTests/Data/vb/strings.actual.html
 ColorCode.AcceptanceTests/Data/xml/xml-stylesheet.actual.html
+ColorCode.AcceptanceTests/Data/fsharp/fsharp-tutorial.actual.html
 ColorCode.AcceptanceTests/obj/
 ColorCode.Facts.xunit.results.xml
 ColorCode.Facts/obj/
