@@ -13,12 +13,11 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel>
-            <TextBox x:Name="LanguageBox" Header="Language" Text="C#" />
             <Button Content="Render to Rich Text Block" Click="Load_Click" />
             <Button Content="Create HTML" Click="MakeHTML" />
         </StackPanel>
         <ScrollViewer Grid.Row="1">
-            <RichTextBlock x:Name="PresentationBlock" />
+            <RichTextBlock x:Name="PresentationBlock" FontFamily="Consolas" />
         </ScrollViewer>
     </Grid>
 </Page>

@@ -53,5 +53,12 @@ namespace ColorCode.Common
         public const string MarkdownListItem = "Markdown List Item";
         public const string MarkdownEmph = "Markdown Emphasized";
         public const string MarkdownBold = "Markdown Bold";
+        public const string BuiltinFunction = "Built In Function";
+        public const string BuiltinValue = "Built In Value";
+        public const string Attribute = "Attribute";
+        public const string SpecialCharacter = "Special Character";
+        public const string Intrinsic = "Intrinsic";
+        public const string Brackets = "Brackets";
+        public const string Continuation = "Continuation";
     }
 }

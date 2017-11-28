@@ -43,12 +43,13 @@ namespace ColorCode
             Load<Koka>();
             Load<Haskell>();
             Load<Markdown>();
+            Load<Fortran>();
         }
 
         /// <summary>
         /// Gets an enumerable list of all loaded languages.
         /// </summary>
-        public static IEnumerable<ILanguage> All 
+        public static IEnumerable<ILanguage> All
         {
             get { return LanguageRepository.All; }
         }
@@ -221,7 +222,7 @@ namespace ColorCode
         /// <value>Language support for Koka.</value>
         public static ILanguage Koka
         {
-          get { return LanguageRepository.FindById(LanguageId.Koka); }
+            get { return LanguageRepository.FindById(LanguageId.Koka); }
         }
 
         /// <summary>
@@ -240,6 +241,15 @@ namespace ColorCode
         public static ILanguage Markdown
         {
             get { return LanguageRepository.FindById(LanguageId.Markdown); }
+        }
+
+        /// <summary>
+        /// Language support for Fortran.
+        /// </summary>
+        /// <value>Language support for Fortran.</value>
+        public static ILanguage Fortran
+        {
+            get { return LanguageRepository.FindById(LanguageId.Fortran); }
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Pickers;
@@ -38,14 +39,14 @@ namespace ColorCode.UWPTests
 
             var file = await picker.PickSingleFileAsync();
             if (file == null) return null;
-            var text = await FileIO.ReadTextAsync(file);
+            string text = "";
 
-            ILanguage Language = Languages.CSharp;
-
-            if (LanguageBox.Text != null)
+            using (var reader = new StreamReader(await file.OpenStreamForReadAsync(), true))
             {
-                Language = Languages.FindById(LanguageBox.Text) ?? Languages.CSharp;
+                text = await reader.ReadToEndAsync();
             }
+
+            ILanguage Language = Languages.FindById(file.FileType.Replace(".", "")) ?? Languages.CSharp;
             return new Tuple<string, ILanguage>(text, Language);
         }
 
