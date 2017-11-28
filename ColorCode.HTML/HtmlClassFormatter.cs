@@ -1,28 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Web;
 using ColorCode.Common;
 using ColorCode.Parsing;
 using System.Text;
+using ColorCode.Styling;
+using System.Net;
+using ColorCode.HTML.Common;
 
 namespace ColorCode
 {
+    /// <summary>
+    /// Creates a <see cref="HtmlClassFormatter"/>, for creating HTML to display Syntax Highlighted code.
+    /// </summary>
     public class HtmlClassFormatter : CodeColorizerBase
     {
-        public HtmlClassFormatter(IStyleSheet styleSheet = null) : base()
+        /// <summary>
+        /// Creates a <see cref="HtmlClassFormatter"/>, for creating HTML to display Syntax Highlighted code, with Styles applied via CSS.
+        /// </summary>
+        /// <param name="Style">The Custom styles to Apply to the formatted Code.</param>
+        /// <param name="languageParser">The language parser that the <see cref="HtmlClassFormatter"/> instance will use for its lifetime.</param>
+        public HtmlClassFormatter(StyleDictionary Style = null, ILanguageParser languageParser = null) : base(Style, languageParser)
         {
-            StyleSheet = styleSheet ?? StyleSheets.Default;
         }
 
-        public HtmlClassFormatter(ILanguageParser Parser, IStyleSheet styleSheet = null) : base(Parser)
-        {
-            StyleSheet = styleSheet ?? StyleSheets.Default;
-        }
-
-        public IStyleSheet StyleSheet { get; }
         private TextWriter Writer { get; set; }
 
+        /// <summary>
+        /// Creates the HTML Markup, which can be saved to a .html file.
+        /// </summary>
+        /// <param name="sourceCode">The source code to colorize.</param>
+        /// <param name="language">The language to use to colorize the source code.</param>
+        /// <returns>Colorised HTML Markup.</returns>
         public string GetHtmlString(string sourceCode, ILanguage language)
         {
             var buffer = new StringBuilder(sourceCode.Length * 2);
@@ -42,6 +51,37 @@ namespace ColorCode
             return buffer.ToString();
         }
 
+        /// <summary>
+        /// Creates the CSS Markup, which can be saved to a .CSS file. <para/>
+        /// This is required for Coloring the Html output. Be sure to reference the File from the HTML, or insert it inline to the Head.
+        /// </summary>
+        /// <returns></returns>
+        public string GetCSSString()
+        {
+            var str = new StringBuilder();
+
+            foreach (var style in Styles)
+            {
+                str.Append($" .{style.ReferenceName}{{");
+
+                if (!string.IsNullOrWhiteSpace(style.Foreground))
+                    str.Append($"color:{style.Foreground.ToHtmlColor()};");
+
+                if (!string.IsNullOrWhiteSpace(style.Background))
+                    str.Append($"color:{style.Background.ToHtmlColor()};");
+
+                if (style.Italic)
+                    str.Append("font-style: italic;");
+
+                if (style.Bold)
+                    str.Append("font-weight: bold;");
+
+                str.Append("}");
+            }
+
+            return str.ToString();
+        }
+
         protected override void Write(string parsedSourceCode, IList<Scope> scopes)
         {
             var styleInsertions = new List<TextInsertion>();
@@ -55,15 +95,15 @@ namespace ColorCode
 
             foreach (TextInsertion styleInsertion in styleInsertions)
             {
-                Writer.Write(HttpUtility.HtmlEncode(parsedSourceCode.Substring(offset, styleInsertion.Index - offset)));
+                Writer.Write(WebUtility.HtmlEncode(parsedSourceCode.Substring(offset, styleInsertion.Index - offset)));
                 if (string.IsNullOrEmpty(styleInsertion.Text))
-                    BuildSpanForCapturedStyle(styleInsertion.Scope, StyleSheet, Writer);
+                    BuildSpanForCapturedStyle(styleInsertion.Scope);
                 else
                     Writer.Write(styleInsertion.Text);
                 offset = styleInsertion.Index;
             }
 
-            Writer.Write(HttpUtility.HtmlEncode(parsedSourceCode.Substring(offset)));
+            Writer.Write(WebUtility.HtmlEncode(parsedSourceCode.Substring(offset)));
         }
 
         private void WriteFooter(ILanguage language)
@@ -71,16 +111,16 @@ namespace ColorCode
             Guard.ArgNotNull(language, "language");
 
             Writer.WriteLine();
-            WriteHeaderPreEnd(Writer);
-            WriteHeaderDivEnd(Writer);
+            WriteHeaderPreEnd();
+            WriteHeaderDivEnd();
         }
 
         private void WriteHeader(ILanguage language)
         {
             Guard.ArgNotNull(language, "language");
 
-            WriteHeaderDivStart(StyleSheet, language, Writer);
-            WriteHeaderPreStart(Writer);
+            WriteHeaderDivStart(language);
+            WriteHeaderPreStart();
             Writer.WriteLine();
         }
 
@@ -102,66 +142,58 @@ namespace ColorCode
             });
         }
 
-        private static void BuildSpanForCapturedStyle(Scope scope,
-                                                        IStyleSheet styleSheet,
-                                                        TextWriter writer)
+        private void BuildSpanForCapturedStyle(Scope scope)
         {
             string cssClassName = "";
 
-            if (styleSheet.Styles.Contains(scope.Name))
+            if (Styles.Contains(scope.Name))
             {
-                Style style = styleSheet.Styles[scope.Name];
+                Style style = Styles[scope.Name];
 
-                cssClassName = style.CssClassName;
+                cssClassName = style.ReferenceName;
             }
 
-            WriteElementStart("span", cssClassName, writer);
+            WriteElementStart("span", cssClassName);
         }
 
-        private static void WriteHeaderDivEnd(TextWriter writer)
+        private void WriteHeaderDivEnd()
         {
-            WriteElementEnd("div", writer);
+            WriteElementEnd("div");
         }
 
-        private static void WriteElementEnd(string elementName,
-                                            TextWriter writer)
+        private void WriteElementEnd(string elementName)
         {
-            writer.Write("</{0}>", elementName);
+            Writer.Write("</{0}>", elementName);
         }
 
-        private static void WriteHeaderPreEnd(TextWriter writer)
+        private void WriteHeaderPreEnd()
         {
-            WriteElementEnd("pre", writer);
+            WriteElementEnd("pre");
         }
 
-        private static void WriteHeaderPreStart(TextWriter writer)
+        private void WriteHeaderPreStart()
         {
-            WriteElementStart("pre", writer);
+            WriteElementStart("pre");
         }
 
-        private static void WriteHeaderDivStart(IStyleSheet styleSheet,
-                                                ILanguage language,
-                                                TextWriter writer)
+        private void WriteHeaderDivStart(ILanguage language)
         {
-            WriteElementStart("div", language.CssClassName, writer);
+            WriteElementStart("div", language.CssClassName);
         }
 
-        private static void WriteElementStart(string elementName,
-                                              TextWriter writer)
+        private void WriteElementStart(string elementName)
         {
-            WriteElementStart(elementName, "", writer);
+            WriteElementStart(elementName, "");
         }
 
-        private static void WriteElementStart(string elementName,
-                                              string cssClassName,
-                                              TextWriter writer)
+        private void WriteElementStart(string elementName, string cssClassName)
         {
-            writer.Write("<{0}", elementName);
+            Writer.Write("<{0}", elementName);
             if (!String.IsNullOrEmpty(cssClassName))
             {
-                writer.Write(" class=\"{0}\"", cssClassName);
+                Writer.Write(" class=\"{0}\"", cssClassName);
             }
-            writer.Write(">");
+            Writer.Write(">");
         }
     }
 }

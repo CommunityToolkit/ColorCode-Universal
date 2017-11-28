@@ -1,31 +1,38 @@
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Web;
 using ColorCode.Common;
 using ColorCode.Parsing;
 using System.Text;
 using ColorCode.HTML.Common;
+using ColorCode.Styling;
+using System.Net;
 
 namespace ColorCode
 {
+    /// <summary>
+    /// Creates a <see cref="HtmlFormatter"/>, for creating HTML to display Syntax Highlighted code.
+    /// </summary>
     public class HtmlFormatter : CodeColorizerBase
     {
-        public HtmlFormatter(IStyleSheet styleSheet = null) : base()
+        /// <summary>
+        /// Creates a <see cref="HtmlFormatter"/>, for creating HTML to display Syntax Highlighted code.
+        /// </summary>
+        /// <param name="Style">The Custom styles to Apply to the formatted Code.</param>
+        /// <param name="languageParser">The language parser that the <see cref="HtmlFormatter"/> instance will use for its lifetime.</param>
+        public HtmlFormatter(StyleDictionary Style = null, ILanguageParser languageParser = null) : base(Style, languageParser)
         {
-            StyleSheet = styleSheet ?? StyleSheets.Default;
         }
 
-        public HtmlFormatter(ILanguageParser Parser, IStyleSheet styleSheet = null) : base(Parser)
-        {
-            StyleSheet = styleSheet ?? StyleSheets.Default;
-        }
-
-        public IStyleSheet StyleSheet { get; }
         private TextWriter Writer { get; set; }
 
+        /// <summary>
+        /// Creates the HTML Markup, which can be saved to a .html file.
+        /// </summary>
+        /// <param name="sourceCode">The source code to colorize.</param>
+        /// <param name="language">The language to use to colorize the source code.</param>
+        /// <returns>Colorised HTML Markup.</returns>
         public string GetHtmlString(string sourceCode, ILanguage language)
         {
             var buffer = new StringBuilder(sourceCode.Length * 2);
@@ -58,32 +65,33 @@ namespace ColorCode
 
             foreach (TextInsertion styleInsertion in styleInsertions)
             {
-                Writer.Write(HttpUtility.HtmlEncode(parsedSourceCode.Substring(offset, styleInsertion.Index - offset)));
+                var text = parsedSourceCode.Substring(offset, styleInsertion.Index - offset);
+                Writer.Write(WebUtility.HtmlEncode(text));
                 if (string.IsNullOrEmpty(styleInsertion.Text))
-                    BuildSpanForCapturedStyle(styleInsertion.Scope, StyleSheet, Writer);
+                    BuildSpanForCapturedStyle(styleInsertion.Scope);
                 else
                     Writer.Write(styleInsertion.Text);
                 offset = styleInsertion.Index;
             }
 
-            Writer.Write(HttpUtility.HtmlEncode(parsedSourceCode.Substring(offset)));
+            Writer.Write(WebUtility.HtmlEncode(parsedSourceCode.Substring(offset)));
         }
 
         private void WriteFooter(ILanguage language)
         {
             Writer.WriteLine();
-            WriteHeaderPreEnd(Writer);
-            WriteHeaderDivEnd(Writer);
+            WriteHeaderPreEnd();
+            WriteHeaderDivEnd();
         }
 
         private void WriteHeader(ILanguage language)
         {
-            WriteHeaderDivStart(StyleSheet, Writer);
-            WriteHeaderPreStart(Writer);
+            WriteHeaderDivStart();
+            WriteHeaderPreStart();
             Writer.WriteLine();
         }
 
-        private static void GetStyleInsertionsForCapturedStyle(Scope scope, ICollection<TextInsertion> styleInsertions)
+        private void GetStyleInsertionsForCapturedStyle(Scope scope, ICollection<TextInsertion> styleInsertions)
         {
             styleInsertions.Add(new TextInsertion
             {
@@ -101,16 +109,16 @@ namespace ColorCode
             });
         }
 
-        private static void BuildSpanForCapturedStyle(Scope scope, IStyleSheet styleSheet, TextWriter writer)
+        private void BuildSpanForCapturedStyle(Scope scope)
         {
-            Color foreground = Color.Empty;
-            Color background = Color.Empty;
+            string foreground = string.Empty;
+            string background = string.Empty;
             bool italic = false;
             bool bold = false;
 
-            if (styleSheet.Styles.Contains(scope.Name))
+            if (Styles.Contains(scope.Name))
             {
-                Style style = styleSheet.Styles[scope.Name];
+                Style style = Styles[scope.Name];
 
                 foreground = style.Foreground;
                 background = style.Background;
@@ -118,74 +126,69 @@ namespace ColorCode
                 bold = style.Bold;
             }
 
-            WriteElementStart(writer, "span", foreground, background, italic, bold);
+            WriteElementStart("span", foreground, background, italic, bold);
         }
 
-        private static void WriteHeaderDivEnd(TextWriter writer)
+        private void WriteHeaderDivEnd()
         {
-            WriteElementEnd("div", writer);
+            WriteElementEnd("div");
         }
 
-        private static void WriteElementEnd(string elementName, TextWriter writer)
+        private void WriteElementEnd(string elementName)
         {
-            writer.Write("</{0}>", elementName);
+            Writer.Write("</{0}>", elementName);
         }
 
-        private static void WriteHeaderPreEnd(TextWriter writer)
+        private void WriteHeaderPreEnd()
         {
-            WriteElementEnd("pre", writer);
+            WriteElementEnd("pre");
         }
 
-        private static void WriteHeaderPreStart(TextWriter writer)
+        private void WriteHeaderPreStart()
         {
-            WriteElementStart(writer, "pre");
+            WriteElementStart("pre");
         }
 
-        private static void WriteHeaderDivStart(IStyleSheet styleSheet, TextWriter writer)
+        private void WriteHeaderDivStart()
         {
-            Color foreground = Color.Empty;
-            Color background = Color.Empty;
+            string foreground = string.Empty;
+            string background = string.Empty;
 
-            if (styleSheet.Styles.Contains(ScopeName.PlainText))
+            if (Styles.Contains(ScopeName.PlainText))
             {
-                Style plainTextStyle = styleSheet.Styles[ScopeName.PlainText];
+                Style plainTextStyle = Styles[ScopeName.PlainText];
 
                 foreground = plainTextStyle.Foreground;
                 background = plainTextStyle.Background;
             }
 
-            WriteElementStart(writer, "div", foreground, background);
+            WriteElementStart("div", foreground, background);
         }
 
-        private static void WriteElementStart(TextWriter writer, string elementName)
+        private void WriteElementStart(string elementName, string foreground = null, string background = null, bool italic = false, bool bold = false)
         {
-            WriteElementStart(writer, elementName, Color.Empty, Color.Empty);
-        }
+            Writer.Write("<{0}", elementName);
 
-        private static void WriteElementStart(TextWriter writer, string elementName, Color foreground, Color background, bool italic = false, bool bold = false)
-        {
-            writer.Write("<{0}", elementName);
-
-            if (foreground != Color.Empty || background != Color.Empty || italic || bold)
+            if (!string.IsNullOrWhiteSpace(foreground) || !string.IsNullOrWhiteSpace(background) || italic || bold)
             {
-                writer.Write(" style=\"");
+                Writer.Write(" style=\"");
 
-                if (foreground != Color.Empty)
-                    writer.Write("color:{0};", foreground.ToHtmlColor());
+                if (!string.IsNullOrWhiteSpace(foreground))
+                    Writer.Write("color:{0};", foreground.ToHtmlColor());
 
-                if (background != Color.Empty)
-                    writer.Write("background-color:{0};", background.ToHtmlColor());
+                if (!string.IsNullOrWhiteSpace(background))
+                    Writer.Write("background-color:{0};", background.ToHtmlColor());
 
                 if (italic)
-                    writer.Write("font-style: italic;");
+                    Writer.Write("font-style: italic;");
 
                 if (bold)
-                    writer.Write("font-weight: bold;");
+                    Writer.Write("font-weight: bold;");
 
-                writer.Write("\"");
+                Writer.Write("\"");
             }
 
-            writer.Write(">");
+            Writer.Write(">");
         }
     }
 }

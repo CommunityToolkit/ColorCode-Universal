@@ -1,22 +1,16 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
-using System;
-using System.Drawing;
-
 namespace ColorCode.HTML.Common
 {
     public static class ExtensionMethods
     {
-        public static string ToHtmlColor(this Color color)
+        public static string ToHtmlColor(this string color)
         {
-            if (color == Color.Empty)
-                throw new ArgumentException("You may not create a hex string from an empty color.");
+            if (color == null) return null;
 
-            return string.Format("#{0:X2}{1:X2}{2:X2}{3:X2}",
-                     color.A,
-                     color.R,
-                     color.G,
-                     color.B);
+            var length = 6;
+            var start = color.Length - length;
+            return "#" + color.Substring(start, length);
         }
     }
 }

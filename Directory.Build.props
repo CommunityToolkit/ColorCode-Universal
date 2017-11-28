@@ -1,20 +1,18 @@
 <Project>
 
   <PropertyGroup>
-    <DefaultLanguage>en-NZ</DefaultLanguage>
     <!-- Package Config -->
     <Authors>Microsoft, William Bradley</Authors>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <PackageProjectUrl>https://github.com/WilliamABradley/ColorCode-Universal</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/WilliamABradley/ColorCode-Universal/blob/master/LICENSE</PackageLicenseUrl>
-    <Copyright>Copyright © Microsoft Corporation, William Bradley</Copyright>
+    <Copyright>Copyright © Microsoft Corporation, William Bradley 2017</Copyright>
     <!-- Project States -->
     <IsUwpProject>$(MSBuildProjectName.Contains('UWP'))</IsUwpProject>
     <IsAndroidProject>$(MSBuildProjectName.Contains('Android'))</IsAndroidProject>
     <!-- UWP Config -->
-    <UwpMetaPackageVersion>6.0.1</UwpMetaPackageVersion>
-    <DefaultTargetPlatformVersion>16299</DefaultTargetPlatformVersion>
-    <DefaultTargetPlatformMinVersion>14393</DefaultTargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
   </PropertyGroup>
 
   <PropertyGroup>
