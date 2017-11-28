@@ -53,7 +53,7 @@ To get the Programming Language manually, you can provide the identifier name, w
 ```C#
 var language = ColorCode.Languages.FindById("java");
 ```
-See [LanguageId.cs](ColorCode/Common/LanguageId.cs) for the list of available Languages to parse.
+See [LanguageId.cs](ColorCode.Core/Common/LanguageId.cs) for the list of available Languages to parse.
 
 ## NuGet Packages
 
