@@ -289,6 +289,6 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
-/_build/tools
+/build/tools
 
 BuildResults.xml
