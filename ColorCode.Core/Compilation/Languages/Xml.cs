@@ -131,7 +131,15 @@ namespace ColorCode.Compilation.Languages
 
         public bool HasAlias(string lang)
         {
-            return false;
+            switch (lang.ToLower())
+            {
+                case "xaml":
+                case "axml":
+                    return true;
+
+                default:
+                    return false;
+            }
         }
 
         public override string ToString()

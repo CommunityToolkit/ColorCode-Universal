@@ -28,7 +28,7 @@ namespace ColorCode.Compilation
 
             if (string.IsNullOrEmpty(language.Id))
                 throw new ArgumentException("The language identifier must not be null.", "language");
-            
+
             CompiledLanguage compiledLanguage;
 
             compileLock.EnterReadLock();
@@ -58,10 +58,10 @@ namespace ColorCode.Compilation
                     {
                         if (string.IsNullOrEmpty(language.Name))
                             throw new ArgumentException("The language name must not be null or empty.", "language");
-                        
+
                         if (language.Rules == null || language.Rules.Count == 0)
                             throw new ArgumentException("The language rules collection must not be empty.", "language");
-                        
+
                         compiledLanguage = CompileLanguage(language);
 
                         compiledLanguages.Add(compiledLanguage.Id, compiledLanguage);
@@ -84,17 +84,13 @@ namespace ColorCode.Compilation
         {
             string id = language.Id;
             string name = language.Name;
-            Regex regex;
-            IList<string> captures;
 
-            CompileRules(language.Rules, out regex, out captures);
+            CompileRules(language.Rules, out Regex regex, out IList<string> captures);
 
             return new CompiledLanguage(id, name, regex, captures);
         }
 
-        private static void CompileRules(IList<LanguageRule> rules,
-                                         out Regex regex,
-                                         out IList<string> captures)
+        private static void CompileRules(IList<LanguageRule> rules, out Regex regex, out IList<string> captures)
         {
             StringBuilder regexBuilder = new StringBuilder();
             captures = new List<string>();
@@ -110,11 +106,7 @@ namespace ColorCode.Compilation
             regex = new Regex(regexBuilder.ToString());
         }
 
-
-        private static void CompileRule(LanguageRule languageRule,
-                                                 StringBuilder regex,
-                                                 ICollection<string> captures,
-                                                 bool isFirstRule)
+        private static void CompileRule(LanguageRule languageRule, StringBuilder regex, ICollection<string> captures, bool isFirstRule)
         {
             if (!isFirstRule)
             {
@@ -123,7 +115,7 @@ namespace ColorCode.Compilation
                 regex.AppendLine("|");
                 regex.AppendLine();
             }
-            
+
             regex.AppendFormat("(?-xis)(?m)({0})(?x)", languageRule.Regex);
 
             int numberOfCaptures = GetNumberOfCaptures(languageRule.Regex);
