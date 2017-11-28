@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>uap10.0</TargetFramework>
+    <RootNamespace>ColorCode</RootNamespace>
+    <AssemblyName>ColorCode.UWP</AssemblyName>
+    <Title>ColorCode.UWP</Title>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ColorCode\ColorCode.csproj" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+</Project>

@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 
 namespace ColorCode.Common
 {
@@ -27,14 +26,6 @@ namespace ColorCode.Common
 
                 list[i + 1] = key;
             }
-        }
-
-        public static string ToHtmlColor(this Color color)
-        {
-            if (color == Color.Empty)
-                throw new ArgumentException("You may not create a hex string from an empty color.");
-
-            return ColorTranslator.ToHtml(color);
         }
     }
 }

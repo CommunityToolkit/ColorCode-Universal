@@ -1,0 +1,49 @@
+<Project>
+
+  <PropertyGroup>
+    <DefaultLanguage>en-NZ</DefaultLanguage>
+    <!-- Package Config -->
+    <Authors>Microsoft, William Bradley</Authors>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <PackageProjectUrl>https://github.com/WilliamABradley/ColorCode-Universal</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/WilliamABradley/ColorCode-Universal/blob/master/LICENSE</PackageLicenseUrl>
+    <Copyright>Copyright © Microsoft Corporation, William Bradley</Copyright>
+    <!-- Project States -->
+    <IsUwpProject>$(MSBuildProjectName.Contains('UWP'))</IsUwpProject>
+    <IsAndroidProject>$(MSBuildProjectName.Contains('Android'))</IsAndroidProject>
+    <!-- UWP Config -->
+    <UwpMetaPackageVersion>6.0.1</UwpMetaPackageVersion>
+    <DefaultTargetPlatformVersion>16299</DefaultTargetPlatformVersion>
+    <DefaultTargetPlatformMinVersion>14393</DefaultTargetPlatformMinVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NerdbankGitVersioningVersion>2.0.41</NerdbankGitVersioningVersion>
+  </PropertyGroup>
+
+  <Choose>
+    <When Condition="'$(IsUwpProject)' == 'true' or '$(IsAndroidProject)' == 'true'">
+      <PropertyGroup>
+        <GenerateLibraryLayout>true</GenerateLibraryLayout>
+      </PropertyGroup>
+      
+      <ItemGroup>
+        <PackageReference Include="MSBuild.Sdk.Extras" Version="1.0.9" PrivateAssets="all" />
+      </ItemGroup>
+    </When>
+  </Choose>
+
+  <ItemGroup>
+    <PackageReference Include="Nerdbank.GitVersioning" Version="2.0.41" PrivateAssets="all" />
+  </ItemGroup>
+
+  <!-- https://github.com/NuGet/Home/issues/4337 -->
+  <ImportGroup Condition="'$(ExcludeRestorePackageImports)' == 'true'">
+    <Import Project="$(UserProfile)\.nuget\packages\nerdbank.gitversioning\$(NerdbankGitVersioningVersion)\buildCrossTargeting\Nerdbank.GitVersioning.targets"
+            Condition="Exists('$(UserProfile)\.nuget\packages\nerdbank.gitversioning\$(NerdbankGitVersioningVersion)\buildCrossTargeting\Nerdbank.GitVersioning.targets')" />
+  </ImportGroup>
+  <Target Name="FixUpVersion"
+          BeforeTargets="_GenerateRestoreProjectSpec"
+          DependsOnTargets="GetBuildVersion"
+          Condition=" '$(NerdbankGitVersioningTasksPath)' != '' " />
+</Project>

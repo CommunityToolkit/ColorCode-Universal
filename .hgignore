@@ -1,7 +1,0 @@
-relre:.+/(bin|obj)/.+
-relre:_ReSharper.+
-glob:ColorCode.suo
-glob:BuildResults.xml
-relre:ColorCode\.AcceptanceTests.+\.actual\..+
-relre:.+xunit\.results\.xml
-relre:.+\.csproj\.user
