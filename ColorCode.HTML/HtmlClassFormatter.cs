@@ -60,6 +60,9 @@ namespace ColorCode
         {
             var str = new StringBuilder();
 
+            var plainText = Styles[ScopeName.PlainText];
+            if (!string.IsNullOrWhiteSpace(plainText?.Background)) str.Append($"body{{background-color:{plainText.Background};}}");
+
             foreach (var style in Styles)
             {
                 str.Append($" .{style.ReferenceName}{{");

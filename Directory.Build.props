@@ -15,10 +15,6 @@
     <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <NerdbankGitVersioningVersion>2.0.41</NerdbankGitVersioningVersion>
-  </PropertyGroup>
-
   <Choose>
     <When Condition="'$(IsUwpProject)' == 'true' or '$(IsAndroidProject)' == 'true'">
       <PropertyGroup>

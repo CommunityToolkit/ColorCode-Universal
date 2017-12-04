@@ -6,6 +6,7 @@ using ColorCode.Styling;
 using Windows.UI.Text;
 using ColorCode.UWP.Common;
 using ColorCode.Common;
+using Windows.UI.Xaml;
 
 namespace ColorCode
 {
@@ -19,7 +20,7 @@ namespace ColorCode
         /// </summary>
         /// <param name="Style">The Custom styles to Apply to the formatted Code.</param>
         /// <param name="languageParser">The language parser that the <see cref="RichTextBlockFormatter"/> instance will use for its lifetime.</param>
-        public RichTextBlockFormatter(StyleDictionary Style = null, ILanguageParser languageParser = null) : base(Style, languageParser)
+        public RichTextBlockFormatter(ElementTheme Theme = ElementTheme.Default, StyleDictionary Style = null, ILanguageParser languageParser = null) : base(Theme == ElementTheme.Dark ? Style ?? StyleDictionary.DefaultDark : Style, languageParser)
         {
         }
 
@@ -108,7 +109,7 @@ namespace ColorCode
 
             if (Styles.Contains(Scope.Name))
             {
-                Style style = Styles[Scope.Name];
+                Styling.Style style = Styles[Scope.Name];
 
                 foreground = style.Foreground;
                 background = style.Background;

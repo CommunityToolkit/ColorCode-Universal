@@ -174,9 +174,7 @@ if (!(Test-Path $CAKE_EXE)) {
 
 # Start Cake
 Write-Host "Running build script..."
-Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs"
-
-Write-Host "Press any key to continue ..."
-$fin = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
-
+$path = Split-Path -Parent $MyInvocation.MyCommand.Definition
+$Script = "$path/build.cake"
+Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -verbosity=`"$Verbosity`" $UseMono $UseDryRun $UseExperimental $ScriptArgs"
 exit $LASTEXITCODE

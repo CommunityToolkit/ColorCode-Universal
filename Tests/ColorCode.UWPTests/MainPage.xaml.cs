@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ColorCode.Common;
+using ColorCode.Styling;
+using ColorCode.UWP.Common;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
@@ -21,17 +24,6 @@ namespace ColorCode.UWPTests
             this.InitializeComponent();
         }
 
-        private async void Load_Click(object sender, RoutedEventArgs e)
-        {
-            PresentationBlock.Blocks.Clear();
-
-            var result = await GetCodeFileText();
-            if (result == null) return;
-
-            var formatter = new RichTextBlockFormatter();
-            formatter.FormatRichTextBlock(result.Item1, result.Item2, PresentationBlock);
-        }
-
         private async Task<Tuple<string, ILanguage>> GetCodeFileText()
         {
             var picker = new FileOpenPicker();
@@ -50,12 +42,47 @@ namespace ColorCode.UWPTests
             return new Tuple<string, ILanguage>(text, Language);
         }
 
-        private async void MakeHTML(object sender, RoutedEventArgs e)
+        private void RenderLight(object sender, RoutedEventArgs e)
+        {
+            MainGrid.RequestedTheme = ElementTheme.Light;
+            Render();
+        }
+
+        private void RenderDark(object sender, RoutedEventArgs e)
+        {
+            MainGrid.RequestedTheme = ElementTheme.Dark;
+            Render();
+        }
+
+        private async void Render()
+        {
+            PresentationBlock.Blocks.Clear();
+
+            var result = await GetCodeFileText();
+            if (result == null) return;
+
+            var formatter = new RichTextBlockFormatter(MainGrid.RequestedTheme);
+            var plainText = formatter.Styles[ScopeName.PlainText];
+            MainGrid.Background = (plainText?.Background ?? StyleDictionary.White).GetSolidColorBrush();
+            formatter.FormatRichTextBlock(result.Item1, result.Item2, PresentationBlock);
+        }
+
+        private void HTMLLight(object sender, RoutedEventArgs e)
+        {
+            MakeHTML(StyleDictionary.DefaultLight);
+        }
+
+        private void HTMLDark(object sender, RoutedEventArgs e)
+        {
+            MakeHTML(StyleDictionary.DefaultDark);
+        }
+
+        private async void MakeHTML(StyleDictionary Styles)
         {
             var result = await GetCodeFileText();
             if (result == null) return;
 
-            var formatter = new HtmlFormatter();
+            var formatter = new HtmlFormatter(Styles);
             var html = formatter.GetHtmlString(result.Item1, result.Item2);
 
             var tempfile = await ApplicationData.Current.TemporaryFolder.CreateFileAsync("HTMLResult.html", CreationCollisionOption.ReplaceExisting);

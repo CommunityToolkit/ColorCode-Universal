@@ -93,6 +93,19 @@ namespace ColorCode.Compilation.Languages
                                        {
                                            { 1, ScopeName.Keyword }
                                        }),
+                                   new LanguageRule(
+                                   @"\b[0-9]{1,}\b",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 0, ScopeName.Number }
+                                       }),
+                                   /* WIP
+                                   new LanguageRule(
+                                       @"\b((?=<modifiers>public|protected|internal|private|abstract)?(?(?=<modifiers>) |[^]))[a-zA-Z][a-zA-Z0-9.]{1,})){1,}",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 0, ScopeName.ClassName }
+                                       }), */
                            };
             }
         }

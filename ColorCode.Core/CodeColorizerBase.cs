@@ -17,7 +17,7 @@ namespace ColorCode
             this.languageParser = languageParser
                 ?? new LanguageParser(new LanguageCompiler(Languages.CompiledLanguages), Languages.LanguageRepository);
 
-            this.Styles = Styles ?? StyleDictionary.Default;
+            this.Styles = Styles ?? StyleDictionary.DefaultLight;
         }
 
         /// <summary>
@@ -35,6 +35,6 @@ namespace ColorCode
         /// <summary>
         /// The styles to Apply to the formatted Code.
         /// </summary>
-        protected readonly StyleDictionary Styles;
+        public readonly StyleDictionary Styles;
     }
 }
