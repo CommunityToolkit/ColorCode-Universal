@@ -7,6 +7,16 @@ namespace ColorCode.Styling
     /// </summary>
     public partial class StyleDictionary
     {
+        public const string VSDarkBackground = "#FF1E1E1E";
+        public const string VSDarkComment = "#FF57A64A";
+        public const string VSDarkXMLComment = "#FF608B4E";
+        public const string VSDarkKeyword = "#FF569CD6";
+        public const string VSDarkGray = "#FF9B9B9B";
+        public const string VSDarkNumber = "#FFB5CEA8";
+        public const string VSDarkPlainText = "#FFDADADA";
+        public const string VSDarkClass = "#FF4EC9B0";
+        public const string VSDarkString = "#FFD69D85";
+
         /// <summary>
         /// A theme with Dark Colors.
         /// </summary>
@@ -18,7 +28,7 @@ namespace ColorCode.Styling
                 {
                     new Style(ScopeName.PlainText)
                     {
-                        Foreground = White,
+                        Foreground = VSDarkPlainText,
                         Background = VSDarkBackground,
                         ReferenceName = "plainText"
                     },
@@ -29,12 +39,12 @@ namespace ColorCode.Styling
                     },
                     new Style(ScopeName.HtmlComment)
                     {
-                        Foreground = Green,
+                        Foreground = VSDarkComment,
                         ReferenceName = "htmlComment"
                     },
                     new Style(ScopeName.HtmlTagDelimiter)
                     {
-                        Foreground = Blue,
+                        Foreground = VSDarkKeyword,
                         ReferenceName = "htmlTagDelimiter"
                     },
                     new Style(ScopeName.HtmlElementName)
@@ -49,47 +59,47 @@ namespace ColorCode.Styling
                     },
                     new Style(ScopeName.HtmlAttributeValue)
                     {
-                        Foreground = Blue,
+                        Foreground = VSDarkKeyword,
                         ReferenceName = "htmlAttributeValue"
                     },
                     new Style(ScopeName.HtmlOperator)
                     {
-                        Foreground = Blue,
+                        Foreground = VSDarkKeyword,
                         ReferenceName = "htmlOperator"
                     },
                     new Style(ScopeName.Comment)
                     {
-                        Foreground = Green,
+                        Foreground = VSDarkComment,
                         ReferenceName = "comment"
                     },
                     new Style(ScopeName.XmlDocTag)
                     {
-                        Foreground = Green,
+                        Foreground = VSDarkXMLComment,
                         ReferenceName = "xmlDocTag"
                     },
                     new Style(ScopeName.XmlDocComment)
                     {
-                        Foreground = Gray,
+                        Foreground = VSDarkXMLComment,
                         ReferenceName = "xmlDocComment"
                     },
                     new Style(ScopeName.String)
                     {
-                        Foreground = DullRed,
+                        Foreground = VSDarkString,
                         ReferenceName = "string"
                     },
                     new Style(ScopeName.StringCSharpVerbatim)
                     {
-                        Foreground = DullRed,
+                        Foreground = VSDarkString,
                         ReferenceName = "stringCSharpVerbatim"
                     },
                     new Style(ScopeName.Keyword)
                     {
-                        Foreground = Blue,
+                        Foreground = VSDarkKeyword,
                         ReferenceName = "keyword"
                     },
                     new Style(ScopeName.PreprocessorKeyword)
                     {
-                        Foreground = Blue,
+                        Foreground = VSDarkKeyword,
                         ReferenceName = "preprocessorKeyword"
                     },
                     new Style(ScopeName.HtmlEntity)
@@ -109,22 +119,22 @@ namespace ColorCode.Styling
                     },
                     new Style(ScopeName.XmlAttributeValue)
                     {
-                        Foreground = Blue,
+                        Foreground = VSDarkKeyword,
                         ReferenceName = "xmlAttributeValue"
                     },
                     new Style(ScopeName.XmlCDataSection)
                     {
-                        Foreground = Gray,
+                        Foreground = VSDarkGray,
                         ReferenceName = "xmlCDataSection"
                     },
                     new Style(ScopeName.XmlComment)
                     {
-                        Foreground = Green,
+                        Foreground = VSDarkComment,
                         ReferenceName = "xmlComment"
                     },
                     new Style(ScopeName.XmlDelimiter)
                     {
-                        Foreground = Blue,
+                        Foreground = VSDarkKeyword,
                         ReferenceName = "xmlDelimiter"
                     },
                     new Style(ScopeName.XmlName)
@@ -134,7 +144,7 @@ namespace ColorCode.Styling
                     },
                     new Style(ScopeName.ClassName)
                     {
-                        Foreground = MediumTurqoise,
+                        Foreground = VSDarkClass,
                         ReferenceName = "className"
                     },
                     new Style(ScopeName.CssSelector)
@@ -149,7 +159,7 @@ namespace ColorCode.Styling
                     },
                     new Style(ScopeName.CssPropertyValue)
                     {
-                        Foreground = Blue,
+                        Foreground = VSDarkKeyword,
                         ReferenceName = "cssPropertyValue"
                     },
                     new Style(ScopeName.SqlSystemFunction)
@@ -164,7 +174,7 @@ namespace ColorCode.Styling
                     },
                     new Style(ScopeName.PowerShellOperator)
                     {
-                        Foreground = Gray,
+                        Foreground = VSDarkGray,
                         ReferenceName = "powershellOperator"
                     },
                     new Style(ScopeName.PowerShellType)
@@ -211,18 +221,18 @@ namespace ColorCode.Styling
                     },
                     new Style(ScopeName.StringEscape)
                     {
-                        Foreground = Gray,
+                        Foreground = VSDarkGray,
                         ReferenceName = "stringEscape"
                     },
                     new Style(ScopeName.ControlKeyword)
                     {
-                        Foreground = Blue,
+                        Foreground = VSDarkKeyword,
                         ReferenceName = "controlKeyword"
                     },
                     new Style(ScopeName.Number)
                     {
                         ReferenceName = "number",
-                        Foreground = NumberGreen
+                        Foreground = VSDarkNumber
                     },
                     new Style(ScopeName.Operator)
                     {
@@ -235,13 +245,13 @@ namespace ColorCode.Styling
 
                     new Style(ScopeName.MarkdownHeader)
                     {
-                        Foreground = Blue,
+                        Foreground = VSDarkKeyword,
                         Bold = true,
                         ReferenceName = "markdownHeader"
                     },
                     new Style(ScopeName.MarkdownCode)
                     {
-                        Foreground = Teal,
+                        Foreground = VSDarkString,
                         ReferenceName = "markdownCode"
                     },
                     new Style(ScopeName.MarkdownListItem)

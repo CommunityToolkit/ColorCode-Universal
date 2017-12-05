@@ -19,7 +19,6 @@ namespace ColorCode.Styling
             return item.ScopeName;
         }
 
-        public const string VSDarkBackground = "#FF1E1E1E";
         public const string Blue = "#FF0000FF";
         public const string White = "#FFFFFFFF";
         public const string Black = "#FF000000";
@@ -38,6 +37,5 @@ namespace ColorCode.Styling
         public const string OliveDrab = "#FF6B8E23";
         public const string DarkOliveGreen = "#FF556B2F";
         public const string DarkCyan = "#FF008B8B";
-        public const string NumberGreen = "#FFB5CEA8";
     }
 }

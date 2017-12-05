@@ -66,6 +66,12 @@ namespace ColorCode.Compilation.Languages
                                        {
                                            {0, ScopeName.Keyword},
                                        }),
+                               new LanguageRule(
+                                   @"\b[0-9]{1,}\b",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 0, ScopeName.Number }
+                                       }),
                            };
             }
         }
