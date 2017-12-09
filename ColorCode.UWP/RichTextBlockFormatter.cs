@@ -18,9 +18,17 @@ namespace ColorCode
         /// <summary>
         /// Creates a <see cref="RichTextBlockFormatter"/>, for rendering Syntax Highlighted code to a RichTextBlock.
         /// </summary>
+        /// <param name="Theme">The Theme to use, determines whether to use Default Light or Default Dark.</param>
+        public RichTextBlockFormatter(ElementTheme Theme, ILanguageParser languageParser = null) : this(Theme == ElementTheme.Dark ? StyleDictionary.DefaultDark : StyleDictionary.DefaultLight, languageParser)
+        {
+        }
+
+        /// <summary>
+        /// Creates a <see cref="RichTextBlockFormatter"/>, for rendering Syntax Highlighted code to a RichTextBlock.
+        /// </summary>
         /// <param name="Style">The Custom styles to Apply to the formatted Code.</param>
         /// <param name="languageParser">The language parser that the <see cref="RichTextBlockFormatter"/> instance will use for its lifetime.</param>
-        public RichTextBlockFormatter(ElementTheme Theme = ElementTheme.Default, StyleDictionary Style = null, ILanguageParser languageParser = null) : base(Theme == ElementTheme.Dark ? Style ?? StyleDictionary.DefaultDark : Style, languageParser)
+        public RichTextBlockFormatter(StyleDictionary Style = null, ILanguageParser languageParser = null) : base(Style, languageParser)
         {
         }
 

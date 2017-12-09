@@ -116,6 +116,7 @@ namespace ColorCode.Compilation.Languages
             {
                 case "cs":
                 case "c#":
+                case "csharp":
                 case "cake":
                     return true;
 
