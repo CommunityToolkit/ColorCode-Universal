@@ -85,7 +85,7 @@ namespace ColorCode
             return str.ToString();
         }
 
-        protected override void Write(string parsedSourceCode, IList<Scope> scopes)
+        protected void Write(string parsedSourceCode, IList<Scope> scopes)
         {
             var styleInsertions = new List<TextInsertion>();
 

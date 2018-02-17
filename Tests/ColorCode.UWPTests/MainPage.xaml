@@ -7,22 +7,20 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid x:Name="MainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <ScrollViewer VerticalScrollMode="Disabled" HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Auto">
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Render to Rich Text Block Light Theme" Click="RenderLight" Margin="5" />
-                <Button Content="Render to Rich Text Block Dark Theme" Click="RenderDark" Margin="5" />
-                <Button Content="Create HTML Light Theme" Click="HTMLLight"  Margin="5" />
-                <Button Content="Create HTML Dark Theme" Click="HTMLDark"  Margin="5" />
-            </StackPanel>
-        </ScrollViewer>
-
-        <ScrollViewer Grid.Row="1" IsHorizontalRailEnabled="True" HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Auto">
-            <RichTextBlock x:Name="PresentationBlock" FontFamily="Consolas" />
-        </ScrollViewer>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button x:Name="RichTextSample"
+                    Height="200"
+                    Width="200"
+                    Margin="5"
+                    Content="RichTextBlockFormatter"
+                    Click="RichTextSample_Click" />
+            <Button x:Name="RichEditSample"
+                    Height="200"
+                    Width="200"
+                    Margin="5"
+                    Content="RichEditBlockFormatter"
+                    Click="RichEditSample_Click" />
+        </StackPanel>
     </Grid>
 </Page>

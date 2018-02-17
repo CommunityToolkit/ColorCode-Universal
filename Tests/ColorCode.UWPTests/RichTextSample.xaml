@@ -1,0 +1,28 @@
+﻿<Page
+    x:Class="ColorCode.UWPTests.RichTextSample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ColorCode.UWPTests"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid x:Name="MainGrid"  Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ScrollViewer VerticalScrollMode="Disabled" HorizontalScrollBarVisibility="Auto" HorizontalScrollMode="Auto">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Render to Rich Text Block Light Theme" Click="RenderLight" Margin="5" />
+                <Button Content="Render to Rich Text Block Dark Theme" Click="RenderDark" Margin="5" />
+                <Button Content="Create HTML Light Theme" Click="HTMLLight"  Margin="5" />
+                <Button Content="Create HTML Dark Theme" Click="HTMLDark"  Margin="5" />
+            </StackPanel>
+        </ScrollViewer>
+
+        <ScrollViewer Grid.Row="1" IsHorizontalRailEnabled="True" HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Auto">
+            <RichTextBlock x:Name="PresentationBlock" FontFamily="Consolas" />
+        </ScrollViewer>
+    </Grid>
+</Page>

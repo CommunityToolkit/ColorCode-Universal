@@ -54,12 +54,12 @@ namespace ColorCode
         public void FormatInlines(string sourceCode, ILanguage Language, InlineCollection InlineCollection)
         {
             this.InlineCollection = InlineCollection;
-            languageParser.Parse(sourceCode, Language, (parsedSourceCode, captures) => Write(parsedSourceCode, captures));
+            languageParser.Parse(sourceCode, Language, (parsedSourceCode, captures) => Insert(parsedSourceCode, captures));
         }
 
         private InlineCollection InlineCollection { get; set; }
 
-        protected override void Write(string parsedSourceCode, IList<Scope> scopes)
+        protected void Insert(string parsedSourceCode, IList<Scope> scopes)
         {
             var styleInsertions = new List<TextInsertion>();
 

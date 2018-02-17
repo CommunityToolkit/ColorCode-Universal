@@ -1,16 +1,6 @@
-﻿using ColorCode.Common;
-using ColorCode.Styling;
-using ColorCode.UWP.Common;
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using Windows.Storage;
-using Windows.Storage.Pickers;
-using Windows.System;
+﻿using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace ColorCode.UWPTests
 {
@@ -19,80 +9,44 @@ namespace ColorCode.UWPTests
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private SystemNavigationManager Manager;
+        private static bool HasLoaded;
+
         public MainPage()
         {
             this.InitializeComponent();
+            this.Loaded += MainPage_Loaded;
+            Manager = SystemNavigationManager.GetForCurrentView();
         }
 
-        private async Task<Tuple<string, ILanguage>> GetCodeFileText()
+        private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            var picker = new FileOpenPicker();
-            picker.FileTypeFilter.Add("*");
-
-            var file = await picker.PickSingleFileAsync();
-            if (file == null) return null;
-            string text = "";
-
-            using (var reader = new StreamReader(await file.OpenStreamForReadAsync(), true))
+            if (!HasLoaded)
             {
-                text = await reader.ReadToEndAsync();
+                this.Frame.Navigated += Frame_Navigated;
+                Manager.BackRequested += Manager_BackRequested;
+                HasLoaded = true;
             }
-
-            ILanguage Language = Languages.FindById(file.FileType.Replace(".", "")) ?? Languages.CSharp;
-            return new Tuple<string, ILanguage>(text, Language);
         }
 
-        private void RenderLight(object sender, RoutedEventArgs e)
+        private void Manager_BackRequested(object sender, BackRequestedEventArgs e)
         {
-            MainGrid.RequestedTheme = ElementTheme.Light;
-            Render();
+            this.Frame.GoBack();
         }
 
-        private void RenderDark(object sender, RoutedEventArgs e)
+        private void Frame_Navigated(object sender, Windows.UI.Xaml.Navigation.NavigationEventArgs e)
         {
-            MainGrid.RequestedTheme = ElementTheme.Dark;
-            Render();
+            Manager.AppViewBackButtonVisibility = Frame.CanGoBack ? AppViewBackButtonVisibility.Visible : AppViewBackButtonVisibility.Collapsed;
         }
 
-        private async void Render()
+        private void RichTextSample_Click(object sender, RoutedEventArgs e)
         {
-            PresentationBlock.Blocks.Clear();
-
-            var result = await GetCodeFileText();
-            if (result == null) return;
-
-            var formatter = new RichTextBlockFormatter(MainGrid.RequestedTheme);
-            var plainText = formatter.Styles[ScopeName.PlainText];
-            MainGrid.Background = (plainText?.Background ?? StyleDictionary.White).GetSolidColorBrush();
-            formatter.FormatRichTextBlock(result.Item1, result.Item2, PresentationBlock);
+            this.Frame.Navigate(typeof(RichTextSample));
         }
 
-        private void HTMLLight(object sender, RoutedEventArgs e)
+        private void RichEditSample_Click(object sender, RoutedEventArgs e)
         {
-            MakeHTML(StyleDictionary.DefaultLight);
-        }
-
-        private void HTMLDark(object sender, RoutedEventArgs e)
-        {
-            MakeHTML(StyleDictionary.DefaultDark);
-        }
-
-        private async void MakeHTML(StyleDictionary Styles)
-        {
-            var result = await GetCodeFileText();
-            if (result == null) return;
-
-            var formatter = new HtmlFormatter(Styles);
-            var html = formatter.GetHtmlString(result.Item1, result.Item2);
-
-            var tempfile = await ApplicationData.Current.TemporaryFolder.CreateFileAsync("HTMLResult.html", CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(tempfile, html);
-
-            try
-            {
-                await Launcher.LaunchFileAsync(tempfile);
-            }
-            catch { }
+            this.Frame.Navigate(typeof(RichEditSample));
         }
     }
 }

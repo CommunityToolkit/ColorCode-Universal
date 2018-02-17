@@ -1,7 +1,6 @@
 ﻿using ColorCode.Compilation;
 using ColorCode.Parsing;
 using ColorCode.Styling;
-using System.Collections.Generic;
 
 namespace ColorCode
 {
@@ -19,13 +18,6 @@ namespace ColorCode
 
             this.Styles = Styles ?? StyleDictionary.DefaultLight;
         }
-
-        /// <summary>
-        /// Writes the parsed source code to the ouput using the specified style sheet.
-        /// </summary>
-        /// <param name="parsedSourceCode">The parsed source code to format and write to the output.</param>
-        /// <param name="scopes">The captured scopes for the parsed source code.</param>
-        protected abstract void Write(string parsedSourceCode, IList<Scope> scopes);
 
         /// <summary>
         /// The language parser that the <see cref="CodeColorizerBase"/> instance will use for its lifetime.
