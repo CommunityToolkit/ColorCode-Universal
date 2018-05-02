@@ -7,15 +7,21 @@ namespace ColorCode.Styling
     /// </summary>
     public partial class StyleDictionary
     {
-        public const string VSDarkBackground = "#FF1E1E1E";
-        public const string VSDarkComment = "#FF57A64A";
-        public const string VSDarkXMLComment = "#FF608B4E";
-        public const string VSDarkKeyword = "#FF569CD6";
-        public const string VSDarkGray = "#FF9B9B9B";
-        public const string VSDarkNumber = "#FFB5CEA8";
-        public const string VSDarkPlainText = "#FFDADADA";
-        public const string VSDarkClass = "#FF4EC9B0";
-        public const string VSDarkString = "#FFD69D85";
+        private const string VSDarkBackground = "#FF1E1E1E";
+        private const string VSDarkPlainText = "#FFDADADA";
+
+        private const string VSDarkXMLDelimeter = "#FF808080";
+        private const string VSDarkXMLName = "#FF#E6E6E6";
+        private const string VSDarkXMLAttribute = "#FF92CAF4";
+        private const string VSDarkXAMLCData = "#FFC0D088";
+        private const string VSDarkXMLComment = "#FF608B4E";
+
+        private const string VSDarkComment = "#FF57A64A";
+        private const string VSDarkKeyword = "#FF569CD6";
+        private const string VSDarkGray = "#FF9B9B9B";
+        private const string VSDarkNumber = "#FFB5CEA8";
+        private const string VSDarkClass = "#FF4EC9B0";
+        private const string VSDarkString = "#FFD69D85";
 
         /// <summary>
         /// A theme with Dark Colors.
@@ -109,12 +115,12 @@ namespace ColorCode.Styling
                     },
                     new Style(ScopeName.XmlAttribute)
                     {
-                        Foreground = Red,
+                        Foreground = VSDarkXMLAttribute,
                         ReferenceName = "xmlAttribute"
                     },
                     new Style(ScopeName.XmlAttributeQuotes)
                     {
-                        Foreground = Black,
+                        Foreground = VSDarkKeyword,
                         ReferenceName = "xmlAttributeQuotes"
                     },
                     new Style(ScopeName.XmlAttributeValue)
@@ -124,7 +130,7 @@ namespace ColorCode.Styling
                     },
                     new Style(ScopeName.XmlCDataSection)
                     {
-                        Foreground = VSDarkGray,
+                        Foreground = VSDarkXAMLCData,
                         ReferenceName = "xmlCDataSection"
                     },
                     new Style(ScopeName.XmlComment)
@@ -134,12 +140,12 @@ namespace ColorCode.Styling
                     },
                     new Style(ScopeName.XmlDelimiter)
                     {
-                        Foreground = VSDarkKeyword,
+                        Foreground = VSDarkXMLDelimeter,
                         ReferenceName = "xmlDelimiter"
                     },
                     new Style(ScopeName.XmlName)
                     {
-                        Foreground = DullRed,
+                        Foreground = VSDarkXMLName,
                         ReferenceName = "xmlName"
                     },
                     new Style(ScopeName.ClassName)
