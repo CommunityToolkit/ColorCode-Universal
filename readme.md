@@ -55,21 +55,13 @@ var language = ColorCode.Languages.FindById("java");
 ```
 See [LanguageId.cs](ColorCode.Core/Common/LanguageId.cs) for the list of available Languages to parse.
 
-## NuGet Packages
+## Packages
 
-| NuGet Package | Description |
+| Package | Description | Supports |
 | --- | --- |
-| [ColorCode.Core](https://www.nuget.org/packages/ColorCode.Core) | The Core Library, containing the Parser, and the classes to create your own formatter. |
-| [ColorCode.HTML](https://www.nuget.org/packages/ColorCode.HTML) | The Library containing the HtmlFormatter, and the HtmlClassFormatter, for rendering Html from the Colorized Code. |
-| [ColorCode.UWP](https://www.nuget.org/packages/ColorCode.UWP) | The Library containing the RichTextBlockFormatter, for rendering the Colorized Code to a RichTextBlock. |
-
-## Supported SDKs
-
-Requires .NET Standard 1.4 support.
-
-### UWP
-
-Tested against 10.0.14393.0 and up.
+| [ColorCode.Core](https://www.nuget.org/packages/ColorCode.Core) | The Core Library, containing the Parser, and the classes to create your own formatter. | .NET Standard 1.4 |
+| [ColorCode.HTML](https://www.nuget.org/packages/ColorCode.HTML) | The Library containing the HtmlFormatter, and the HtmlClassFormatter, for rendering Html from the Colorized Code. | .NET Standard 1.4 |
+| [ColorCode.UWP](https://www.nuget.org/packages/ColorCode.UWP) | The Library containing the RichTextBlockFormatter, for rendering the Colorized Code to a RichTextBlock. | Tested against 10.0.14393.0 and up. |
 
 ## Feedback and Requests
 
