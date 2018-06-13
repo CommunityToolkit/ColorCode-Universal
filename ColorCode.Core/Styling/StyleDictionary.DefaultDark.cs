@@ -298,6 +298,16 @@ namespace ColorCode.Styling
                     {
                         ReferenceName = "specialChar"
                     },
+                    new Style(ScopeName.Addition)
+                    {
+                        Foreground = Green,
+                        ReferenceName = "addition"
+                    },
+                    new Style(ScopeName.Deletion)
+                    {
+                        Foreground = Red,
+                        ReferenceName = "addition"
+                    }
                 };
             }
         }
