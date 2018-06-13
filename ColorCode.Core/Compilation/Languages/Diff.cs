@@ -3,7 +3,7 @@
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System.Collections.Generic;
-using ColorSyntax.Common;
+using ColorCode.Common;
 
 namespace ColorCode.Compilation.Languages
 {
