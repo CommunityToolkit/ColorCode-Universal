@@ -5,7 +5,7 @@
 using System.Collections.Generic;
 using ColorSyntax.Common;
 
-namespace ColorSyntax.Compilation.Languages
+namespace ColorCode.Compilation.Languages
 {
     public class Diff : ILanguage
     {
