@@ -48,13 +48,13 @@ namespace ColorSyntax.Compilation.Languages
                                    @"^(\*{5}).*(\*{5})(\r?\n?)",
                                    new Dictionary<int, string>
                                        {
-                                           { 0, ScopeName.Brackets },
+                                           { 0, ScopeName.DiffComment },
                                        }),
                                new LanguageRule(
                                    @"^((-{3,})|(\*{3,})|(\+{3,})|(Index:)|(={3,})).*(\r?\n?)",
                                    new Dictionary<int, string>
                                        {
-                                           { 0, ScopeName.Brackets },
+                                           { 0, ScopeName.DiffComment },
                                        }),
                                 new LanguageRule(
                                    @"(^(\+|!).*(\r?\n?))",
