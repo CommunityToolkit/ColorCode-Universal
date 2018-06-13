@@ -1,3 +1,7 @@
+// Copyright (c) 2015 Christopher Pardi.
+
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+
 using System.Collections.Generic;
 using ColorSyntax.Common;
 
@@ -7,17 +11,17 @@ namespace ColorSyntax.Compilation.Languages
     {
         public string Id
         {
-            get { return LanguageId.Fortran; }
+            get { return LanguageId.Diff; }
         }
 
         public string Name
         {
-            get { return "Fortran"; }
+            get { return "Diff"; }
         }
 
         public string CssClassName
         {
-            get { return "fortran"; }
+            get { return "diff"; }
         }
 
         public string FirstLinePattern
@@ -34,44 +38,36 @@ namespace ColorSyntax.Compilation.Languages
             {
                 return new List<LanguageRule>
                            {
-                               // Comments
-                                new LanguageRule(
-                                   @"(?m)(^\+.*$)|(^!.*$)",
+                               new LanguageRule(
+                                   @"(?m)^(((---)|(\*\*\*)) +\d+,\d+ +((----)|(\*\*\*\*))|@@ +\-\d+,\d+ \+\d+,\d+ +@@)",
                                    new Dictionary<int, string>
                                        {
-                                           { 0, ScopeName.Addition },
+                                           { 0, ScopeName.DiffMeta },
                                        }),
-                                new LanguageRule(
-                                   @"(?m)^\-.*$",
-                                   new Dictionary<int, string>
-                                       {
-                                           { 0, ScopeName.Deletion },
-                                       }),
-                                new LanguageRule(
-                                   @"(?m)^@@.*@@$",
-                                   new Dictionary<int, string>
-                                       {
-                                           { 0, ScopeName.Type },
-                                       }),
-                                new LanguageRule(
-                                   @"(?m)^((---)|(\+\+\+)|(\*\*\*)) +\d+,\d+ +((----)|(\+\+\+\+)|(\*\*\*\*))",
-                                   new Dictionary<int, string>
-                                       {
-                                           { 0, ScopeName.Type },
-                                       }),
-                                new LanguageRule(
-                                   @"(?m)^((Index:)|(={3,})|(\+{3})|(\*{3})|(\-{3})).*$",
-                                   new Dictionary<int, string>
-                                       {
-                                           { 0, ScopeName.Brackets },
-                                       }),
-                                new LanguageRule(
+                               new LanguageRule(
                                    @"(?m)^(\*{5}).*(\*{5})$",
                                    new Dictionary<int, string>
                                        {
                                            { 0, ScopeName.Brackets },
                                        }),
-
+                               new LanguageRule(
+                                   @"(?m)^((-{3,})|(\*{3,})|(\+{3,})|(Index:)|(={3,})).*$",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 0, ScopeName.Brackets },
+                                       }),
+                                new LanguageRule(
+                                   @"(?m)(^(\+|!).*$)",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 0, ScopeName.DiffAddition },
+                                       }),
+                                new LanguageRule(
+                                   @"(?m)^\-.*$",
+                                   new Dictionary<int, string>
+                                       {
+                                           { 0, ScopeName.DiffDeletion },
+                                       }),
                            };
             }
         }
@@ -81,7 +77,6 @@ namespace ColorSyntax.Compilation.Languages
             switch (lang.ToLower())
             {
                 case "diff":
-                    return true;
                 case "patch":
                     return true;
                 default:
