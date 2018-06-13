@@ -298,7 +298,7 @@ namespace ColorCode.Styling
                     },
                     new Style(ScopeName.DiffComment)
                     {
-                        Foreground = VSDarkGray,
+                        Foreground = Gray,
                         ReferenceName = "diffComment"
                     }
                 };
