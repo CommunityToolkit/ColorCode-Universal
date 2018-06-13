@@ -39,31 +39,31 @@ namespace ColorSyntax.Compilation.Languages
                 return new List<LanguageRule>
                            {
                                new LanguageRule(
-                                   @"(?m)^(((---)|(\*\*\*)) +\d+,\d+ +((----)|(\*\*\*\*))|@@ +\-\d+,\d+ \+\d+,\d+ +@@)",
+                                   @"^(((---)|(\*\*\*)) +\d+,\d+ +((----)|(\*\*\*\*))|@@ +\-\d+,\d+ \+\d+,\d+ +@@)(\r?\n?)",
                                    new Dictionary<int, string>
                                        {
                                            { 0, ScopeName.DiffMeta },
                                        }),
                                new LanguageRule(
-                                   @"(?m)^(\*{5}).*(\*{5})$",
+                                   @"^(\*{5}).*(\*{5})(\r?\n?)",
                                    new Dictionary<int, string>
                                        {
                                            { 0, ScopeName.Brackets },
                                        }),
                                new LanguageRule(
-                                   @"(?m)^((-{3,})|(\*{3,})|(\+{3,})|(Index:)|(={3,})).*$",
+                                   @"^((-{3,})|(\*{3,})|(\+{3,})|(Index:)|(={3,})).*(\r?\n?)",
                                    new Dictionary<int, string>
                                        {
                                            { 0, ScopeName.Brackets },
                                        }),
                                 new LanguageRule(
-                                   @"(?m)(^(\+|!).*$)",
+                                   @"(^(\+|!).*(\r?\n?))",
                                    new Dictionary<int, string>
                                        {
                                            { 0, ScopeName.DiffAddition },
                                        }),
                                 new LanguageRule(
-                                   @"(?m)^\-.*$",
+                                   @"^\-.*(\r?\n?)",
                                    new Dictionary<int, string>
                                        {
                                            { 0, ScopeName.DiffDeletion },
