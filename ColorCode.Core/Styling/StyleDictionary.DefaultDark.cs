@@ -313,6 +313,11 @@ namespace ColorCode.Styling
                         Foreground = OrangeRed,
                         ReferenceName = "diffMeta"
                     },
+                    new Style(ScopeName.DiffComment)
+                    {
+                        Foreground = VSDarkGray,
+                        ReferenceName = "diffComment"
+                    }
                 };
             }
         }
