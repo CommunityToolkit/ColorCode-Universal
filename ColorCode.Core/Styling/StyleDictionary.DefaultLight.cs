@@ -281,6 +281,26 @@ namespace ColorCode.Styling
                     {
                         ReferenceName = "specialChar"
                     },
+                    new Style(ScopeName.DiffAddition)
+                    {
+                        Foreground = Green,
+                        ReferenceName = "diffAddition"
+                    },
+                    new Style(ScopeName.DiffDeletion)
+                    {
+                        Foreground = Red,
+                        ReferenceName = "diffDeletion"
+                    },
+                    new Style(ScopeName.DiffMeta)
+                    {
+                        Foreground = OrangeRed,
+                        ReferenceName = "diffMeta"
+                    },
+                    new Style(ScopeName.DiffComment)
+                    {
+                        Foreground = VSDarkGray,
+                        ReferenceName = "diffComment"
+                    }
                 };
             }
         }
