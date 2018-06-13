@@ -298,16 +298,21 @@ namespace ColorCode.Styling
                     {
                         ReferenceName = "specialChar"
                     },
-                    new Style(ScopeName.Addition)
+                    new Style(ScopeName.DiffAddition)
                     {
                         Foreground = Green,
-                        ReferenceName = "addition"
+                        ReferenceName = "diffAddition"
                     },
-                    new Style(ScopeName.Deletion)
+                    new Style(ScopeName.DiffDeletion)
                     {
                         Foreground = Red,
-                        ReferenceName = "addition"
-                    }
+                        ReferenceName = "diffDeletion"
+                    },
+                    new Style(ScopeName.DiffMeta)
+                    {
+                        Foreground = OrangeRed,
+                        ReferenceName = "diffMeta"
+                    },
                 };
             }
         }
