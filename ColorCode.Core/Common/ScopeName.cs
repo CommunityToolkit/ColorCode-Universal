@@ -60,5 +60,9 @@ namespace ColorCode.Common
         public const string Intrinsic = "Intrinsic";
         public const string Brackets = "Brackets";
         public const string Continuation = "Continuation";
+        public const string DiffAddition = "DiffAddition";
+        public const string DiffDeletion = "DiffDeletion";
+        public const string DiffMeta = "DiffMeta";
+        public const string DiffComment = "DiffComment";
     }
 }
