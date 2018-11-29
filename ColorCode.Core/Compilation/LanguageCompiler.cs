@@ -12,6 +12,7 @@ namespace ColorCode.Compilation
     public class LanguageCompiler : ILanguageCompiler
     {
         private static readonly Regex numberOfCapturesRegex = new Regex(@"(?x)(?<!(\\|(?!\\)\(\?))\((?!\?)", RegexOptions.Compiled);
+        private static readonly TimeSpan defaultRegexParseTimeout = TimeSpan.FromSeconds(1);
         private readonly Dictionary<string, CompiledLanguage> compiledLanguages;
         private readonly ReaderWriterLockSlim compileLock;
 
@@ -103,7 +104,7 @@ namespace ColorCode.Compilation
             for (int i = 1; i < rules.Count; i++)
                 CompileRule(rules[i], regexBuilder, captures, false);
 
-            regex = new Regex(regexBuilder.ToString());
+            regex = new Regex(regexBuilder.ToString(), RegexOptions.None, defaultRegexParseTimeout);
         }
 
         private static void CompileRule(LanguageRule languageRule, StringBuilder regex, ICollection<string> captures, bool isFirstRule)
