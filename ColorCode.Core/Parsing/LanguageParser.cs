@@ -12,14 +12,26 @@ namespace ColorCode.Parsing
     {
         private readonly ILanguageCompiler languageCompiler;
         private readonly ILanguageRepository languageRepository;
+        private readonly double defaultParseTimeoutSec = 1;
 
         public LanguageParser(ILanguageCompiler languageCompiler,
-                              ILanguageRepository languageRepository)
+                              ILanguageRepository languageRepository,
+                              double defaultParseTimeoutSec)
         {
             this.languageCompiler = languageCompiler;
             this.languageRepository = languageRepository;
+            this.defaultParseTimeoutSec = defaultParseTimeoutSec;
         }
 
+        /// <summary>
+        /// Formats the specified text using the rules defined by the specified language. 
+        /// </summary>
+        /// <param name="sourceCode">The text to parse</param>
+        /// <param name="language">The language used to define the syntax highlighting rules</param>
+        /// <param name="parseHandler">Called after parsing is complete</param>
+        /// <exception cref="System.Text.RegularExpressions.RegexMatchTimeoutException">
+        /// Thrown if parsing takes longer than the default specified duration
+        /// </exception>
         public void Parse(string sourceCode,
                           ILanguage language,
                           Action<string, IList<Scope>> parseHandler)
@@ -27,7 +39,7 @@ namespace ColorCode.Parsing
             if (string.IsNullOrEmpty(sourceCode))
                 return;
 
-            CompiledLanguage compiledLanguage = languageCompiler.Compile(language);
+            CompiledLanguage compiledLanguage = languageCompiler.Compile(language, defaultParseTimeoutSec);
 
             Parse(sourceCode, compiledLanguage, parseHandler);
         }
@@ -157,7 +169,7 @@ namespace ColorCode.Parsing
                 throw new InvalidOperationException("The nested language was not found in the language repository.");
             else
             {
-                CompiledLanguage nestedCompiledLanguage = languageCompiler.Compile(nestedLanguage);
+                CompiledLanguage nestedCompiledLanguage = languageCompiler.Compile(nestedLanguage, defaultParseTimeoutSec);
 
                 Match regexMatch = nestedCompiledLanguage.Regex.Match(regexCapture.Value, 0, regexCapture.Value.Length);
 

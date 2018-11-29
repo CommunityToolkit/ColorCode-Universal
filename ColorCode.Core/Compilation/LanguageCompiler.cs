@@ -22,7 +22,7 @@ namespace ColorCode.Compilation
             compileLock = new ReaderWriterLockSlim();
         }
 
-        public CompiledLanguage Compile(ILanguage language)
+        public CompiledLanguage Compile(ILanguage language, double defaultParseTimeoutSec)
         {
             Guard.ArgNotNull(language, "language");
 
@@ -62,7 +62,7 @@ namespace ColorCode.Compilation
                         if (language.Rules == null || language.Rules.Count == 0)
                             throw new ArgumentException("The language rules collection must not be empty.", "language");
 
-                        compiledLanguage = CompileLanguage(language);
+                        compiledLanguage = CompileLanguage(language, defaultParseTimeoutSec);
 
                         compiledLanguages.Add(compiledLanguage.Id, compiledLanguage);
                     }
@@ -80,17 +80,17 @@ namespace ColorCode.Compilation
             return compiledLanguage;
         }
 
-        private static CompiledLanguage CompileLanguage(ILanguage language)
+        private static CompiledLanguage CompileLanguage(ILanguage language, double defaultParseTimeoutSec)
         {
             string id = language.Id;
             string name = language.Name;
 
-            CompileRules(language.Rules, out Regex regex, out IList<string> captures);
+            CompileRules(language.Rules, defaultParseTimeoutSec, out Regex regex, out IList<string> captures);
 
             return new CompiledLanguage(id, name, regex, captures);
         }
 
-        private static void CompileRules(IList<LanguageRule> rules, out Regex regex, out IList<string> captures)
+        private static void CompileRules(IList<LanguageRule> rules, double defaultParseTimeoutSec, out Regex regex, out IList<string> captures)
         {
             StringBuilder regexBuilder = new StringBuilder();
             captures = new List<string>();
@@ -103,7 +103,7 @@ namespace ColorCode.Compilation
             for (int i = 1; i < rules.Count; i++)
                 CompileRule(rules[i], regexBuilder, captures, false);
 
-            regex = new Regex(regexBuilder.ToString());
+            regex = new Regex(regexBuilder.ToString(), RegexOptions.None, TimeSpan.FromSeconds(defaultParseTimeoutSec));
         }
 
         private static void CompileRule(LanguageRule languageRule, StringBuilder regex, ICollection<string> captures, bool isFirstRule)
