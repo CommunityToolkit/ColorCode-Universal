@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System.Collections.Generic;
+using System.Threading;
 using ColorCode.Common;
 using ColorCode.Compilation;
 using ColorCode.Compilation.Languages;
@@ -15,12 +16,14 @@ namespace ColorCode
         internal static readonly LanguageRepository LanguageRepository;
         internal static readonly Dictionary<string, ILanguage> LoadedLanguages;
         internal static Dictionary<string, CompiledLanguage> CompiledLanguages;
+        internal static ReaderWriterLockSlim CompileLock;
 
         static Languages()
         {
             LoadedLanguages = new Dictionary<string, ILanguage>();
             CompiledLanguages = new Dictionary<string, CompiledLanguage>();
             LanguageRepository = new LanguageRepository(LoadedLanguages);
+            CompileLock = new ReaderWriterLockSlim();
 
             Load<JavaScript>();
             Load<Html>();
