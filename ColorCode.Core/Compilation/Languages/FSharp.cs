@@ -114,6 +114,7 @@ namespace ColorCode.Compilation.Languages
             {
                 case "fs":
                 case "f#":
+                case "fsharp":
                     return true;
 
                 default:
