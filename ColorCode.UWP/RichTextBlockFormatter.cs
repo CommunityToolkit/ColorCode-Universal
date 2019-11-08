@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using ColorCode.Parsing;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Documents;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Documents;
 using ColorCode.Styling;
 using Windows.UI.Text;
 using ColorCode.UWP.Common;
 using ColorCode.Common;
-using Windows.UI.Xaml;
+using Microsoft.UI.Xaml;
 
 namespace ColorCode
 {

@@ -11,18 +11,22 @@
     <IsUwpProject>$(MSBuildProjectName.Contains('UWP'))</IsUwpProject>
     <IsAndroidProject>$(MSBuildProjectName.Contains('Android'))</IsAndroidProject>
     <!-- UWP Config -->
-    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
   </PropertyGroup>
 
   <Choose>
     <When Condition="'$(IsUwpProject)' == 'true' or '$(IsAndroidProject)' == 'true'">
       <PropertyGroup>
         <GenerateLibraryLayout>true</GenerateLibraryLayout>
+        <IsWinUIAlpha Condition="'$(IsWinUIAlpha)' == ''">true</IsWinUIAlpha>
+        <WindowsKitsPath Condition="'$(IsWinUIAlpha)' == 'true'">WinUI-Alpha-Projects-Don-t-Use-SDK-Xaml-Tools</WindowsKitsPath>
       </PropertyGroup>
       
       <ItemGroup>
-        <PackageReference Include="MSBuild.Sdk.Extras" Version="1.0.9" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.WinUI">        
+          <Version>3.0.0-alpha.191101.0</Version>
+        </PackageReference>
       </ItemGroup>
     </When>
   </Choose>
