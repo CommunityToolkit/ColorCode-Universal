@@ -15,11 +15,10 @@ namespace ColorCode.Compilation
         private readonly Dictionary<string, CompiledLanguage> compiledLanguages;
         private readonly ReaderWriterLockSlim compileLock;
 
-        public LanguageCompiler(Dictionary<string, CompiledLanguage> compiledLanguages)
+        public LanguageCompiler(Dictionary<string, CompiledLanguage> compiledLanguages, ReaderWriterLockSlim compileLock)
         {
             this.compiledLanguages = compiledLanguages;
-
-            compileLock = new ReaderWriterLockSlim();
+            this.compileLock = compileLock;
         }
 
         public CompiledLanguage Compile(ILanguage language)
