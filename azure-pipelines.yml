@@ -1,0 +1,71 @@
+trigger:
+- master
+- rel/*
+
+pr:
+- master
+- rel/*
+
+pool:
+  vmImage: windows-2019
+
+variables: 
+  BuildConfiguration: Release
+
+steps:
+- task: BatchScript@1
+  inputs:
+    filename: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Enterprise\\Common7\\Tools\\VsDevCmd.bat"
+    arguments: -no_logo
+    modifyEnvironment: true
+  displayName: Setup Environment Variables
+  
+- task: NuGetToolInstaller@0
+  displayName: Use NuGet 5.5.1
+  inputs:
+    versionSpec: 5.5.1
+
+- powershell: |
+   Write-Host "##vso[task.setvariable variable=PATH;]${env:LocalAppData}\Microsoft\dotnet;${env:PATH}";
+   
+   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; 
+   
+   dotnet new globaljson --sdk-version "$($env:NET5_SDK_VERSION)" 
+   
+   &([scriptblock]::Create((Invoke-WebRequest -UseBasicParsing 'https://dot.net/v1/dotnet-install.ps1'))) -Version "$($env:NET5_SDK_VERSION)" -Architecture "x64" -AzureFeed "$($env:NET5_SDK_FEED)"
+   
+  failOnStderr: true
+  displayName: 'Install .NET 5 SDK'
+
+- task: NuGetAuthenticate@0
+  displayName: 'NuGet Authenticate'
+  inputs:
+    nuGetServiceConnections: 'WinUI.Dependencies'
+    forceReinstallCredentialProvider: true
+
+- task: 333b11bd-d341-40d9-afcf-b32d5ce6f23b@2
+  displayName: 'NuGet restore'
+  inputs:
+    feedsToUse: config
+    nugetConfigPath: nuget.config
+    externalFeedCredentials: 'WinUI.Dependencies'
+
+- task: DotNetCoreCLI@2  
+  inputs:
+    command: custom
+    custom: tool
+    arguments: install --tool-path . nbgv
+  displayName: Install NBGV tool
+
+- script: nbgv cloud
+  displayName: Set Version
+
+- powershell: .\build\build.ps1
+  displayName: Build
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Package Artifacts
+  inputs:
+    pathToPublish: .\build\nupkg
+    artifactType: container
+    artifactName: Packages
