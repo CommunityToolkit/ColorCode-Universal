@@ -1,4 +1,6 @@
-﻿using System;
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+
+using System;
 using Windows.UI.Xaml.Media;
 
 namespace ColorCode.UWP.Common
