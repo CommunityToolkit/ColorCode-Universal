@@ -20,10 +20,26 @@ steps:
     modifyEnvironment: true
   displayName: Setup Environment Variables
   
-- task: NuGetToolInstaller@0
+- task: NuGetToolInstaller@1
   displayName: Use NuGet 5.5.1
   inputs:
     versionSpec: 5.5.1
+
+- task: NuGetAuthenticate@0
+  displayName: 'NuGet Authenticate'
+  inputs:
+    nuGetServiceConnections: 'WinUI.Dependencies'
+    forceReinstallCredentialProvider: true
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: custom
+    custom: tool
+    arguments: install --tool-path . nbgv
+  displayName: Install NBGV tool
+
+- script: nbgv cloud
+  displayName: Set Version
 
 - powershell: |
    Write-Host "##vso[task.setvariable variable=PATH;]${env:LocalAppData}\Microsoft\dotnet;${env:PATH}";
@@ -37,28 +53,12 @@ steps:
   failOnStderr: true
   displayName: 'Install .NET 5 SDK'
 
-- task: NuGetAuthenticate@0
-  displayName: 'NuGet Authenticate'
-  inputs:
-    nuGetServiceConnections: 'WinUI.Dependencies'
-    forceReinstallCredentialProvider: true
-
 - task: 333b11bd-d341-40d9-afcf-b32d5ce6f23b@2
   displayName: 'NuGet restore'
   inputs:
     feedsToUse: config
     nugetConfigPath: nuget.config
     externalFeedCredentials: 'WinUI.Dependencies'
-
-- task: DotNetCoreCLI@2  
-  inputs:
-    command: custom
-    custom: tool
-    arguments: install --tool-path . nbgv
-  displayName: Install NBGV tool
-
-- script: nbgv cloud
-  displayName: Set Version
 
 - powershell: .\build\build.ps1
   displayName: Build
