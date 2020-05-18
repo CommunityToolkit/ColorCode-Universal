@@ -27,7 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\ColorCode.Core\ColorCode.Core.csproj" />
     <ProjectReference Include="..\..\ColorCode.HTML\ColorCode.HTML.csproj" />
-    <ProjectReference Include="..\..\ColorCode.UWP\ColorCode.UWP.csproj" />
   </ItemGroup>
 
   <ItemGroup>

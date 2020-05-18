@@ -4,7 +4,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;
 using ColorCode.Styling;
 using Windows.UI.Text;
-using ColorCode.UWP.Common;
+using ColorCode.WinUI.Common;
 using ColorCode.Common;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Text;

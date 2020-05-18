@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.UI.Xaml.Media;
 
-namespace ColorCode.UWP.Common
+namespace ColorCode.WinUI.Common
 {
     public static class ExtensionMethods
     {
