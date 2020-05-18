@@ -1,24 +1,22 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>uap10.0</TargetFramework>
+    <TargetFramework>netcoreapp5.0</TargetFramework>
     <RootNamespace>ColorCode</RootNamespace>
     <AssemblyName>ColorCode.UWP</AssemblyName>
     <Title>ColorCode.UWP</Title>
     <Description>Contains the RichTextBlockFormatter, for rendering the Colorized Code to a RichTextBlock.</Description>
     <PackageTags>ColorCode Syntax Highlighting SyntaxHighlighting Formatting UWP RichTextBlock Document InlineCollection</PackageTags>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-
+  <!-- Small fix for wrong TFM in final nuget -->
+  <ItemGroup>
+    <None Include="$(OutputPath)\$(AssemblyName).dll;$(OutputPath)\$(AssemblyName).pri" Pack="True" PackagePath="lib\netcoreapp5.0\"/>
+    <!-- Bug: This is making the pdb added to both the main package as well as the snupkg. -->
+    <None Include="$(OutputPath)\$(AssemblyName).pdb" Pack="True" PackagePath="lib\netcoreapp5.0\"/>
+  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\ColorCode.Core\ColorCode.Core.csproj" />
   </ItemGroup>

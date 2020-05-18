@@ -37,7 +37,7 @@ Task("Restore-NuGet-Packages")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    NuGetRestore(Solution);
+    DotNetCoreRestore(Solution);
 });
 
 Task("Version")
@@ -74,6 +74,7 @@ Task("Build")
     .WithProperty("IncludeSymbols", "true")
     .WithProperty("GenerateLibraryLayout", "true")
     .WithProperty("PackageOutputPath", nupkgDir)
+    .WithProperty("SymbolPackageFormat", "snupkg")
     .WithProperty("GeneratePackageOnBuild", "true");
 
     EnsureDirectoryExists(nupkgDir);

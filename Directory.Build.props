@@ -19,13 +19,11 @@
     <When Condition="'$(IsUwpProject)' == 'true' or '$(IsAndroidProject)' == 'true'">
       <PropertyGroup>
         <GenerateLibraryLayout>true</GenerateLibraryLayout>
-        <IsWinUIAlpha Condition="'$(IsWinUIAlpha)' == ''">true</IsWinUIAlpha>
-        <WindowsKitsPath Condition="'$(IsWinUIAlpha)' == 'true'">WinUI-Alpha-Projects-Don-t-Use-SDK-Xaml-Tools</WindowsKitsPath>
       </PropertyGroup>
       
       <ItemGroup>
         <PackageReference Include="Microsoft.WinUI">        
-          <Version>3.0.0-alpha.200210.0</Version>
+          <Version>3.0.0-preview1.200515.1-CI</Version>
         </PackageReference>
       </ItemGroup>
     </When>

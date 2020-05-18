@@ -7,6 +7,7 @@ using Windows.UI.Text;
 using ColorCode.UWP.Common;
 using ColorCode.Common;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Text;
 
 namespace ColorCode
 {
