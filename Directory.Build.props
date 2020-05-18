@@ -9,21 +9,22 @@
     <Copyright>Copyright © Microsoft Corporation, William Bradley 2017</Copyright>
     <!-- Project States -->
     <IsUwpProject>$(MSBuildProjectName.Contains('UWP'))</IsUwpProject>
-    <IsAndroidProject>$(MSBuildProjectName.Contains('Android'))</IsAndroidProject>
+    <IsWinUIProject>$(MSBuildProjectName.Contains('WinUI'))</IsWinUIProject>
     <!-- UWP Config -->
     <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
-  </PropertyGroup>
+  
+</PropertyGroup>
 
   <Choose>
-    <When Condition="'$(IsUwpProject)' == 'true' or '$(IsAndroidProject)' == 'true'">
+    <When Condition="'$(IsUwpProject)' == 'true' or '$(IsWinUIProject)' == 'true'">
       <PropertyGroup>
         <GenerateLibraryLayout>true</GenerateLibraryLayout>
       </PropertyGroup>
       
       <ItemGroup>
         <PackageReference Include="Microsoft.WinUI">        
-          <Version>3.0.0-preview1.200515.1-CI</Version>
+          <Version>3.0.0-preview1.200515.3</Version>
         </PackageReference>
       </ItemGroup>
     </When>
