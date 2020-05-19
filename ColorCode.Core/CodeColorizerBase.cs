@@ -1,4 +1,6 @@
-﻿using ColorCode.Compilation;
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+
+using ColorCode.Compilation;
 using ColorCode.Parsing;
 using ColorCode.Styling;
 using System.Collections.Generic;
