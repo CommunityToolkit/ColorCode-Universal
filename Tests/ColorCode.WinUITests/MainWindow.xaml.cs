@@ -2,7 +2,7 @@
 
 using ColorCode.Common;
 using ColorCode.Styling;
-using ColorCode.UWP.Common;
+using ColorCode.WinUI.Common;
 using System;
 using System.IO;
 using System.Threading.Tasks;
