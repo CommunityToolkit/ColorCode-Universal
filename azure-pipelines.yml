@@ -28,7 +28,6 @@ steps:
 - task: NuGetAuthenticate@0
   displayName: 'NuGet Authenticate'
   inputs:
-    nuGetServiceConnections: 'WinUI.Dependencies'
     forceReinstallCredentialProvider: true
 
 - task: DotNetCoreCLI@2
@@ -58,7 +57,6 @@ steps:
   inputs:
     feedsToUse: config
     nugetConfigPath: nuget.config
-    externalFeedCredentials: 'WinUI.Dependencies'
 
 - powershell: .\build\build.ps1
   displayName: Build
