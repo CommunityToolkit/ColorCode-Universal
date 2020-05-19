@@ -1,4 +1,6 @@
-﻿using ColorCode.Common;
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+
+using ColorCode.Common;
 using ColorCode.Styling;
 using ColorCode.UWP.Common;
 using System;

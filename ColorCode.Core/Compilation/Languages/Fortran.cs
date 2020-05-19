@@ -1,6 +1,6 @@
-﻿// Copyright (c) 2015 Christopher Pardi.
-
 // Copyright (c) Microsoft Corporation.  All rights reserved.
+
+// Copyright (c) 2015 Christopher Pardi.
 
 using System.Collections.Generic;
 using ColorCode.Common;

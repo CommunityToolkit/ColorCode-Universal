@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+// Copyright (c) Microsoft Corporation.  All rights reserved.
+
+using System.Collections.Generic;
 using ColorCode.Parsing;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Documents;

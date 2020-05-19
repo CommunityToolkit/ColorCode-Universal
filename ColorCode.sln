@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.30002.166
+VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColorCode.HTML", "ColorCode.HTML\ColorCode.HTML.csproj", "{33A3FB96-F1EB-4AF0-94E0-F629E1F574A8}"
 EndProject
