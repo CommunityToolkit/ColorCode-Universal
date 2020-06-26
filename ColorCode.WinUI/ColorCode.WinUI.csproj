@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp5.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>ColorCode</RootNamespace>
     <AssemblyName>ColorCode.WinUI</AssemblyName>
     <Title>ColorCode.WinUI</Title>
@@ -12,9 +12,9 @@
 
   <!-- Small fix for wrong TFM in final nuget -->
   <ItemGroup>
-    <None Include="$(OutputPath)\$(AssemblyName).dll;$(OutputPath)\$(AssemblyName).pri" Pack="True" PackagePath="lib\netcoreapp5.0\" />
+    <None Include="$(OutputPath)\$(AssemblyName).dll;$(OutputPath)\$(AssemblyName).pri" Pack="True" PackagePath="lib\net5.0\" />
     <!-- Bug: This is making the pdb added to both the main package as well as the snupkg. -->
-    <None Include="$(OutputPath)\$(AssemblyName).pdb" Pack="True" PackagePath="lib\netcoreapp5.0\" />
+    <None Include="$(OutputPath)\$(AssemblyName).pdb" Pack="True" PackagePath="lib\net5.0\" />
   </ItemGroup>
   
   <ItemGroup>
