@@ -7,16 +7,8 @@
     <Title>ColorCode.WinUI</Title>
     <Description>Contains the RichTextBlockFormatter, for rendering the Colorized Code to a RichTextBlock.</Description>
     <PackageTags>ColorCode Syntax Highlighting SyntaxHighlighting Formatting UWP RichTextBlock Document InlineCollection</PackageTags>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
 
-  <!-- Small fix for wrong TFM in final nuget -->
-  <ItemGroup>
-    <None Include="$(OutputPath)\$(AssemblyName).dll;$(OutputPath)\$(AssemblyName).pri" Pack="True" PackagePath="lib\net5.0\" />
-    <!-- Bug: This is making the pdb added to both the main package as well as the snupkg. -->
-    <None Include="$(OutputPath)\$(AssemblyName).pdb" Pack="True" PackagePath="lib\net5.0\" />
-  </ItemGroup>
-  
   <ItemGroup>
     <ProjectReference Include="..\ColorCode.Core\ColorCode.Core.csproj" />
   </ItemGroup>
