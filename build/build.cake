@@ -1,6 +1,6 @@
 #module nuget:?package=Cake.LongPath.Module&version=0.7.0
 
-#addin nuget:?package=Cake.FileHelpers&version=3.2.1
+#addin nuget:?package=Cake.FileHelpers&version=3.3.0
 #addin nuget:?package=Cake.Powershell&version=0.4.8
 
 using System;
@@ -142,14 +142,13 @@ Task("Build")
         MaxCpuCount = 0
     }
     .SetConfiguration("Release")
-    .WithTarget("Restore;Build")
+    .WithTarget("Pack")
     .WithProperty("IncludeSymbols", "true")
-    .WithProperty("GenerateLibraryLayout", "true")
     .WithProperty("PackageOutputPath", nupkgDir)
-    .WithProperty("SymbolPackageFormat", "snupkg")
-    .WithProperty("GeneratePackageOnBuild", "true");
+    .WithProperty("SymbolPackageFormat", "snupkg");
 
     EnsureDirectoryExists(nupkgDir);
+    
     MSBuild(Solution, buildSettings);
 });
 

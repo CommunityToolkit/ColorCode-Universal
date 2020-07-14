@@ -21,9 +21,9 @@ steps:
   displayName: Setup Environment Variables
   
 - task: NuGetToolInstaller@1
-  displayName: Use NuGet 5.5.1
+  displayName: Use NuGet 5.6.0
   inputs:
-    versionSpec: 5.5.1
+    versionSpec: 5.6.0
 
 - task: NuGetAuthenticate@0
   displayName: 'NuGet Authenticate'
@@ -52,11 +52,12 @@ steps:
   failOnStderr: true
   displayName: 'Install .NET 5 SDK'
 
-- task: 333b11bd-d341-40d9-afcf-b32d5ce6f23b@2
-  displayName: 'NuGet restore'
+- task: DotNetCoreCLI@2
   inputs:
-    feedsToUse: config
-    nugetConfigPath: nuget.config
+    command: custom
+    custom: msbuild
+    arguments: /t:restore .\ColorCode.sln
+  displayName: NuGet restore
 
 - powershell: .\build\build.ps1
   displayName: Build
