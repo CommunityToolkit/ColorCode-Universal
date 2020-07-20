@@ -10,6 +10,7 @@ using ColorCode.WinUI.Common;
 using ColorCode.Common;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Text;
+using FontWeights = Microsoft.UI.Text.FontWeights;
 
 namespace ColorCode
 {

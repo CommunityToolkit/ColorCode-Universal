@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFrameworks>net5.0;uap10.0</TargetFrameworks>
     <RootNamespace>ColorCode</RootNamespace>
     <AssemblyName>ColorCode.WinUI</AssemblyName>
     <Title>ColorCode.WinUI</Title>
