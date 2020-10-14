@@ -13,4 +13,7 @@
     <ProjectReference Include="..\ColorCode.Core\ColorCode.Core.csproj" />
   </ItemGroup>
 
+  <!-- Workaround for recursive MRT issue -->
+  <Target Name="GetMrtPackagingOutputs" />
+
 </Project>

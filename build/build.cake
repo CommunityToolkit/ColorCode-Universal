@@ -3,6 +3,8 @@
 #addin nuget:?package=Cake.FileHelpers&version=3.3.0
 #addin nuget:?package=Cake.Powershell&version=0.4.8
 
+#tool nuget:?package=vswhere&version=2.8.4
+
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -86,6 +88,19 @@ void RetrieveVersion()
     Information("\nBuild Version: " + Version);
 }
 
+void UpdateToolsPath(MSBuildSettings buildSettings)
+{
+    // Workaround for https://github.com/cake-build/cake/issues/2128
+	var vsInstallation = VSWhereLatest(new VSWhereLatestSettings { Requires = "Microsoft.Component.MSBuild", IncludePrerelease = true });
+
+	if (vsInstallation != null)
+	{
+		buildSettings.ToolPath = vsInstallation.CombineWithFilePath(@"MSBuild\Current\Bin\MSBuild.exe");
+		if (!FileExists(buildSettings.ToolPath))
+			buildSettings.ToolPath = vsInstallation.CombineWithFilePath(@"MSBuild\15.0\Bin\MSBuild.exe");
+	}
+}
+
 //////////////////////////////////////////////////////////////////////
 // TASKS
 //////////////////////////////////////////////////////////////////////
@@ -146,6 +161,8 @@ Task("Build")
     .WithProperty("IncludeSymbols", "true")
     .WithProperty("PackageOutputPath", nupkgDir)
     .WithProperty("SymbolPackageFormat", "snupkg");
+
+    UpdateToolsPath(buildSettings);
 
     EnsureDirectoryExists(nupkgDir);
     
