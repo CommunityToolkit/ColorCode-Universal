@@ -2,6 +2,35 @@
   Copyright (c) Microsoft Corporation. Licensed under the MIT License
 -->
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <!-- 
+      The _GetPathToWinUIRegistrations target returns the path to where the registrations xml file is.
+      If invoked in the .wapproj, this will invoke the same target on referenced projects, where it will
+      actually return the location to where the file is on disk in the nuget package.
+    -->
+    <Target Name="_GetPathToWinUIRegistrations" Returns="$(WinUIClassRegistrationsDir)">
+      <!--
+        Invoke this target on the referenced project to get the path to where the registration xml is.
+        This way we can pick up the path to the file from the nuget.
+       -->
+      <MSBuild
+        Projects="@(_MSBuildProjectReferenceExistent)"
+        Condition="'$(MSBuildProjectExtension)' == '.wapproj'"
+        Targets="_GetPathToWinUIRegistrations"
+        SkipNonexistentTargets="true">
+          <Output TaskParameter="TargetOutputs" PropertyName="WinUIClassRegistrationsDir" />
+      </MSBuild>
+      
+      <PropertyGroup>
+        <!-- If  not in the .wapproj, then actually return the path to where the registration list is -->
+        <WinUIClassRegistrationsDir Condition="'$(WinUIClassRegistrationsDir)' == '' and '$(MSBuildProjectExtension)'!='.wapproj'">$(MSBuildThisFileDirectory)</WinUIClassRegistrationsDir>
+
+        <!-- Technically you can have multiple .exe files in a single msix. Just trim the property down to a single value if that is the case -->
+        <WinUIClassRegistrationsDir Condition="$(WinUIClassRegistrationsDir.Contains(';'))">$(WinUIClassRegistrationsDir.Substring(0,$(WinUIClassRegistrationsDir.IndexOf(';'))))</WinUIClassRegistrationsDir>
+      </PropertyGroup>
+
+      <Error Text="Unable to find WinRT class registrations for WinUI. Please ensure that the Microsoft.WinUI package restored successfully."
+             Condition="'$(WinUIClassRegistrationsDir)' == '' and '$(MSBuildProjectExtension)'=='.wapproj'"/>
+    </Target>
 
     <!-- Replaces AppxManifest WinRT registrations for Microsoft.UI.Xaml.dll, post-GenerateAppxManifest. -->
     <!-- Target runs before manifest validation occurs. Requires output file to support incremental builds. -->
@@ -9,15 +38,13 @@
         Name="_ReplaceMUXWinRTRegistrations"
         BeforeTargets="_CreateFinalAppxManifestItem"
         AfterTargets="_GenerateCurrentProjectAppxManifest"
+        DependsOnTargets="_GetPathToWinUIRegistrations"
         Inputs="$(MSBuildAllProjects);@(_GenerateCurrentProjectAppxManifestInput)"
         Outputs="$(FinalAppxManifestName).incremental" >
-        <PropertyGroup Condition="'$(MUXClassRegistrationsDir)' == ''">
-            <MUXClassRegistrationsDir>$(MSBuildThisFileDirectory)</MUXClassRegistrationsDir>
-        </PropertyGroup>
 
         <ReplaceMUXWinRTRegistrations
             FullPathToAppxManifest="$(FinalAppxManifestName)"
-            FullPathToLiftedXAMLWinRTRegistrations="$(MUXClassRegistrationsDir)LiftedWinRTClassRegistrations.xml"
+            FullPathToLiftedXAMLWinRTRegistrations="$(WinUIClassRegistrationsDir)LiftedWinRTClassRegistrations.xml"
             PathToXAMLWinRTImplementations="$(PathToXAMLWinRTImplementations)"
          />
 
@@ -61,13 +88,16 @@
                 {
                     XmlNodeList xmlNodeList = appxManifest.DocumentElement.SelectNodes("//w:Package/w:Extensions/w:Extension", namespaceManager);
 
-                    // Remove only "Microsoft.UI.Xaml.dll" and "Microsoft.Web.WebView2.Core.dll" registrations from the AppxManifest file
+                    // Remove "Microsoft.UI.Xaml.dll", "Microsoft.Web.WebView2.Core.dll", and
+            	    // "Microsoft.ApplicationModel.Resources.dll" registrations from the 
+                    // AppxManifest file as we will be inserting the entries ourselves
                     foreach (XmlNode node in xmlNodeList)
                     {
                         XmlNode pathNode = node.SelectSingleNode("w:InProcessServer/w:Path", namespaceManager);
                         if (pathNode.InnerText.Equals("Microsoft.UI.Xaml.dll", StringComparison.InvariantCultureIgnoreCase) ||
-                            pathNode.InnerText.Equals("Microsoft.Web.WebView2.Core.dll", StringComparison.InvariantCultureIgnoreCase))
-                        { 
+                            pathNode.InnerText.Equals("Microsoft.Web.WebView2.Core.dll", StringComparison.InvariantCultureIgnoreCase) ||
+                            pathNode.InnerText.Equals("Microsoft.ApplicationModel.Resources.dll", StringComparison.InvariantCultureIgnoreCase))
+                        {
                             extensionsNode.RemoveChild(node);
                         }
                     }
@@ -183,11 +213,24 @@
   <ItemGroup Condition="'$(OutputType)' == 'AppContainerExe'">
     <SDKReference Include="Microsoft.VCLibs, Version=14.0" />
   </ItemGroup>
-  
+
   <!-- Packaged desktop apps need these framework package references -->
   <ItemGroup Condition="'$(MSBuildProjectExtension)'=='.wapproj'">
     <SDKReference Include="Microsoft.VCLibs.Desktop, Version=14.0" />
     <!-- Needed for ucrtbased.dll when running a debug build. -->
     <SDKReference Include="Microsoft.VCLibs, Version=14.0" Condition="'$(Configuration)' == 'Debug'" />
   </ItemGroup>
+
+  <!--
+    WindowsAppContainer is the property that you can set in your .NET Desktop project to turn it into a UWP.
+    When the ProjectReferenceWithExtraMetadata.TargetPlatformIdentifier is set to UAP, this causes the AppxManifest.xml
+    generation targets to write in the app entry point which causes UWP activation.
+  -->
+  <Target Name="UpdateTargetPlatformIdentifer" AfterTargets="SetProjectReferenceProperties" Returns="@(ProjectReferenceWithExtraMetadata)">
+    <ItemGroup>
+      <ProjectReferenceWithExtraMetadata Update="@(ProjectReferenceWithExtraMetadata)" Condition="'%(WindowsAppContainer)'=='true'">
+        <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+      </ProjectReferenceWithExtraMetadata>
+    </ItemGroup>
+  </Target>
 </Project>
