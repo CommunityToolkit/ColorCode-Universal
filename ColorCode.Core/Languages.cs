@@ -47,6 +47,8 @@ namespace ColorCode
             Load<Haskell>();
             Load<Markdown>();
             Load<Fortran>();
+            Load<Python>();
+            Load<MatLab>();
         }
 
         /// <summary>
@@ -253,6 +255,24 @@ namespace ColorCode
         public static ILanguage Fortran
         {
             get { return LanguageRepository.FindById(LanguageId.Fortran); }
+        }
+
+        /// <summary>
+        /// Language support for Python.
+        /// </summary>
+        /// <value>Language support for Python.</value>
+        public static ILanguage Python
+        {
+            get { return LanguageRepository.FindById(LanguageId.Python); }
+        }
+
+        /// <summary>
+        /// Language support for MATLAB.
+        /// </summary>
+        /// <value>Language support for MATLAB.</value>
+        public static ILanguage MATLAB
+        {
+            get { return LanguageRepository.FindById(LanguageId.MatLab); }
         }
 
         /// <summary>
