@@ -39,7 +39,7 @@
     <When Condition="'$(IsWinUIProject)' == 'true' or '$(IsWinUIProject)' == 'true'">
       <ItemGroup>
         <PackageReference Include="Microsoft.WinUI">
-          <Version>3.0.0-preview4.210210.2</Version>
+          <Version>3.0.0-preview4.210210.4</Version>
         </PackageReference>
       </ItemGroup>
     </When>
