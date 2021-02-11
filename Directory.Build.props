@@ -8,8 +8,8 @@
     <PackageLicenseUrl>https://github.com/WilliamABradley/ColorCode-Universal/blob/master/LICENSE</PackageLicenseUrl>
     <Copyright>Copyright © Microsoft Corporation, William Bradley 2017</Copyright>
     <!-- Project States -->
-    <IsUwpProject>$(MSBuildProjectName.Contains('UWP'))</IsUwpProject>
     <IsWinUIProject>$(MSBuildProjectName.Contains('WinUI'))</IsWinUIProject>
+    <IsTestProject>$(MSBuildProjectName.Contains('Test'))</IsTestProject>
     <!-- UWP Config -->
     <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <Choose>
-    <When Condition="'$(SourceLinkEnabled)' != 'false'">
+    <When Condition="'$(IsWinUIProject)' == 'true' and '$(SourceLinkEnabled)' != 'false' and '$(IsTestProject)' != 'true'">
       <PropertyGroup>
         <!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -35,7 +35,7 @@
   </Choose>
 
   <Choose>
-    <When Condition="'$(IsUwpProject)' == 'true' or '$(IsWinUIProject)' == 'true'">
+    <When Condition="'$(IsWinUIProject)' == 'true' or '$(IsWinUIProject)' == 'true'">
       <ItemGroup>
         <PackageReference Include="Microsoft.WinUI">
           <Version>3.0.0-preview4.210210.2</Version>
