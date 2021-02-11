@@ -9,14 +9,14 @@
     <Copyright>Copyright © Microsoft Corporation, William Bradley 2017</Copyright>
     <!-- Project States -->
     <IsUwpProject>$(MSBuildProjectName.Contains('UWP'))</IsUwpProject>
-    <IsAndroidProject>$(MSBuildProjectName.Contains('Android'))</IsAndroidProject>
+    <IsTestProject>$(MSBuildProjectName.Contains('Test'))</IsTestProject>
     <!-- UWP Config -->
     <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
   </PropertyGroup>
 
   <Choose>
-    <When Condition="'$(IsUwpProject)' == 'true' or '$(IsAndroidProject)' == 'true'">
+    <When Condition="'$(IsUwpProject)' == 'true' and '$(SourceLinkEnabled)' != 'false' and '$(IsTestProject)' != 'true'">
       <PropertyGroup>
         <GenerateLibraryLayout>true</GenerateLibraryLayout>
       </PropertyGroup>
