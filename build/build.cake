@@ -1,7 +1,8 @@
-#module nuget:?package=Cake.LongPath.Module&version=1.0.0
+#module nuget:?package=Cake.LongPath.Module&version=1.0.1
 
-#addin nuget:?package=Cake.FileHelpers&version=4.0.0
+#addin nuget:?package=Cake.FileHelpers&version=4.0.1
 #addin nuget:?package=Cake.Powershell&version=1.0.0
+#addin nuget:?package=Cake.GitVersioning&version=3.3.37
 
 #tool nuget:?package=vswhere&version=2.8.4
 
@@ -21,13 +22,10 @@ var target = Argument("target", "Default");
 
 var baseDir = MakeAbsolute(Directory("../")).ToString();
 var buildDir = baseDir + "/build";
-var toolsDir = buildDir + "/tools";
 
 var Solution = baseDir + "/ColorCode.sln";
 var nupkgDir = buildDir + "/nupkg";
 
-var gitVersioningVersion = "2.1.65";
-var versionClient = toolsDir + "/nerdbank.gitversioning/tools/Get-Version.ps1";
 string Version = null;
 
 //////////////////////////////////////////////////////////////////////
@@ -82,9 +80,8 @@ void VerifyHeaders(bool Replace)
 
 void RetrieveVersion()
 {
-	Information("\nRetrieving version...");
-    var results = StartPowershellFile(versionClient);
-    Version = results[1].Properties["NuGetPackageVersion"].Value.ToString();
+    Information("\nRetrieving version...");
+    Version = GitVersioningGetVersion().NuGetPackageVersion;
     Information("\nBuild Version: " + Version);
 }
 
@@ -135,15 +132,6 @@ Task("Version")
     .IsDependentOn("Restore-NuGet-Packages")
     .Does(() =>
 {
-    Information("\nDownloading NerdBank GitVersioning...");
-    var installSettings = new NuGetInstallSettings {
-        ExcludeVersion  = true,
-        Version = gitVersioningVersion,
-        OutputDirectory = toolsDir
-    };
-    
-    NuGetInstall(new []{"nerdbank.gitversioning"}, installSettings);
-
     RetrieveVersion();
 });
 

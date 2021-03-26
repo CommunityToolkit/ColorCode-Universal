@@ -38,9 +38,7 @@
   <Choose>
     <When Condition="'$(IsWinUIProject)' == 'true' or '$(IsWinUIProject)' == 'true'">
       <ItemGroup>
-        <PackageReference Include="Microsoft.ProjectReunion" Version="0.5.0-prerelease" />
-        <PackageReference Include="Microsoft.ProjectReunion.Foundation" Version="0.5.0-prerelease" />
-        <PackageReference Include="Microsoft.ProjectReunion.WinUI" Version="0.5.0-prerelease" />
+        <PackageReference Include="Microsoft.ProjectReunion" Version="0.5.0" />
       </ItemGroup>
     </When>
   </Choose>
