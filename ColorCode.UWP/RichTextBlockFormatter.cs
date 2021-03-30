@@ -2,13 +2,21 @@
 
 using System.Collections.Generic;
 using ColorCode.Parsing;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Documents;
 using ColorCode.Styling;
 using Windows.UI.Text;
-using ColorCode.UWP.Common;
 using ColorCode.Common;
+#if WINUI
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Documents;
+using ColorCode.WinUI.Common;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Text;
+#else
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Documents;
+using ColorCode.UWP.Common;
 using Windows.UI.Xaml;
+#endif
 
 namespace ColorCode
 {
