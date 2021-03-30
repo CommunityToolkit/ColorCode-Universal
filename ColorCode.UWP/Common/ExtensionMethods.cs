@@ -1,9 +1,15 @@
 // Copyright (c) Microsoft Corporation.  All rights reserved.
 
 using System;
+#if WINUI
+using Microsoft.UI.Xaml.Media;
+
+namespace ColorCode.WinUI.Common
+#else
 using Windows.UI.Xaml.Media;
 
 namespace ColorCode.UWP.Common
+#endif
 {
     public static class ExtensionMethods
     {
