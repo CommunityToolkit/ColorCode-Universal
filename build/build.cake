@@ -1,8 +1,8 @@
 #module nuget:?package=Cake.LongPath.Module&version=1.0.1
 
 #addin nuget:?package=Cake.FileHelpers&version=4.0.1
-#addin nuget:?package=Cake.Powershell&version=1.0.0
-#addin nuget:?package=Cake.GitVersioning&version=3.3.37
+#addin nuget:?package=Cake.Powershell&version=1.0.1
+#addin nuget:?package=Cake.GitVersioning&version=3.4.216
 
 #tool nuget:?package=vswhere&version=2.8.4
 
