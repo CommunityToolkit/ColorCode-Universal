@@ -49,7 +49,7 @@
   <Choose>
     <When Condition="'$(IsUwpProject)' == 'true' and '$(IsTestProject)' != 'true'">
       <ItemGroup>
-        <PackageReference Include="MSBuild.Sdk.Extras" Version="1.0.9" PrivateAssets="all" />
+        <PackageReference Include="MSBuild.Sdk.Extras" Version="3.0.23" PrivateAssets="all" />
       </ItemGroup>
     </When>
   </Choose>
