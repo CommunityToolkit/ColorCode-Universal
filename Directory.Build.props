@@ -16,7 +16,7 @@
   <!-- UWP Config -->
   <PropertyGroup Condition="'$(IsUwpProject)' == 'true'">
     <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.14393.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
   </PropertyGroup>
 
   <!-- WinUI Config -->
@@ -57,7 +57,7 @@
   <Choose>
     <When Condition="'$(IsWinUIProject)' == 'true'">
       <ItemGroup>
-        <PackageReference Include="Microsoft.ProjectReunion" Version="0.8.0" />
+        <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0-preview1" />
       </ItemGroup>
     </When>
   </Choose>
