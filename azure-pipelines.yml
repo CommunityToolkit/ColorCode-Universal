@@ -21,9 +21,9 @@ steps:
   displayName: Setup Environment Variables
   
 - task: NuGetToolInstaller@1
-  displayName: Use NuGet 5.9.1
+  displayName: Use NuGet 5.11.0
   inputs:
-    versionSpec: 5.9.1
+    versionSpec: 5.11.0
 
 - task: DotNetCoreCLI@2
   inputs:
@@ -38,7 +38,7 @@ steps:
 - task: UseDotNet@2
   displayName: 'Install .NET Core SDK'
   inputs:
-    version: 5.0.301
+    version: 5.0.401
     performMultiLevelLookup: true
 
 - task: DotNetCoreCLI@2
