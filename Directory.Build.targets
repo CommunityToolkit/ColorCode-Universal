@@ -18,11 +18,4 @@
     </ItemGroup>
   </Target>
 
-  <!-- Workaround for https://github.com/microsoft/WindowsAppSDK/issues/1217 -->
-  <Target Name="FixReferenceCopyLocalPaths" BeforeTargets="ResolvePackageAssets">
-    <ItemGroup>
-      <ReferenceCopyLocalPaths Remove="$(PkgMicrosoft_WindowsAppSDK)\build\..\runtimes\lib\native\AnyCPU\Microsoft.WindowsAppRuntime.Bootstrap.dll"/>
-    </ItemGroup>
-  </Target>
-
 </Project>

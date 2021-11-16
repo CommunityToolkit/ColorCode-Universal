@@ -57,7 +57,7 @@
   <Choose>
     <When Condition="'$(IsWinUIProject)' == 'true'">
       <ItemGroup>
-        <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0-preview3" GeneratePathProperty="true" />
+        <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
       </ItemGroup>
     </When>
   </Choose>
