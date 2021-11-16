@@ -15,8 +15,8 @@
 
   <!-- UWP Config -->
   <PropertyGroup Condition="'$(IsUwpProject)' == 'true'">
-    <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
+    <TargetPlatformVersion>10.0.18362.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.18362.0</TargetPlatformMinVersion>
   </PropertyGroup>
 
   <!-- WinUI Config -->
@@ -49,7 +49,7 @@
   <Choose>
     <When Condition="'$(IsUwpProject)' == 'true' and '$(IsTestProject)' != 'true'">
       <ItemGroup>
-        <PackageReference Include="MSBuild.Sdk.Extras" Version="3.0.23" PrivateAssets="all" />
+        <PackageReference Include="MSBuild.Sdk.Extras" Version="3.0.38" PrivateAssets="all" />
       </ItemGroup>
     </When>
   </Choose>

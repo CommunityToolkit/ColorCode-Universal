@@ -2,7 +2,7 @@
 
 #addin nuget:?package=Cake.FileHelpers&version=4.0.1
 #addin nuget:?package=Cake.Powershell&version=1.0.1
-#addin nuget:?package=Cake.GitVersioning&version=3.4.216
+#addin nuget:?package=Cake.GitVersioning&version=3.4.244
 
 #tool nuget:?package=vswhere&version=2.8.4
 
@@ -147,6 +147,7 @@ Task("Build")
     .SetConfiguration("Release")
     .WithTarget("Pack")
     .WithProperty("GenerateLibraryLayout", "true")
+    .EnableBinaryLogger()
     .WithProperty("PackageOutputPath", nupkgDir);
 
     UpdateToolsPath(buildSettings);
