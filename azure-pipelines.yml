@@ -73,10 +73,3 @@ steps:
     pathToPublish: .\build\nupkg
     artifactType: container
     artifactName: Packages
-
-- task: PublishPipelineArtifact@1
-  displayName: Publish BinLog
-  inputs:
-    targetPath: .\build\msbuild.binlog
-    artifactName: BinLog
-  condition: always()

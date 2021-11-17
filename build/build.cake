@@ -147,7 +147,6 @@ Task("Build")
     .SetConfiguration("Release")
     .WithTarget("Pack")
     .WithProperty("GenerateLibraryLayout", "true")
-    .EnableBinaryLogger()
     .WithProperty("PackageOutputPath", nupkgDir);
 
     UpdateToolsPath(buildSettings);
