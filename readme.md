@@ -2,7 +2,7 @@
 
 This is a port of [ColorCode](https://colorcode.codeplex.com/) to .NET Standard. The original Html only formatter has been separated from the Logic, so now it can produce Syntax Highlighted code for any output.
 
-This Project can currently produce HTML, and Render to UWP RichTextBlocks.
+This Project can currently produce HTML, and Render to UWP and WindowsAppSDK RichTextBlocks.
 
 ## Usage
 
@@ -53,6 +53,7 @@ To get the Programming Language manually, you can provide the identifier name, w
 ```C#
 var language = ColorCode.Languages.FindById("java");
 ```
+
 See [LanguageId.cs](ColorCode.Core/Common/LanguageId.cs) for the list of available Languages to parse.
 
 ## Packages
@@ -68,6 +69,7 @@ See [LanguageId.cs](ColorCode.Core/Common/LanguageId.cs) for the list of availab
 Please use [GitHub issues](https://github.com/WilliamABradley/ColorCode-Universal/issues) for bug reports and feature requests.
 
 ## Contributing
+
 Want to help out and add some more parsing support, or add a new Formatter platform? Submit a PR!
 
 ## License
