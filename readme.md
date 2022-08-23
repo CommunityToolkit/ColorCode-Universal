@@ -69,3 +69,7 @@ Please use [GitHub issues](https://github.com/WilliamABradley/ColorCode-Universa
 
 ## Contributing
 Want to help out and add some more parsing support, or add a new Formatter platform? Submit a PR!
+
+## License
+
+MIT

@@ -2,11 +2,16 @@
 
   <PropertyGroup>
     <!-- Package Config -->
-    <Authors>Microsoft, William Bradley</Authors>
+    <Company>Microsoft</Company>
+    <Authors>Microsoft</Authors>
+    <Product>ColorCode Universal</Product>
+    <CommonTags>dotnet;Community;Toolkit;syntax;highlight</CommonTags>
     <NoPackageAnalysis>true</NoPackageAnalysis>
-    <PackageProjectUrl>https://github.com/WilliamABradley/ColorCode-Universal</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/WilliamABradley/ColorCode-Universal/blob/master/LICENSE</PackageLicenseUrl>
-    <Copyright>Copyright © Microsoft Corporation, William Bradley 2017</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Copyright>(c) .NET Foundation and Contributors. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://github.com/CommunityToolkit/ColorCode-Universal</PackageProjectUrl>
+    
     <!-- Project States -->
     <IsUwpProject>$(MSBuildProjectName.Contains('UWP'))</IsUwpProject>
     <IsWinUIProject>$(MSBuildProjectName.Contains('WinUI'))</IsWinUIProject>
