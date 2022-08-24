@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
+    <TargetFrameworks>netstandard1.4;netstandard2.0</TargetFrameworks>
     <RootNamespace>ColorCode</RootNamespace>
     <AssemblyName>ColorCode.Core</AssemblyName>
     <Title>ColorCode-Universal</Title>
