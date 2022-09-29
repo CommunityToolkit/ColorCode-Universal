@@ -1,7 +1,10 @@
-#module nuget:?package=Cake.LongPath.Module&version=0.7.0
+#module nuget:?package=Cake.LongPath.Module&version=1.0.1
 
-#addin nuget:?package=Cake.FileHelpers&version=3.2.1
-#addin nuget:?package=Cake.Powershell&version=0.4.8
+#addin nuget:?package=Cake.FileHelpers&version=4.0.1
+#addin nuget:?package=Cake.Powershell&version=1.0.1
+#addin nuget:?package=Cake.GitVersioning&version=3.4.244
+
+#tool nuget:?package=vswhere&version=2.8.4
 
 using System;
 using System.Linq;
@@ -19,13 +22,10 @@ var target = Argument("target", "Default");
 
 var baseDir = MakeAbsolute(Directory("../")).ToString();
 var buildDir = baseDir + "/build";
-var toolsDir = buildDir + "/tools";
 
 var Solution = baseDir + "/ColorCode.sln";
 var nupkgDir = buildDir + "/nupkg";
 
-var gitVersioningVersion = "2.1.65";
-var versionClient = toolsDir + "/nerdbank.gitversioning/tools/Get-Version.ps1";
 string Version = null;
 
 //////////////////////////////////////////////////////////////////////
@@ -80,10 +80,22 @@ void VerifyHeaders(bool Replace)
 
 void RetrieveVersion()
 {
-	Information("\nRetrieving version...");
-    var results = StartPowershellFile(versionClient);
-    Version = results[1].Properties["NuGetPackageVersion"].Value.ToString();
+    Information("\nRetrieving version...");
+    Version = GitVersioningGetVersion().NuGetPackageVersion;
     Information("\nBuild Version: " + Version);
+}
+
+void UpdateToolsPath(MSBuildSettings buildSettings)
+{
+    // Workaround for https://github.com/cake-build/cake/issues/2128
+	var vsInstallation = VSWhereLatest(new VSWhereLatestSettings { Requires = "Microsoft.Component.MSBuild", IncludePrerelease = false });
+
+	if (vsInstallation != null)
+	{
+		buildSettings.ToolPath = vsInstallation.CombineWithFilePath(@"MSBuild\Current\Bin\MSBuild.exe");
+		if (!FileExists(buildSettings.ToolPath))
+			buildSettings.ToolPath = vsInstallation.CombineWithFilePath(@"MSBuild\15.0\Bin\MSBuild.exe");
+	}
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -101,7 +113,7 @@ Task("Restore-NuGet-Packages")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    NuGetRestore(Solution);
+    DotNetCoreRestore(Solution);
 });
 
 Task("Verify")
@@ -120,15 +132,6 @@ Task("Version")
     .IsDependentOn("Restore-NuGet-Packages")
     .Does(() =>
 {
-    Information("\nDownloading NerdBank GitVersioning...");
-    var installSettings = new NuGetInstallSettings {
-        ExcludeVersion  = true,
-        Version = gitVersioningVersion,
-        OutputDirectory = toolsDir
-    };
-    
-    NuGetInstall(new []{"nerdbank.gitversioning"}, installSettings);
-
     RetrieveVersion();
 });
 
@@ -142,13 +145,14 @@ Task("Build")
         MaxCpuCount = 0
     }
     .SetConfiguration("Release")
-    .WithTarget("Restore;Build")
-    .WithProperty("IncludeSymbols", "true")
+    .WithTarget("Pack")
     .WithProperty("GenerateLibraryLayout", "true")
-    .WithProperty("PackageOutputPath", nupkgDir)
-    .WithProperty("GeneratePackageOnBuild", "true");
+    .WithProperty("PackageOutputPath", nupkgDir);
+
+    UpdateToolsPath(buildSettings);
 
     EnsureDirectoryExists(nupkgDir);
+    
     MSBuild(Solution, buildSettings);
 });
 

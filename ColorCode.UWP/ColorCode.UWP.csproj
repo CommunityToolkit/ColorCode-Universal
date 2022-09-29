@@ -1,22 +1,13 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
-    <TargetFramework>uap10.0</TargetFramework>
+    <TargetFramework>uap10.0.17763</TargetFramework>
     <RootNamespace>ColorCode</RootNamespace>
     <AssemblyName>ColorCode.UWP</AssemblyName>
     <Title>ColorCode.UWP</Title>
     <Description>Contains the RichTextBlockFormatter, for rendering the Colorized Code to a RichTextBlock.</Description>
     <PackageTags>ColorCode Syntax Highlighting SyntaxHighlighting Formatting UWP RichTextBlock Document InlineCollection</PackageTags>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Portable</DebugType>
   </PropertyGroup>
 
   <ItemGroup>

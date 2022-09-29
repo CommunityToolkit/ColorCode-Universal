@@ -2,22 +2,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.4</TargetFramework>
+    <TargetFrameworks>netstandard1.4;netstandard2.0</TargetFrameworks>
     <RootNamespace>ColorCode</RootNamespace>
     <AssemblyName>ColorCode.Core</AssemblyName>
     <Title>ColorCode-Universal</Title>
     <Description>The Core Library, containing the Parser, and the classes to create your own formatter.</Description>
     <PackageTags>ColorCode Syntax Highlighting SyntaxHighlighting Formatting</PackageTags>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-
+  
 </Project>

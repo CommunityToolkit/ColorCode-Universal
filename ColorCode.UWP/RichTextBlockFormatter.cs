@@ -1,14 +1,24 @@
-// Copyright (c) Microsoft Corporation.  All rights reserved.
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
 
 using System.Collections.Generic;
 using ColorCode.Parsing;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Documents;
 using ColorCode.Styling;
 using Windows.UI.Text;
-using ColorCode.UWP.Common;
 using ColorCode.Common;
+#if WINUI
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Documents;
+using ColorCode.WinUI.Common;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Text;
+#else
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Documents;
+using ColorCode.UWP.Common;
 using Windows.UI.Xaml;
+#endif
 
 namespace ColorCode
 {
