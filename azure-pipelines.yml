@@ -7,7 +7,7 @@ pr:
 - rel/*
 
 pool:
-  vmImage: windows-2022
+  vmImage: windows-latest
 
 variables: 
   BuildConfiguration: Release
