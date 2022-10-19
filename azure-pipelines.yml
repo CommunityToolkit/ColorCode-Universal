@@ -51,7 +51,7 @@ steps:
   inputs:
     command: custom
     custom: msbuild
-    arguments: /t:restore .\ColorCode.sln \bl
+    arguments: /t:restore .\ColorCode.sln /bl
   displayName: NuGet restore
 
 - powershell: .\build\build.ps1
