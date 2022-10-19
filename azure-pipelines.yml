@@ -51,11 +51,17 @@ steps:
   inputs:
     command: custom
     custom: msbuild
-    arguments: /t:restore .\ColorCode.sln
+    arguments: /t:restore .\ColorCode.sln \bl
   displayName: NuGet restore
 
 - powershell: .\build\build.ps1
   displayName: Build
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Package Artifacts
+  inputs:
+    pathToPublish: .\**\*.binlog
+    artifactName: Binlogs
 
 - task: PowerShell@2
   displayName: Authenticode Sign Packages
