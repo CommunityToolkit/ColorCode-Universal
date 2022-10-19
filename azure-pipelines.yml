@@ -47,15 +47,9 @@ steps:
 
 - powershell: .\build\Install-WindowsSdkISO.ps1 18362
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: custom
-    custom: msbuild
-    arguments: /t:restore .\ColorCode.sln
-  displayName: NuGet restore
-
-- powershell: .\build\build.ps1
-  displayName: Build
+  # Build solution
+  - script: msbuild /r /bl .\ColorCode.sln
+    displayName: Build solution
 
 - task: PublishBuildArtifacts@1
   displayName: Publish Package Artifacts
