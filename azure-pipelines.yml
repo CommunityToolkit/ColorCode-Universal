@@ -21,9 +21,9 @@ steps:
   displayName: Setup Environment Variables
   
 - task: NuGetToolInstaller@1
-  displayName: Use NuGet 5.11.0
+  displayName: Use NuGet 5.11.x
   inputs:
-    versionSpec: 5.11.0
+    versionSpec: 5.11.x
 
 - task: DotNetCoreCLI@2
   inputs:
@@ -34,6 +34,13 @@ steps:
 
 - script: nbgv cloud
   displayName: Set Version
+
+- task: UseDotNet@2
+  displayName: 'Install .NET Core SDK'
+  inputs:
+    packageType: sdk
+    version: 3.1.x
+    performMultiLevelLookup: true
 
 - task: UseDotNet@2
   displayName: 'Install .NET SDK'
