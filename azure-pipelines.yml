@@ -60,7 +60,7 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: Publish Package Artifacts
   inputs:
-    pathToPublish: .\**\*.binlog
+    pathToPublish: .\msbuild.binlog
     artifactName: Binlogs
 
 - task: PowerShell@2
