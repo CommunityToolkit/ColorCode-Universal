@@ -43,9 +43,9 @@ steps:
 
 # Workaround for VS2022 in CI Builds
 - bash: dotnet tool update -g dotnet-vs
-- bash: vs modify --rel -sku:enterprise --quiet +Microsoft.Component.MSBuild +Microsoft.VisualStudio.Component.ManagedDesktop.Core +Microsoft.NetCore.Component.DevelopmentTools +Microsoft.VisualStudio.Workload.UniversalBuildTools +Microsoft.VisualStudio.ComponentGroup.UWP.BuildTools +Microsoft.VisualStudio.Workload.MSBuildTools +Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools +Microsoft.VisualStudio.Component.Windows10SDK +Microsoft.VisualStudio.Component.Windows10SDK.17763 +Microsoft.VisualStudio.Component.Windows10SDK.18362 +Microsoft.VisualStudio.Component.Windows10SDK.19041 +Microsoft.VisualStudio.Component.Windows10SDK.20348 +Microsoft.VisualStudio.Component.Windows10SDK.22000 +Microsoft.VisualStudio.Workload.Universal
+- bash: vs modify --rel -sku:enterprise --quiet +Microsoft.Component.MSBuild +Microsoft.VisualStudio.Component.ManagedDesktop.Core +Microsoft.NetCore.Component.DevelopmentTools +Microsoft.VisualStudio.Workload.UniversalBuildTools +Microsoft.VisualStudio.ComponentGroup.UWP.BuildTools +Microsoft.VisualStudio.Workload.MSBuildTools +Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools +Microsoft.VisualStudio.Component.Windows10SDK +Microsoft.VisualStudio.Component.Windows10SDK.18362 +Microsoft.VisualStudio.Component.Windows10SDK.19041 +Microsoft.VisualStudio.Component.Windows10SDK.20348 +Microsoft.VisualStudio.Component.Windows10SDK.22000 +Microsoft.VisualStudio.Workload.Universal
 
-- powershell: .\build\Install-WindowsSdkISO.ps1 17763
+- powershell: .\build\Install-WindowsSdkISO.ps1 18362
 
 - task: DotNetCoreCLI@2
   inputs:
