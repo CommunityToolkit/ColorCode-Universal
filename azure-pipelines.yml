@@ -36,13 +36,6 @@ steps:
   displayName: Set Version
 
 - task: UseDotNet@2
-  displayName: 'Install .NET Core SDK'
-  inputs:
-    packageType: sdk
-    version: 3.1.x
-    performMultiLevelLookup: true
-
-- task: UseDotNet@2
   displayName: 'Install .NET SDK'
   inputs:
     version: 6.0.400
@@ -63,6 +56,13 @@ steps:
 
 - powershell: .\build\build.ps1
   displayName: Build
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Package Artifacts
+  condition: always()
+  inputs:
+    pathToPublish: .\msbuild.binlog
+    artifactName: Binlogs
 
 - task: PowerShell@2
   displayName: Authenticode Sign Packages

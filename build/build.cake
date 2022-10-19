@@ -149,6 +149,10 @@ Task("Build")
     .WithProperty("GenerateLibraryLayout", "true")
     .WithProperty("PackageOutputPath", nupkgDir);
 
+    buildSettings.BinaryLogger = new MSBuildBinaryLogSettings();
+    buildSettings.BinaryLogger.Enabled = true;
+    buildSettings.BinaryLogger.FileName = baseDir + "/msbuild.binlog";
+
     UpdateToolsPath(buildSettings);
 
     EnsureDirectoryExists(nupkgDir);
