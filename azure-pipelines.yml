@@ -54,6 +54,7 @@ steps:
   inputs:
     Contents: '**\*.nupkg'
     TargetFolder: 'build\nupkg'
+    flattenFolders: true
 
 - task: PowerShell@2
   displayName: Authenticode Sign Packages
