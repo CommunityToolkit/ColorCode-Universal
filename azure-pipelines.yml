@@ -52,7 +52,7 @@ steps:
 
 - task: CopyFiles@2
   inputs:
-    Contents: '**\*.nupkg'
+    Contents: '**\ColorCode.*.nupkg'
     TargetFolder: 'build\nupkg'
     flattenFolders: true
 
