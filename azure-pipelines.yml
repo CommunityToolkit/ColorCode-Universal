@@ -50,6 +50,11 @@ steps:
 - script: msbuild -p:Configuration=Release -r -t:pack .\ColorCode.sln
   displayName: Build and pack
 
+- task: CopyFiles@2
+  inputs:
+    Contents: '**\*.nupkg'
+    TargetFolder: 'build\nupkg'
+
 - task: PowerShell@2
   displayName: Authenticode Sign Packages
   inputs:
@@ -63,6 +68,6 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: Publish Package Artifacts
   inputs:
-    pathToPublish: .\**\*.nupkg
+    pathToPublish: 'build\nupkg'
     artifactType: container
     artifactName: Packages
