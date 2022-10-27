@@ -47,15 +47,8 @@ steps:
 
 - powershell: .\build\Install-WindowsSdkISO.ps1 18362
 
-- task: DotNetCoreCLI@2
-  inputs:
-    command: custom
-    custom: msbuild
-    arguments: /t:restore .\ColorCode.sln
-  displayName: NuGet restore
-
-- powershell: .\build\build.ps1
-  displayName: Build
+- script: msbuild -p:Configuration=Release -r -t:pack -p:GenerateLibraryLayout=true -p:PackageOutputPath=..\build\nupkg .\ColorCode.sln
+  displayName: Build and pack
 
 - task: PowerShell@2
   displayName: Authenticode Sign Packages
@@ -70,6 +63,6 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: Publish Package Artifacts
   inputs:
-    pathToPublish: .\build\nupkg
+    pathToPublish: 'build\nupkg'
     artifactType: container
     artifactName: Packages

@@ -1,0 +1,15 @@
+# Remove the line below if you want to inherit .editorconfig settings from higher directories
+root = true
+
+# Generated code
+[*{_AssemblyInfo.cs,.g.cs}]
+generated_code = true
+
+# All files
+[*]
+
+# .NET Foundation Header
+file_header_template = Licensed to the .NET Foundation under one or more agreements.\nThe .NET Foundation licenses this file to you under the MIT license.\nSee the LICENSE file in the project root for more information.
+
+# Require file header
+dotnet_diagnostic.IDE0073.severity = warning
