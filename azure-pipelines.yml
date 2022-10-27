@@ -21,9 +21,9 @@ steps:
   displayName: Setup Environment Variables
   
 - task: NuGetToolInstaller@1
-  displayName: Use NuGet 5.11.0
+  displayName: Use NuGet 5.11.x
   inputs:
-    versionSpec: 5.11.0
+    versionSpec: 5.11.x
 
 - task: DotNetCoreCLI@2
   inputs:
