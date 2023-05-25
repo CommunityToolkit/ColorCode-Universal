@@ -84,6 +84,12 @@ namespace ColorCode.Compilation.Languages
                                            {1, ScopeName.Keyword}
                                        }),
                                new LanguageRule(
+                                   @"\b(\w+\-\w+)\b",
+                                   new Dictionary<int, string>
+                                       {
+                                           {1, ScopeName.PowerShellCommand}
+                                       }),
+                               new LanguageRule(
                                    @"-(?:c|i)?(?:eq|ne|gt|ge|lt|le|notlike|like|notmatch|match|notcontains|contains|replace)",
                                    new Dictionary<int, string>
                                        {
@@ -98,7 +104,14 @@ namespace ColorCode.Compilation.Languages
                                        }
                                    ),
                                new LanguageRule(
-                                   @"(?:\+=|-=|\*=|/=|%=|=|\+\+|--|\+|-|\*|/|%)",
+                                   @"-\w+\d*\w*",
+                                   new Dictionary<int, string>
+                                       {
+                                           {0, ScopeName.PowerShellParameter}
+                                       }
+                                   ),
+                               new LanguageRule(
+                                   @"(?:\+=|-=|\*=|/=|%=|=|\+\+|--|\+|-|\*|/|%|\||,)",
                                    new Dictionary<int, string>
                                        {
                                            {0, ScopeName.PowerShellOperator}
@@ -112,7 +125,7 @@ namespace ColorCode.Compilation.Languages
                                        }
                                    ),
                                new LanguageRule(
-                                   @"(?s)\[(CmdletBinding)[^\]]+\]",
+                                   @"(?s)\[(cmdletbinding|alias|outputtype|parameter|validatenotnull|validatenotnullorempty|validatecount|validateset|allownull|allowemptycollection|allowemptystring|validatescript|validaterange|validatepattern|validatelength|supportswildcards)[^\]]+\]",
                                    new Dictionary<int, string>
                                        {
                                            {1, ScopeName.PowerShellAttribute}
@@ -136,6 +149,7 @@ namespace ColorCode.Compilation.Languages
             {
                 case "posh":
                 case "ps1":
+                case "pwsh":
                     return true;
 
                 default:

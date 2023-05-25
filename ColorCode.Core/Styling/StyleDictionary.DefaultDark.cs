@@ -21,7 +21,7 @@ namespace ColorCode.Styling
         private const string VSDarkXMLComment = "#FF608B4E";
 
         private const string VSDarkComment = "#FF57A64A";
-        private const string VSDarkKeyword = "#FF569CD6";
+        private const string VSDarkKeyword = "#FF";
         private const string VSDarkGray = "#FF9B9B9B";
         private const string VSDarkNumber = "#FFB5CEA8";
         private const string VSDarkClass = "#FF4EC9B0";
@@ -196,6 +196,16 @@ namespace ColorCode.Styling
                     {
                         Foreground = OrangeRed,
                         ReferenceName = "powershellVariable"
+                    },
+                    new Style(ScopeName.PowerShellCommand)
+                    {
+                        Foreground = Yellow,
+                        ReferenceName = "powershellCommand"
+                    },
+                    new Style(ScopeName.PowerShellParameter)
+                    {
+                        Foreground = VSDarkGray,
+                        ReferenceName = "powershellParameter"
                     },
 
                     new Style(ScopeName.Type)

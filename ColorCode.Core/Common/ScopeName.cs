@@ -26,6 +26,8 @@ namespace ColorCode.Common
         public const string PowerShellOperator = "PowerShell Operator";
         public const string PowerShellType = "PowerShell Type";
         public const string PowerShellVariable = "PowerShell Variable";
+        public const string PowerShellCommand = "PowerShell Command";
+        public const string PowerShellParameter = "PowerShell Parameter";
         public const string PreprocessorKeyword = "Preprocessor Keyword";
         public const string SqlSystemFunction = "SQL System Function";
         public const string String = "String";
