@@ -19,6 +19,10 @@ namespace ColorCode.Common
         public const string HtmlOperator = "HTML Operator";
         public const string HtmlServerSideScript = "HTML Server-Side Script";
         public const string HtmlTagDelimiter = "Html Tag Delimiter";
+        public const string JsonKey = "Json Key";
+        public const string JsonString = "Json String";
+        public const string JsonNumber = "Json Number";
+        public const string JsonConst = "Json Const";
         public const string Keyword = "Keyword";
         public const string LanguagePrefix = "&";
         public const string PlainText = "Plain Text";

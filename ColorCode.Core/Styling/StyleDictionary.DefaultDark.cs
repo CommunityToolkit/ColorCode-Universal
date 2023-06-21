@@ -117,6 +117,26 @@ namespace ColorCode.Styling
                         Foreground = Red,
                         ReferenceName = "htmlEntity"
                     },
+                    new Style(ScopeName.JsonKey)
+                    {
+                        Foreground = DarkOrange,
+                        ReferenceName = "jsonKey"
+                    },
+                    new Style(ScopeName.JsonString)
+                    {
+                        Foreground = DarkCyan,
+                        ReferenceName = "jsonString"
+                    },
+                    new Style(ScopeName.JsonNumber)
+                    {
+                        Foreground = BrightGreen,
+                        ReferenceName = "jsonNumber"
+                    },
+                    new Style(ScopeName.JsonConst)
+                    {
+                        Foreground = BrightPurple,
+                        ReferenceName = "jsonConst"
+                    },
                     new Style(ScopeName.XmlAttribute)
                     {
                         Foreground = VSDarkXMLAttribute,
