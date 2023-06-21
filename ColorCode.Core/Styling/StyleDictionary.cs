@@ -39,5 +39,8 @@ namespace ColorCode.Styling
         public const string OliveDrab = "#FF6B8E23";
         public const string DarkOliveGreen = "#FF556B2F";
         public const string DarkCyan = "#FF008B8B";
+        public const string DarkOrange = "#FFFF8700";
+        public const string BrightGreen = "#FF00d700";
+        public const string BrightPurple = "#FFaf87ff";
     }
 }

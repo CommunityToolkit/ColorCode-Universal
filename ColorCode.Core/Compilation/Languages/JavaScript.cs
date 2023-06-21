@@ -78,9 +78,6 @@ namespace ColorCode.Compilation.Languages
             {
                 case "js":
                     return true;
-                
-                case "json":
-                    return true;
 
                 default:
                     return false;
