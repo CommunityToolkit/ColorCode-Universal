@@ -197,6 +197,16 @@ namespace ColorCode.Styling
                         Foreground = OrangeRed,
                         ReferenceName = "powershellVariable"
                     },
+                    new Style(ScopeName.PowerShellCommand)
+                    {
+                        Foreground = Yellow,
+                        ReferenceName = "powershellCommand"
+                    },
+                    new Style(ScopeName.PowerShellParameter)
+                    {
+                        Foreground = VSDarkGray,
+                        ReferenceName = "powershellParameter"
+                    },
 
                     new Style(ScopeName.Type)
                     {
