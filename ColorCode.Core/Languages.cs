@@ -52,6 +52,7 @@ namespace ColorCode
             Load<Fortran>();
             Load<Python>();
             Load<MatLab>();
+            Load<PlainText>();
         }
 
         /// <summary>
@@ -276,6 +277,15 @@ namespace ColorCode
         public static ILanguage MATLAB
         {
             get { return LanguageRepository.FindById(LanguageId.MatLab); }
+        }
+
+        /// <summary>
+        /// Language support for PlainText.
+        /// </summary>
+        /// <value>Language support for PlainText.</value>
+        public static ILanguage PlainText
+        {
+            get { return LanguageRepository.FindById(LanguageId.PlainText); }
         }
 
         /// <summary>
