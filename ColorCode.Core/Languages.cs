@@ -280,6 +280,15 @@ namespace ColorCode
         }
 
         /// <summary>
+        /// Language support for PlainText.
+        /// </summary>
+        /// <value>Language support for PlainText.</value>
+        public static ILanguage PlainText
+        {
+            get { return LanguageRepository.FindById(LanguageId.PlainText); }
+        }
+
+        /// <summary>
         /// Finds a loaded language by the specified identifier.
         /// </summary>
         /// <param name="id">The identifier of the language to find.</param>
