@@ -52,6 +52,7 @@ namespace ColorCode
             Load<Fortran>();
             Load<Python>();
             Load<MatLab>();
+            Load<PlainText>();
         }
 
         /// <summary>

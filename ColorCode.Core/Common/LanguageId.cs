@@ -29,7 +29,8 @@ namespace ColorCode.Common
         public const string Haskell = "haskell";
         public const string Markdown = "markdown";
         public const string Fortran = "fortran";
-	public const string Python = "python";
+        public const string Python = "python";
         public const string MatLab = "matlab";
+        public const string PlainText = "text";
     }
 }
